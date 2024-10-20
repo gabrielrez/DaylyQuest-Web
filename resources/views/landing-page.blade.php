@@ -1,9 +1,9 @@
 <x-layouts.layout-lp>
-    <header class="my-5 flex items-center justify-between">
+    <header class="my-8 flex items-center justify-between">
         <h1 class="text-3xl font-poppins font-bold cursor-default">
             <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span>
         </h1>
-        <div class="flex gap-2">
+        <div class="flex gap-3">
             <a href="/login" class="bg-secondary block hover:bg-primary px-10 py-2.5 font-poppins font-bold rounded-lg shadow-xl cursor-pointer hover:scale-95 transition-all duration-200 ease-in-out">
                 Login
             </a>
