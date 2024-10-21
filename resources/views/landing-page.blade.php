@@ -12,7 +12,9 @@
             </a>
         </div>
     </header>
-    <section class="mt-20 flex flex-col gap-10 md:flex-row items-center">
+
+    <!-- Added an id for the section to track movement -->
+    <section id="hover-section" class="mt-20 flex flex-col gap-10 md:flex-row items-center">
         <div class="md:w-1/2">
             <h1 class="text-white text-6xl font-poppins font-semibold leading-tight">Level up <br>your <span class="underline-secondary">productivity</span /> <br><span class="underline-secondary">and discipline</span></h1>
             <p class="text-text_gray text-xl mt-8">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo obcaecati molestiae ullam voluptatem, enim assumenda suscipit. Placeat esse expedita laudantium dicta.</p>
@@ -21,4 +23,16 @@
             <img src="<?= asset('images/lp-img.svg') ?>" alt="Level Up Image" class="w-full h-auto">
         </div>
     </section>
+
+    <script>
+        const section = document.getElementById('hover-section');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth - e.pageX) / 250;
+            const y = (window.innerHeight - e.pageY) / 250;
+
+            section.style.transform = `translate(${x}px, ${y}px)`;
+            section.style.transition = 'transform 0.1s ease-out';
+        });
+    </script>
 </x-layouts.layout-lp>
