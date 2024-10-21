@@ -44,11 +44,11 @@
 
                 <!-- Personalized Goals -->
 
-                @foreach($goals as $goal)
+                @foreach($collections as $collection)
                 <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-xl relative hover:scale-105 transition-all duration-200 ease-in-out">
                     <span class="absolute top-6 right-6 bg-yellow-500 w-6 h-6 flex items-center justify-center rounded-full text-white font-poppins text-xs font-bold">!</span>
-                    <h3 class="text-xl mb-4 font-poppins font-medium">{{ $goal['title'] }}</h3>
-                    <p class="text-text_gray mb-4">Access your {{ strtolower($goal['title']) }} goals</p>
+                    <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
+                    <p class="text-text_gray mb-4">Access your {{ strtolower($collection['title']) }} goals</p>
                     <a href="#" class="text-white hover:text-text_gray underline transition-all duration-200 ease-in-out">See All</a>
                 </div>
                 @endforeach
