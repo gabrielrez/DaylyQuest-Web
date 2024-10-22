@@ -1,4 +1,4 @@
-<div class="w-1/6 bg-bg_gray p-6 m-8 rounded-3xl shadow-xl sticky top-0">
+<div class="w-1/6 bg-bg_gray p-6 m-8 rounded-3xl shadow-md sticky top-0">
     <div class="text-2xl text-center font-bold border-b-2 border-detail pb-8 font-poppins cursor-default">
         <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span>
     </div>

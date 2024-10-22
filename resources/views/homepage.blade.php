@@ -13,13 +13,13 @@
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
                     <span class="font-poppins font-bold text-4xl">My Collections</span>
                 </div>
-                <button class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-xl hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create personalized collection</button>
+                <button class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create personalized collection</button>
             </div>
 
             <!-- Cards -->
             <div class="grid grid-cols-2 gap-8">
                 <!-- Daily Goals -->
-                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-xl relative hover:scale-105 transition-all duration-200 ease-in-out">
+                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md relative hover:scale-105 transition-all duration-200 ease-in-out">
                     <span class="absolute top-6 right-6 bg-yellow-500 w-6 h-6 flex items-center justify-center rounded-full text-white text-xs font-bold">!</span>
                     <h3 class="text-xl mb-4 font-poppins font-medium">Dayly Goals</h3>
                     <p class="text-text_gray mb-4">Access your daily goals</p>
@@ -27,7 +27,7 @@
                 </div>
 
                 <!-- Monthly Goals -->
-                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-xl relative hover:scale-105 transition-all duration-200 ease-in-out">
+                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md relative hover:scale-105 transition-all duration-200 ease-in-out">
                     <span class="absolute top-6 right-6 bg-yellow-500 w-6 h-6 flex items-center justify-center rounded-full text-white font-poppins text-xs font-bold">!</span>
                     <h3 class="text-xl mb-4 font-poppins font-medium">Monthly Goals</h3>
                     <p class="text-text_gray mb-4">Access your monthly goals</p>
@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- Yearly Goals -->
-                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-xl relative hover:scale-105 transition-all duration-200 ease-in-out">
+                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md relative hover:scale-105 transition-all duration-200 ease-in-out">
                     <span class="absolute top-6 right-6 bg-yellow-500 w-6 h-6 flex items-center justify-center rounded-full text-white font-poppins text-xs font-bold">!</span>
                     <h3 class="text-xl mb-4 font-poppins font-medium">Yearly Goals</h3>
                     <p class="text-text_gray mb-4">Access your yearly goals</p>
@@ -45,7 +45,7 @@
                 <!-- Personalized Goals -->
 
                 @foreach($collections as $collection)
-                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-xl relative hover:scale-105 transition-all duration-200 ease-in-out">
+                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md relative hover:scale-105 transition-all duration-200 ease-in-out">
                     <span class="absolute top-6 right-6 bg-yellow-500 w-6 h-6 flex items-center justify-center rounded-full text-white font-poppins text-xs font-bold">!</span>
                     <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
                     <p class="text-text_gray mb-4">Access your {{ strtolower($collection['title']) }} goals</p>
