@@ -7,7 +7,7 @@
             Home Page
         </a>
         <a href="/" class="{{ request()->is('collections') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
-            Create New
+            New Collection
         </a>
         <a href="/" class="{{ request()->is('profile') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             My Profile
