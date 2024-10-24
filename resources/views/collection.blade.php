@@ -18,27 +18,15 @@
 
             <!-- Goals -->
             <div class="flex flex-col gap-8">
+                @foreach($goals as $goal)
                 <div class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
                     <img src="<?= asset('images/grabme.svg') ?>" class="max-w-5 hover:cursor-grab">
                     <div>
-                        <h3 class="text-xl mb-1 font-poppins font-medium">Study mathematics</h3>
-                        <p class="text-text_gray mb-1">I need to study math every day for the entrance exam
+                        <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal['title'] }}</h3>
+                        <p class="text-text_gray mb-1">{{ $goal['description'] }}
                     </div>
                 </div>
-                <div class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
-                    <img src="<?= asset('images/grabme.svg') ?>" class="max-w-5 hover:cursor-grab">
-                    <div>
-                        <h3 class="text-xl mb-1 font-poppins font-medium">Go to the gym</h3>
-                        <p class="text-text_gray mb-1">Come on, let's exercise, we can't stay still
-                    </div>
-                </div>
-                <div class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
-                    <img src="<?= asset('images/grabme.svg') ?>" class="max-w-5 hover:cursor-grab">
-                    <div>
-                        <h3 class="text-xl mb-1 font-poppins font-medium">Practice drums</h3>
-                        <p class="text-text_gray mb-1">Practice drums to be cool
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 </x-layouts.layout>
