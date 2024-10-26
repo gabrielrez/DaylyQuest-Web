@@ -44,11 +44,12 @@
             <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
             <span class="font-poppins font-bold text-white text-4xl">Create Account</span>
         </div>
-        <form action="" class="flex flex-col items-center gap-5 w-full mt-8">
-            <input type="text" placeholder="Your Name" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white">
-            <input type="text" placeholder="Nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white">
-            <input type="email" placeholder="E-mail" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white">
-            <input type="password" placeholder="Password" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white">
+        <form action="/register" method="POST" class="flex flex-col items-center gap-5 w-full mt-8">
+            @csrf
+            <input type="text" placeholder="Your Name" name="name" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+            <input type="text" placeholder="Nickname" name="nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+            <input type="email" placeholder="E-mail" name="email" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+            <input type="password" placeholder="Password" name="password" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
             <button type="submit" class="submit-btn font-poppins text-lg font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                 Create Account
             </button>

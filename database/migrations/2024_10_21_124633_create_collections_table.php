@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->integer('limit_time');
+            $table->date('limit_time');
             $table->integer('status');
             $table->integer('points');
             $table->foreignIdFor(User::class);

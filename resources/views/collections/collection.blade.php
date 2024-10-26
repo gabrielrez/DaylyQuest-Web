@@ -5,7 +5,7 @@
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
-                <p class="text-text_gray font-roboto">You have <span class="font-bold text-white">07:43:26</span> to complete your goals and maintain the offensive!</p>
+                <p class="text-text_gray font-roboto">You have <span class="font-bold text-white">07:43:26</span> left to complete your goals!</p>
                 <x-profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">

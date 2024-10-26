@@ -5,7 +5,7 @@
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
-                <p class="text-text_gray font-roboto">Complete your goals within the set deadline to maintain your offensive!</p>
+                <p class="text-text_gray font-roboto">Complete your goals within the set deadline!</p>
                 <x-profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">
@@ -13,7 +13,7 @@
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
                     <span class="font-poppins font-bold text-4xl">My Collections</span>
                 </div>
-                <button class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create personalized collection</button>
+                <a href="/collection/create" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create personalized collection</a>
             </div>
 
             <!-- Cards -->

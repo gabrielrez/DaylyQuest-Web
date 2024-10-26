@@ -9,20 +9,23 @@ class Collection extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
-    
+
     protected $fillable = [
-        'title', 
-        'description', 
-        'limit_time', 
-        'status', 
-        'points'
+        'title',
+        'description',
+        'limit_time',
+        'status',
+        'points',
+        'user_id',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function goals(){
+    public function goals()
+    {
         return $this->hasMany(Goal::class);
     }
 }

@@ -14,6 +14,7 @@ export default {
                 secondary: "rgb(var(--secondary))",
                 text_gray: "rgb(var(--text-gray))",
                 detail: "rgb(var(--detail))",
+                error: "rgb(var(--error))",
             },
             fontFamily: {
                 poppins: ["Poppins", "sans-serif"],

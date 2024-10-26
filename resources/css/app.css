@@ -10,5 +10,6 @@
       --secondary: 3 218 198;
       --text-gray: 123 123 123;
       --detail: 41 41 41;
+      --error: 255 82 82;
     }
   }

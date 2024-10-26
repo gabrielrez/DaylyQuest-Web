@@ -28,8 +28,8 @@
         const section = document.getElementById('hover-section');
 
         document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth - e.pageX) / 250;
-            const y = (window.innerHeight - e.pageY) / 250;
+            const x = (window.innerWidth - e.pageX) / 480;
+            const y = (window.innerHeight - e.pageY) / 480;
 
             section.style.transform = `translate(${x}px, ${y}px)`;
             section.style.transition = 'transform 0.1s ease-out';
