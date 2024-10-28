@@ -15,8 +15,11 @@
         <a href="/" class="{{ request()->is('settings') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             Settings
         </a>
-        <a href="/" class="block py-2 text-lg font-poppins hover:text-text_gray transition-all duration-200 ease-in-out">
-            Logout
-        </a>
+        <form action="/logout" method="POST">
+            @csrf
+            <button class="block py-2 text-lg font-poppins hover:text-text_gray cursor-pointer transition-all duration-200 ease-in-out">
+                Logout
+            </button>
+        </form>
     </nav>
 </div>

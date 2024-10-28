@@ -49,10 +49,23 @@
             <input type="text" placeholder="Your Name" name="name" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
             <input type="text" placeholder="Nickname" name="nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
             <input type="email" placeholder="E-mail" name="email" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-            <input type="password" placeholder="Password" name="password" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+            <div class="flex gap-5">
+                <input type="password" placeholder="Password" name="password" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+                <input type="password" placeholder="Confirm Password" name="password_confirmation" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+            </div>
             <button type="submit" class="submit-btn font-poppins text-lg font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                 Create Account
             </button>
+
+            @if($errors->any())
+            <ul class="self-start">
+                @foreach($errors->all() as $error)
+                <li class="text-sm text-error font-semibold mt-1">
+                    {{ $error }}
+                </li>
+                @endforeach
+            </ul>
+            @endif
         </form>
         <div class="mt-8 text-center text-text_gray text-lg">
             <span>Already have an account? <a href="/login" class="inline-block text-white underline">Login</a></span>

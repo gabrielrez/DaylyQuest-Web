@@ -30,17 +30,14 @@
                     @csrf
                     <input type="text" placeholder="Collection title" name="title"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-                    <x-form-error name="title" />
                     <input
                         type="text"
                         name="description"
                         id="collection-description"
                         placeholder="Collection description"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required />
-                    <x-form-error name="description" />
                     <input type="date" name="deadline"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-                    <x-form-error name="deadline" />
                     <input type="hidden" name="status" value="1">
                     <input type="hidden" name="points" value="1">
                     <input type="hidden" name="user_id" value="1">
@@ -48,6 +45,16 @@
                         class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                         Create Collection
                     </button>
+
+                    @if($errors->any())
+                    <ul class="self-start">
+                        @foreach($errors->all() as $error)
+                        <li class="text-sm text-error font-semibold mt-1">
+                            {{ $error }}
+                        </li>
+                        @endforeach
+                    </ul>
+                    @endif
                 </form>
                 <div class="text-text_gray font-roboto max-w-md">
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem totam aliquid porro consequuntur minus atque commodi dolore voluptas dolorum est eius, hic fugit provident quaerat, perferendis qui fugiat corporis deserunt!

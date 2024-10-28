@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use Carbon\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Collection>
@@ -20,7 +21,7 @@ class CollectionFactory extends Factory
         return [
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
-            'limit_time' => $this->faker->numberBetween(10, 120),
+            'limit_time' => Carbon::now()->addDays(14),
             'status' => $this->faker->numberBetween(0, 1),
             'points' => $this->faker->numberBetween(100, 1000),
             'user_id' => User::factory(),

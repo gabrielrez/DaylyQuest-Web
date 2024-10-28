@@ -15,17 +15,21 @@
                 </div>
                 <button class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create Goal</button>
             </div>
+            <!-- Description -->
+            <p class="text-text_gray font-roboto">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, doloremque. Aspernatur nihil veritatis saepe maiores ipsam officiis? Beatae vitae, necessitatibus vero sequi delectus impedit, corrupti vel repudiandae, eveniet repellendus fuga?</p>
 
             <!-- Goals -->
             <div class="flex flex-col gap-8">
-                @foreach($goals as $goal)
+                @foreach($collections as $collection)
+                @foreach($collection->goals as $goal)
                 <div class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
-                    <img src="<?= asset('images/grabme.svg') ?>" class="max-w-5 hover:cursor-grab">
+                    <img src="{{ asset('images/grabme.svg') }}" class="max-w-5 hover:cursor-grab">
                     <div>
-                        <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal['title'] }}</h3>
-                        <p class="text-text_gray mb-1">{{ $goal['description'] }}
+                        <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
+                        <p class="text-text_gray mb-1">{{ $goal->description }}</p>
                     </div>
                 </div>
+                @endforeach
                 @endforeach
             </div>
         </div>

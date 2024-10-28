@@ -10,8 +10,10 @@ class CollectionController extends Controller
 {
     public function index()
     {
+        $collections = Collection::with('goals')->get();
+
         return view('collections.collection', [
-            'goals' => Goal::all()
+            'collections' => $collections
         ]);
     }
 

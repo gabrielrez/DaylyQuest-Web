@@ -49,16 +49,24 @@
         <form action="/login" method="POST" class="flex flex-col items-center gap-5 w-full mt-8">
             @csrf
             <input type="email" placeholder="E-mail" name="email"
-                class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white"
+                class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" value="{{ old('email') }}"
                 required>
-            <x-form-error name="email" />
             <input type="password" placeholder="Password" name="password"
                 class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white">
-            <x-form-error name="password" />
             <button type="submit"
                 class="submit-btn font-poppins text-lg font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                 Login
             </button>
+
+            @if($errors->any())
+            <ul class="self-start">
+                @foreach($errors->all() as $error)
+                <li class="text-sm text-error font-semibold mt-1">
+                    {{ $error }}
+                </li>
+                @endforeach
+            </ul>
+            @endif
         </form>
         <div class="mt-8 text-center text-text_gray text-lg">
             <span>Don’t have an account? <a href="/register" class="inline-block text-white underline">Create
