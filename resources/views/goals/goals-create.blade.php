@@ -20,30 +20,27 @@
             <div class="flex justify-between items-center mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
-                    <span class="font-poppins font-bold text-4xl">New Collection</span>
+                    <span class="font-poppins font-bold text-4xl">New Goal</span>
                 </div>
             </div>
 
             <!-- Form -->
             <div class="w-full mt-8 flex gap-10">
-                <form action="/collection" method="POST" class="flex flex-col items-center gap-5 w-full">
+                <form action="/goal/{{ $collection['id'] }}" method="POST" class="flex flex-col items-center gap-5 w-full">
                     @csrf
-                    <input type="text" placeholder="Collection title" name="title"
+                    <input type="text" placeholder="Goal title" name="title"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
                     <input
                         type="text"
                         name="description"
-                        id="collection-description"
-                        placeholder="Collection description"
+                        id="goal-description"
+                        placeholder="Goal description"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required />
-                    <input type="date" name="deadline"
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
                     <input type="hidden" name="status" value="1">
-                    <input type="hidden" name="points" value="1">
-                    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                    <input type="hidden" name="collection_id" value="{{ $collection['id'] }}">
                     <button type="submit"
                         class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
-                        Create Collection
+                        Create Goal
                     </button>
 
                     @if($errors->any())

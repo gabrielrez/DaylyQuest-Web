@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 
 class CollectionController extends Controller
 {
-    public function index()
+    public function show($id)
     {
-        $collections = Collection::with('goals')->get();
+        $collection = Collection::find($id);
+        $goals = Goal::where('collection_id', $id)->get();
 
         return view('collections.collection', [
-            'collections' => $collections
+            'collection' => $collection,
+            'goals' => $goals
         ]);
     }
 

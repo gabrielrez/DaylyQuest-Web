@@ -11,13 +11,14 @@ class Goal extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 
-        'description', 
-        'status', 
-        'points'
+        'title',
+        'description',
+        'status',
+        'collection_id',
     ];
 
-    public function collection(){
+    public function collection()
+    {
         return $this->belongsTo(Collection::class);
     }
 }
