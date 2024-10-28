@@ -14,7 +14,7 @@
 
 <x-layouts.layout>
     <div class="flex h-screen overflow-hidden">
-        <x-sidebar />
+        <x-app.sidebar />
         <!-- Main Content -->
         <div class="flex-1 p-10 overflow-y-auto">
             <div class="flex justify-between items-center mb-10">

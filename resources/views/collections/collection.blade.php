@@ -1,12 +1,12 @@
 <x-layouts.layout>
     <div class="flex h-screen overflow-hidden">
-        <x-sidebar />
+        <x-app.sidebar />
         <!-- Main Content -->
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
                 <p class="text-text_gray font-roboto">You have <span class="font-bold text-white">07:43:26</span> left to complete your goals!</p>
-                <x-profile-picture />
+                <x-app.profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
