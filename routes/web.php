@@ -4,6 +4,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoalController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\NoCache;
 
@@ -17,6 +18,7 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 Route::get('/homepage', [HomepageController::class, 'index'])->middleware(['auth', NoCache::class]);
+Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', NoCache::class]);
 
 Route::get('/collection/create', [CollectionController::class, 'create'])->middleware(['auth', NoCache::class]);
 Route::get('/collection/{id}', [CollectionController::class, 'show'])->middleware(['auth', NoCache::class]);
