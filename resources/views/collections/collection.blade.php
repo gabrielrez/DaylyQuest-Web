@@ -29,13 +29,9 @@
                             <p class="text-text_gray mb-1">{{ $goal->description }}</p>
                         </div>
                         <div>
-                            <form action="/goal/complete/{{ $goal->id }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <button type="submit" class="border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
-                                    {{ $goal->status === 0 ? 'Complete' : 'Completed' }}
-                                </button>
-                            </form>
+                            <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}" class="border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
+                                {{ $goal->status === 0 ? 'Complete' : 'Completed' }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -43,3 +39,63 @@
             </div>
         </div>
 </x-layouts.layout>
+
+<!-- Modal -->
+<div id="modal" class="fixed inset-0 hidden bg-black bg-opacity-75 flex items-center justify-center">
+    <div class="bg-bg_gray rounded-3xl shadow-md w-5/12 px-9 py-8">
+        <h2 class="text-3xl font-poppins font-semibold mb-4">Did you <span class="text-secondary font-extrabold">really</span> complete it? 👀</h2>
+        <p class="text-base text-text_gray">Remember, your future just depends on you!</p>
+        <div class="flex gap-x-5 mt-10 justify-end">
+            <button onclick="closeModal()" class="border-2 border-text_gray font-bold font-poppins text-text_gray text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">Go Back</button>
+            <button onclick="completeGoal()" class="bg-secondary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">Yes, I did!</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let goal_id = null;
+
+    function openModal(button) {
+        goal_id = button.getAttribute('data-id');
+        const status = button.getAttribute('data-status');
+
+        if (status == 0) { // Exibe o modal se o status for 0
+            const modal = document.getElementById('modal');
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+        } else {
+            // Faz a requisição diretamente se o status for 1
+            completeGoal();
+        }
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+        goal_id = null;
+    }
+
+    async function completeGoal() {
+        if (!goal_id) return;
+
+        try {
+            const response = await fetch(`/goal/complete/${goal_id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    _method: 'PUT'
+                })
+            });
+            closeModal();
+            location.reload();
+        } catch (error) {
+            alert('Ops, something went wrong while trying complete goal');
+            closeModal();
+            location.reload();
+        }
+    }
+</script>

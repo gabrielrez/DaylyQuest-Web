@@ -36,7 +36,7 @@
                         id="goal-description"
                         placeholder="Goal description"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required />
-                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="status" value="0">
                     <input type="hidden" name="collection_id" value="{{ $collection['id'] }}">
                     <button type="submit"
                         class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
