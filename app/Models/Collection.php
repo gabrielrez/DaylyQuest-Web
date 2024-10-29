@@ -28,4 +28,10 @@ class Collection extends Model
     {
         return $this->hasMany(Goal::class);
     }
+
+    public function formatedDeadline()
+    {
+        // Fazer a lógica para formatar a data de acordo com o tempo (data ou hora ou data e hora, etc...)
+        return str_replace('-', '/', $this->limit_time);
+    }
 }

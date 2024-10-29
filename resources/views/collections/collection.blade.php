@@ -5,7 +5,7 @@
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
-                <p class="text-text_gray font-roboto">You have <span class="font-bold text-white">{{ $left_time }}</span> left to complete your goals!</p>
+                <p class="text-text_gray font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
                 <x-app.profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">

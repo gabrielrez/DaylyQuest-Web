@@ -11,14 +11,13 @@ class CollectionController extends Controller
     public function show($id)
     {
         $collection = Collection::find($id);
-        $left_time = '07:43:26';
 
         $goals = Goal::where('collection_id', $id)->get();
 
         return view('collections.collection', [
             'collection' => $collection,
             'goals' => $goals,
-            'left_time' => $left_time
+            'deadline' => $collection->formatedDeadline(),
         ]);
     }
 
