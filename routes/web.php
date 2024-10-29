@@ -24,3 +24,4 @@ Route::post('/collection', [CollectionController::class, 'store'])->middleware([
 
 Route::get('/goal/create/{collection_id}', [GoalController::class, 'create'])->middleware(['auth', NoCache::class]);
 Route::post('/goal/{collection_id}', [GoalController::class, 'store'])->middleware(['auth', NoCache::class]);
+Route::put('/goal/complete/{goal}', [GoalController::class, 'complete'])->middleware('auth');

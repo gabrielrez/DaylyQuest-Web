@@ -21,11 +21,22 @@
             <!-- Goals -->
             <div class="flex flex-col gap-4 mt-8">
                 @foreach($goals as $goal)
-                <div class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
+                <div class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 ? 'opacity-50' : 'opacity-100' }}">
                     <img src="{{ asset('images/grabme.svg') }}" class="max-w-5 hover:cursor-grab">
-                    <div>
-                        <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
-                        <p class="text-text_gray mb-1">{{ $goal->description }}</p>
+                    <div class="w-full flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
+                            <p class="text-text_gray mb-1">{{ $goal->description }}</p>
+                        </div>
+                        <div>
+                            <form action="/goal/complete/{{ $goal->id }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-0 text-bg_black hover:scale-105' }}">
+                                    {{ $goal->status === 0 ? 'Complete' : 'Completed' }}
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 @endforeach
