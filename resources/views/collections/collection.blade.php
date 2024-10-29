@@ -5,7 +5,7 @@
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
-                <p class="text-text_gray font-roboto">You have <span class="font-bold text-white">07:43:26</span> left to complete your goals!</p>
+                <p class="text-text_gray font-roboto">You have <span class="font-bold text-white">{{ $left_time }}</span> left to complete your goals!</p>
                 <x-app.profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">
@@ -19,9 +19,9 @@
             <p class="text-text_gray font-roboto">{{ $collection['description'] }}</p>
 
             <!-- Goals -->
-            <div class="flex flex-col gap-4 mt-8">
+            <ul class="flex flex-col gap-4 mt-8">
                 @foreach($goals as $goal)
-                <div class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 ? 'opacity-50' : 'opacity-100' }}">
+                <li class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 ? 'opacity-50' : 'opacity-100' }}">
                     <img src="{{ asset('images/grabme.svg') }}" class="max-w-5 hover:cursor-grab">
                     <div class="w-full flex items-center justify-between">
                         <div>
@@ -34,9 +34,9 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </li>
                 @endforeach
-            </div>
+            </ul>
         </div>
 </x-layouts.layout>
 
@@ -59,12 +59,11 @@
         goal_id = button.getAttribute('data-id');
         const status = button.getAttribute('data-status');
 
-        if (status == 0) { // Exibe o modal se o status for 0
+        if (status == 0) {
             const modal = document.getElementById('modal');
             modal.classList.remove('hidden');
             modal.setAttribute('aria-hidden', 'false');
         } else {
-            // Faz a requisição diretamente se o status for 1
             completeGoal();
         }
     }
@@ -93,7 +92,7 @@
             closeModal();
             location.reload();
         } catch (error) {
-            alert('Ops, something went wrong while trying complete goal');
+            alert('Ops, something went wrong while trying complete goal, please contact suport.');
             closeModal();
             location.reload();
         }
