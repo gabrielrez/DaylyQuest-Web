@@ -32,7 +32,7 @@
                             <form action="/goal/complete/{{ $goal->id }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-0 text-bg_black hover:scale-105' }}">
+                                <button type="submit" class="border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
                                     {{ $goal->status === 0 ? 'Complete' : 'Completed' }}
                                 </button>
                             </form>
