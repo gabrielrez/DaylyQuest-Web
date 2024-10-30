@@ -17,13 +17,15 @@ Route::get('/login', fn() => view('auth.login'))->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-Route::get('/homepage', [HomepageController::class, 'index'])->middleware(['auth', NoCache::class]);
-Route::get('/profile', [ProfileController::class, 'index'])->middleware(['auth', NoCache::class]);
+Route::middleware(['auth', NoCache::class])->group(function () {
+    Route::get('/homepage', [HomepageController::class, 'index']);
+    Route::get('/profile', [ProfileController::class, 'index']);
 
-Route::get('/collection/create', [CollectionController::class, 'create'])->middleware(['auth', NoCache::class]);
-Route::get('/collection/{id}', [CollectionController::class, 'show'])->middleware(['auth', NoCache::class]);
-Route::post('/collection', [CollectionController::class, 'store'])->middleware(['auth', NoCache::class]);
+    // Collections
+    Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show']);
 
-Route::get('/goal/create/{collection_id}', [GoalController::class, 'create'])->middleware(['auth', NoCache::class]);
-Route::post('/goal/{collection_id}', [GoalController::class, 'store'])->middleware(['auth', NoCache::class]);
-Route::put('/goal/complete/{goal}', [GoalController::class, 'complete'])->middleware('auth');
+    // Goals
+    Route::get('/goal/create/{collection_id}', [GoalController::class, 'create']);
+    Route::post('/goal/{collection_id}', [GoalController::class, 'store']);
+    Route::put('/goal/complete/{goal}', [GoalController::class, 'setStatus']);
+});

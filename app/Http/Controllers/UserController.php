@@ -21,9 +21,42 @@ class UserController extends Controller
 
         $user = User::create($attributes);
 
+        $this->createDefaultCollections($user);
+
         Auth::login($user);
 
         return redirect('/homepage');
+    }
+
+    public function createDefaultCollections(User $user)
+    {
+        $default_collections = [
+            [
+                'title' => 'Daily Goals',
+                'description' => 'The best way to achieve your long-term goals is to stay consistent every day',
+                'limit_time' => now()->endOfDay(),
+                'status' => 0,
+                'points' => 0,
+            ],
+            [
+                'title' => 'Monthly Goals',
+                'description' => 'Big results come from small steps taken consistently each month.',
+                'limit_time' => now()->endOfMonth(),
+                'status' => 0,
+                'points' => 0,
+            ],
+            [
+                'title' => 'Yearly Goals',
+                'description' => "A year from now, you'll wish you had started today.",
+                'limit_time' => now()->endOfYear(),
+                'status' => 0,
+                'points' => 0,
+            ],
+        ];
+
+        foreach ($default_collections as $collection_data) {
+            $user->collections()->create($collection_data);
+        }
     }
 
     public function login()
