@@ -34,24 +34,11 @@ class UserController extends Controller
             [
                 'title' => 'Daily Goals',
                 'description' => 'The best way to achieve your long-term goals is to stay consistent every day',
-                'limit_time' => now()->endOfDay(),
+                'deadline' => now()->addDay()->setTime(0, 1),
+                'cyclic' => 1,
                 'status' => 0,
                 'points' => 0,
-            ],
-            [
-                'title' => 'Monthly Goals',
-                'description' => 'Big results come from small steps taken consistently each month.',
-                'limit_time' => now()->endOfMonth(),
-                'status' => 0,
-                'points' => 0,
-            ],
-            [
-                'title' => 'Yearly Goals',
-                'description' => "A year from now, you'll wish you had started today.",
-                'limit_time' => now()->endOfYear(),
-                'status' => 0,
-                'points' => 0,
-            ],
+            ]
         ];
 
         foreach ($default_collections as $collection_data) {

@@ -37,7 +37,8 @@ class CollectionController extends Controller
         Collection::create([
             'title' => request('title'),
             'description' => request('description'),
-            'limit_time' => request('deadline'),
+            'deadline' => request('deadline'),
+            'cyclic' => request('cyclic'),
             'status' => request('status'),
             'points' => request('points'),
             'user_id' => request('user_id'),

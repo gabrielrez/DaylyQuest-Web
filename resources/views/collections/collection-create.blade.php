@@ -41,6 +41,7 @@
                     <input type="hidden" name="status" value="1">
                     <input type="hidden" name="points" value="1">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                    <input type="hidden" name="cyclic" value="0">
                     <button type="submit"
                         class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                         Create Collection

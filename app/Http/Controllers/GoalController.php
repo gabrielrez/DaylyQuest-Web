@@ -34,7 +34,7 @@ class GoalController extends Controller
         return redirect("/collection/{$collection_id}");
     }
 
-    public function complete(Goal $goal)
+    public function setStatus(Goal $goal)
     {
         $new_status = $goal->status === 0 ? 1 : 0;
 

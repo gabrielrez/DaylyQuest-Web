@@ -21,7 +21,7 @@ class CollectionFactory extends Factory
         return [
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
-            'limit_time' => Carbon::now()->addDays(14),
+            'deadline' => Carbon::now()->addDays(14),
             'status' => $this->faker->numberBetween(0, 1),
             'points' => $this->faker->numberBetween(100, 1000),
             'user_id' => User::factory(),

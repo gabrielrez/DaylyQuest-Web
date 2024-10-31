@@ -10,7 +10,7 @@
                     <div class="flex flex-col font-poppins">
                         <h3 class="font-bold">{{ Auth::user()->name }}</h3>
                         <span class="text-xl font-bold text-text_gray">{{ Auth::user()->nickname }}</span>
-                        <span class="text-xl font-light mt-4">Joined at {{ Auth::user()->created_at }}</span>
+                        <span class="text-xl font-roboto font-light mt-4">Joined at {{ Auth::user()->created_at->format('Y/m/d') }}</span>
                     </div>
                 </div>
             </div>

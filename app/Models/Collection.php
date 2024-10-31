@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Collection extends Model
 {
@@ -13,7 +14,8 @@ class Collection extends Model
     protected $fillable = [
         'title',
         'description',
-        'limit_time',
+        'deadline',
+        'cyclic',
         'status',
         'points',
         'user_id',
@@ -31,7 +33,14 @@ class Collection extends Model
 
     public function formatedDeadline()
     {
-        // Fazer a lógica para formatar a data de acordo com o tempo (data ou hora ou data e hora, etc...)
-        return str_replace('-', '/', $this->limit_time);
+        $now = Carbon::now();
+        $deadline = $this->deadline; 
+        $parsed_deadline = Carbon::parse($this->deadline);
+
+        if ($now->diffInHours($parsed_deadline, false) < 24) {
+            return 'tomorow';
+        }
+
+        return str_replace('/', '-', $deadline);
     }
 }
