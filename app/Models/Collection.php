@@ -34,7 +34,7 @@ class Collection extends Model
     public function formatedDeadline()
     {
         $now = Carbon::now();
-        $deadline = $this->deadline; 
+        $deadline = $this->deadline;
         $parsed_deadline = Carbon::parse($this->deadline);
 
         if ($now->diffInHours($parsed_deadline, false) < 24) {

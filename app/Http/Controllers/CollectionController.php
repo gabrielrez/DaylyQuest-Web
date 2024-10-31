@@ -14,10 +14,13 @@ class CollectionController extends Controller
 
         $goals = Goal::where('collection_id', $id)->get();
 
+        $all_goals_completed = $goals->isNotEmpty() && $goals->every(fn($goal) => $goal->status === 1);
+
         return view('collections.collection', [
             'collection' => $collection,
             'goals' => $goals,
             'deadline' => $collection->formatedDeadline(),
+            'completed' => $all_goals_completed,
         ]);
     }
 
