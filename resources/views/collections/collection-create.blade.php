@@ -38,7 +38,7 @@
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required />
                     <input type="date" name="deadline"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="status" value="0">
                     <input type="hidden" name="points" value="1">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                     <input type="hidden" name="cyclic" value="0">

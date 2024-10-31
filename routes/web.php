@@ -5,6 +5,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\CheckCollectionDeadline;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\NoCache;
 
@@ -25,7 +26,9 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show']);
 
     // Goals
-    Route::get('/goal/create/{collection_id}', [GoalController::class, 'create']);
-    Route::post('/goal/{collection_id}', [GoalController::class, 'store']);
-    Route::put('/goal/complete/{goal}', [GoalController::class, 'setStatus']);
+    Route::prefix('goal')->middleware([CheckCollectionDeadline::class])->group(function () {
+        Route::get('/create/{collection_id}', [GoalController::class, 'create']);
+        Route::post('/{collection_id}', [GoalController::class, 'store']);
+        Route::put('/complete/{goal}', [GoalController::class, 'setStatus']);
+    });
 });
