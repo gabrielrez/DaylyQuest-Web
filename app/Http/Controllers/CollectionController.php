@@ -15,15 +15,7 @@ class CollectionController extends Controller
 
         $goals = Goal::where('collection_id', $id)->get();
 
-        $collection_completed = $goals->isNotEmpty() && $goals->every(fn($goal) => $goal->status === 1);
-
-        $status = $collection_completed
-            ? [
-                'title' => 'Congrats! 🎉',
-                'message' => "You've completed this collection!",
-                'status' => 'success',
-            ]
-            : $collection->getStatus();
+        $status = $collection->getStatus();
 
         return view('collections.collection', [
             'collection' => $collection,

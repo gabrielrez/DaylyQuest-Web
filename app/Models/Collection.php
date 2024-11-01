@@ -33,31 +33,54 @@ class Collection extends Model
 
     public function hasExpired(): bool
     {
-        return Carbon::now()->greaterThan($this->deadline) && $this->cyclic != 1;
+        return Carbon::now()->greaterThan($this->deadline);
     }
 
-    public function getStatus(): array|null
+    public function isCompleted()
     {
-        // Not Cyclic
-        if ($this->cyclic != 1) {
-            if (Carbon::now()->greaterThan($this->deadline)) {
-                return [
-                    'title' => 'Oops! ⌛',
-                    'message' => "The deadline for this collection has expired. You didn't complete this collection in time!",
-                    'status' => 'error',
-                ];
-            }
+        return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === 1);
+    }
 
-            if ($this->goals->every(fn($goal) => $goal->status === 1)) {
-                return [
-                    'title' => 'Congrats! 🎉',
-                    'message' => "You've completed this collection!",
-                    'status' => 'success',
-                ];
-            }
+    public function getStatus(): ?array
+    {
+        $completed = $this->isCompleted();
+
+        if (!$completed && $this->hasExpired()) {
+            return [
+                'title' => 'Oops! ⌛',
+                'message' => "The deadline for this collection has expired. You didn't complete this collection in time!",
+                'status' => 'error',
+            ];
+        }
+
+        if ($completed) {
+            $title = $this->hasExpired() ? 'Better late than never!' : 'Congrats! 🎉';
+            $message = $this->hasExpired()
+                ? "You've completed this collection!"
+                : "You've completed this collection in time!";
+
+            return [
+                'title' => $title,
+                'message' => $message,
+                'status' => 'success',
+            ];
         }
 
         return null;
+    }
+
+    public function resetGoals()
+    {
+        foreach ($this->goals as $goal) {
+            $goal->status = 0;
+            $goal->save();
+        }
+    }
+
+    public function resetDeadline()
+    {
+        $this->deadline = Carbon::tomorrow()->startOfDay();
+        $this->save();
     }
 
     public function formatedDeadline(): string

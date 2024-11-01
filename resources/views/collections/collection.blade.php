@@ -45,7 +45,7 @@
 </x-modals.complete-goal>
 
 <!-- Modal completed -->
-@if($status)
+@if($status != null)
 <x-modals.collection-status
     :title="$status['title']"
     :message="$status['message']"
