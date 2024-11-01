@@ -18,10 +18,10 @@ class CheckCollectionDeadline
     public function handle(Request $request, Closure $next)
     {
         $collection_id = $request->route('collection_id') ?? $request->route('goal')->collection_id;
-        $collection = Collection::find($collection_id);
+        $collection = Collection::findOrFail($collection_id);
 
-        if (Carbon::now()->greaterThan($collection->deadline) && $collection->cyclic != 1) {
-            return redirect()->back()->with('expired', 'The deadline for this collection has expired');
+        if ($collection->hasExpired()) {
+            return redirect()->back();
         }
 
         return $next($request);

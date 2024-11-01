@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use App\Models\Goal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class CollectionController extends Controller
 {
@@ -14,13 +15,21 @@ class CollectionController extends Controller
 
         $goals = Goal::where('collection_id', $id)->get();
 
-        $all_goals_completed = $goals->isNotEmpty() && $goals->every(fn($goal) => $goal->status === 1);
+        $collection_completed = $goals->isNotEmpty() && $goals->every(fn($goal) => $goal->status === 1);
+
+        $status = $collection_completed
+            ? [
+                'title' => 'Congrats! 🎉',
+                'message' => "You've completed this collection!",
+                'status' => 'success',
+            ]
+            : $collection->getStatus();
 
         return view('collections.collection', [
             'collection' => $collection,
             'goals' => $goals,
             'deadline' => $collection->formatedDeadline(),
-            'completed' => $all_goals_completed,
+            'status' => $status,
         ]);
     }
 

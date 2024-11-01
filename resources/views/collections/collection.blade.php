@@ -1,17 +1,4 @@
 <x-layouts.layout>
-
-    @if(session('expired'))
-    <div id="modal" class="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center">
-        <div class="bg-bg_gray rounded-3xl shadow-md w-5/12 px-9 py-8">
-            <h2 class="text-3xl font-poppins font-semibold mb-4">Oops! ⌛</h2>
-            <p class="text-base text-text_gray">{{ session('expired') }}</p>
-            <div class="flex gap-x-5 mt-10 justify-end">
-                <button onclick="closeModal()" class="border-2 border-text_gray font-bold font-poppins text-text_gray text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">Ok, continue</button>
-            </div>
-        </div>
-    </div>
-    @endif
-
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
         <!-- Main Content -->
@@ -66,13 +53,15 @@
 </div>
 
 <!-- Modal completed -->
-@if($completed)
+@if($status)
 <div id="modal_completed" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
     <div class="bg-bg_gray rounded-3xl shadow-md w-5/12 px-9 py-8">
-        <h2 class="text-3xl font-poppins font-semibold mb-4">Congrats! 🎉</h2>
-        <p class="text-base text-text_gray">You've completed this collection!</p>
+        <h2 class="text-3xl font-poppins font-semibold mb-4">{{ $status['title'] }}</h2>
+        <p class="text-base text-text_gray">{{ $status['message'] }}</p>
         <div class="flex gap-x-5 mt-10 justify-end">
-            <button onclick="document.getElementById('modal_completed').classList.add('hidden')" class="bg-secondary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">Continue</button>
+            <button onclick="document.getElementById('modal_completed').classList.add('hidden')" class="{{ $status['status'] === 'success' ? 'bg-secondary text-bg_black' : 'border-2 border-detail text-text_gray' }}
+        font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out
+    ">Continue</button>
         </div>
     </div>
 </div>
