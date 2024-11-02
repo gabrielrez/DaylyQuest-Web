@@ -8,6 +8,11 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('profile');
+        return view('profile.profile');
+    }
+
+    public function edit()
+    {
+        return view('profile.edit');
     }
 }
