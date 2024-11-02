@@ -25,7 +25,7 @@
             </div>
 
             <!-- Form -->
-            <div class="w-full mt-8 flex gap-10">
+            <div class="w-full max-w-[680px] mt-8 flex gap-10">
                 <form action="/collection" method="POST" class="flex flex-col items-center gap-5 w-full">
                     @csrf
                     <input type="text" placeholder="Collection title" name="title"
@@ -57,10 +57,6 @@
                     </ul>
                     @endif
                 </form>
-                <div class="text-text_gray text-lg font-roboto max-w-md">
-                    <p>Here you create a new collection. Set a deadline and complete your goals within it!</span>
-                    </p>
-                </div>
             </div>
         </div>
     </div>

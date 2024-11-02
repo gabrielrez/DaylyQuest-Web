@@ -6,13 +6,16 @@
         <a href="/homepage" class="{{ request()->is('homepage*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             Home Page
         </a>
-        <a href="/collection/create" class="{{ request()->is('collection/create*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
+        <!-- <a href="/collection/create" class="{{ request()->is('collection/create*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             New Collection
-        </a>
+        </a> -->
         <a href="/profile" class="{{ request()->is('profile*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             My Profile
         </a>
-        <a href="/" class="{{ request()->is('settings*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
+        <a href="/homepage" class="{{ request()->is('comunity*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
+            Comunity
+        </a>
+        <a href="/homepage" class="{{ request()->is('settings*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             Settings
         </a>
         <form action="/logout" method="POST">

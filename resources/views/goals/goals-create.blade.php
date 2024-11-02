@@ -20,12 +20,12 @@
             <div class="flex justify-between items-center mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
-                    <span class="font-poppins font-bold text-4xl">New Goal</span>
+                    <span class="font-poppins font-bold text-4xl">New Goal <span class="text-text_gray text-base italic font-normal">for {{ $collection['title'] }} collection</span></span>
                 </div>
             </div>
 
             <!-- Form -->
-            <div class="w-full mt-8 flex gap-10">
+            <div class="w-full max-w-[680px] mt-8 flex gap-10">
                 <form action="/goal/{{ $collection['id'] }}" method="POST" class="flex flex-col items-center gap-5 w-full">
                     @csrf
                     <input type="text" placeholder="Goal title" name="title"
@@ -54,10 +54,6 @@
                     </ul>
                     @endif
                 </form>
-                <div class="text-text_gray text-lg font-roboto max-w-md">
-                    <p>Here you create a new goal for the collection: <span class="text-white italic font-semibold">{{ $collection['title'] }}</span>
-                    </p>
-                </div>
             </div>
         </div>
     </div>
