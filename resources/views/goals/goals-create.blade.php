@@ -42,6 +42,7 @@
                         class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                         Create Goal
                     </button>
+                    <a href="/collection/{{ $collection['id'] }}" class="text-text_gray underline">Cancel</a>
 
                     @if($errors->any())
                     <ul class="self-start">

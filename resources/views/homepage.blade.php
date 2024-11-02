@@ -5,7 +5,7 @@
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
-                <p class="text-text_gray font-roboto">Complete your goals within the set deadline!</p>
+                <p class="text-text_gray italic font-roboto">Complete your goals within the set deadline!</p>
                 <x-app.profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">
