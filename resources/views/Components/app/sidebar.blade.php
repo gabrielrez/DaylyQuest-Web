@@ -15,7 +15,7 @@
         <a href="/homepage" class="{{ request()->is('comunity*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             Comunity
         </a>
-        <a href="/homepage" class="{{ request()->is('settings*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
+        <a href="/settings" class="{{ request()->is('settings*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             Settings
         </a>
         <form action="/logout" method="POST">

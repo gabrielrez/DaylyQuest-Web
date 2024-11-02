@@ -5,6 +5,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Middleware\CheckCollectionDeadline;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\NoCache;
@@ -21,6 +22,7 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::middleware(['auth', NoCache::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index']);
     Route::get('/profile', [ProfileController::class, 'index']);
+    Route::get('/settings', [SettingsController::class, 'index']);
 
     Route::get('/profile/edit', [ProfileController::class, 'edit']);
     Route::patch('/user/{id}', [UserController::class, 'update']);
