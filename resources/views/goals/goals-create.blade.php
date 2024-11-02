@@ -53,8 +53,8 @@
                     </ul>
                     @endif
                 </form>
-                <div class="text-text_gray font-roboto max-w-md">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem totam aliquid porro consequuntur minus atque commodi dolore voluptas dolorum est eius, hic fugit provident quaerat, perferendis qui fugiat corporis deserunt!
+                <div class="text-text_gray text-lg font-roboto max-w-md">
+                    <p>Here you create a new goal for the collection: <span class="text-white italic font-semibold">{{ $collection['title'] }}</span>
                     </p>
                 </div>
             </div>

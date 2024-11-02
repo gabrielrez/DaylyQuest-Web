@@ -38,8 +38,9 @@
                     <input type="text" name="nickname" placeholder="Nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" value="{{ Auth::user()->nickname }}" required />
                     <button type="submit"
                         class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
-                        Confirm Changes
+                        Save Changes
                     </button>
+                    <a href="/profile" class="text-text_gray underline">Cancel</a>
 
                     @if($errors->any())
                     <ul class="self-start">
@@ -51,8 +52,8 @@
                     </ul>
                     @endif
                 </form>
-                <div class="text-text_gray font-roboto max-w-md">
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem totam aliquid porro consequuntur minus atque commodi dolore voluptas dolorum est eius, hic fugit provident quaerat, perferendis qui fugiat corporis deserunt!
+                <div class="text-text_gray text-lg font-roboto max-w-md">
+                    <p>Here you can update your personal information such as name, nickname and profile picture. <br><br> Don't forget to save your changes when you're done to ensure your data is always up to date.
                     </p>
                 </div>
             </div>

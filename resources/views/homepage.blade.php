@@ -20,13 +20,13 @@
             <div class="grid grid-cols-2 gap-8">
                 <!-- Goals -->
                 @foreach($collections as $collection)
-                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md relative hover:scale-105 transition-all duration-200 ease-in-out">
+                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
                     @if($collection->isCompleted())
-                    <span class="absolute top-6 right-6 bg-secondary w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs font-bold">Completed :)</span>
+                    <span class="absolute top-6 right-6 bg-secondary w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs italic font-bold">Completed</span>
                     @elseif($collection->hasExpired())
-                    <span class="absolute top-6 right-6 bg-error w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs font-bold">Expired :(</span>
+                    <span class="absolute top-6 right-6 bg-error w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs italic font-bold">Expired</span>
                     @else
-                    <span class="absolute top-6 right-6 border-2 border-detail w-max h-6 p-3 flex items-center justify-center rounded-full text-text_gray font-poppins text-xs font-bold">In progress...</span>
+                    <span class="absolute top-6 right-6 border-2 border-detail w-max h-6 p-3 flex items-center justify-center rounded-full text-text_gray font-poppins text-xs italic font-bold">{{ $collection['deadline'] }}</span>
                     @endif
                     <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
                     <p class="text-text_gray mb-4">Access your {{ strtolower($collection['title']) }} goals</p>
