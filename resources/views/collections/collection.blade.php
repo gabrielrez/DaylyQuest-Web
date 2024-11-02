@@ -115,9 +115,10 @@
     document.addEventListener('DOMContentLoaded', () => {
         const goalList = document.querySelector('#goal-list');
         const goals = [...goalList.children];
+        const collectionId = '{{ $collection->id }}';
 
         function loadGoalsFromLocalStorage() {
-            const savedOrder = JSON.parse(localStorage.getItem('goalOrder'));
+            const savedOrder = JSON.parse(localStorage.getItem(`goalOrder_${collectionId}`));
             if (savedOrder) {
                 savedOrder.forEach(id => {
                     const goal = goals.find(item => item.getAttribute('data-id') == id);
@@ -126,9 +127,10 @@
             }
         }
 
+
         function saveGoalsToLocalStorage() {
             const goalIds = [...goalList.children].map(item => item.getAttribute('data-id'));
-            localStorage.setItem('goalOrder', JSON.stringify(goalIds));
+            localStorage.setItem(`goalOrder_${collectionId}`, JSON.stringify(goalIds));
         }
 
         loadGoalsFromLocalStorage();
@@ -137,12 +139,7 @@
             animation: 200,
             ghostClass: 'drag-ghost',
             chosenClass: 'drag-chosen',
-            handle: '.grab-handle', // Drag only from this element
-            onStart: function(evt) {
-                evt.item.style.opacity = '0.5'; // Fade out the item being dragged
-            },
             onEnd: function(evt) {
-                evt.item.style.opacity = ''; // Reset opacity after dragging
                 saveGoalsToLocalStorage();
             }
         });
