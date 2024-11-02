@@ -5,11 +5,6 @@
         padding-top: 16px;
         padding-bottom: 16px;
     }
-
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        filter: invert(0.5);
-        opacity: 1;
-    }
 </style>
 
 <x-layouts.layout>
@@ -30,8 +25,8 @@
                     @csrf
                     @method('PATCH')
                     <div class="flex gap-3 items-center self-start">
-                        <img src="{{ asset('images/profile-picture-default.jpg') }}" class="w-60 h-60 rounded-full border-4 border-detail bg-bg_black">
-                        <input type="file" name="profile-picture">
+                        <img id="preview" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}" class="w-60 h-60 object-cover rounded-full border-4 border-detail bg-bg_black">
+                        <input type="file" name="profile-picture" accept=".png, .jpg, .jpeg" onchange="previewImage(event)">
                     </div>
                     <input type="text" placeholder="Name" name="name"
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" value="{{ Auth::user()->name }}" required>
@@ -55,4 +50,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
 </x-layouts.layout>

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'nickname',
         'email',
         'password',
+        'profile_picture',
     ];
 
     /**
@@ -47,7 +48,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function collections(){
+    public function collections()
+    {
         return $this->hasMany(Collection::class);
     }
 }

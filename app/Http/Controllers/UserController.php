@@ -78,9 +78,15 @@ class UserController extends Controller
         request()->validate([
             'name' => ['required', 'min:3', 'max:28'],
             'nickname' => ['required', 'unique:users,nickname,' . $user->id, 'max:18'],
+            'profile-picture' => ['nullable', 'image', 'max:2048'],
         ]);
 
         //authorize
+
+        if (request()->hasFile('profile-picture')) {
+            $path = request()->file('profile-picture')->store('profile-pictures', 'public');
+            $user->profile_picture = $path;
+        }
 
         $user->update([
             'name' => request('name'),
