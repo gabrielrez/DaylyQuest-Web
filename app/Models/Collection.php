@@ -46,6 +46,7 @@ class Collection extends Model
         $completed = $this->isCompleted();
 
         if (!$completed && $this->hasExpired()) {
+            dd(Carbon::now());
             return [
                 'title' => 'Oops! ⌛',
                 'message' => "The deadline for this collection has expired. You didn't complete this collection in time!",
@@ -69,30 +70,10 @@ class Collection extends Model
         return null;
     }
 
-    public function resetGoals()
-    {
-        foreach ($this->goals as $goal) {
-            $goal->status = 0;
-            $goal->save();
-        }
-    }
-
-    public function resetDeadline()
-    {
-        $this->deadline = Carbon::tomorrow()->startOfDay();
-        $this->save();
-    }
-
     public function formatedDeadline(): string
     {
-        $now = Carbon::now();
         $deadline = $this->deadline;
-        $parsed_deadline = Carbon::parse($this->deadline);
 
-        if ($now->diffInHours($parsed_deadline, false) < 24) {
-            return 'tomorow';
-        }
-
-        return str_replace('/', '-', $deadline);
+        return str_replace('-', '/', $deadline);
     }
 }

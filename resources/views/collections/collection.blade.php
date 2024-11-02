@@ -5,7 +5,12 @@
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
+                @if(!$collection->hasExpired())
                 <p class="text-text_gray font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
+                @endif
+                @if($collection->hasExpired())
+                <p class="text-error font-roboto">This collection has expired on {{ $deadline }}.</p>
+                @endif
                 <x-app.profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">
