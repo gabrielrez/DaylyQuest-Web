@@ -36,14 +36,54 @@ class Collection extends Model
         return Carbon::now()->greaterThan($this->deadline);
     }
 
+    public function isCyclic()
+    {
+        return $this->cyclic == 1;
+    }
+
     public function isCompleted()
     {
         return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === 1);
     }
 
+    public function resetCollection()
+    {
+        $this->goals->each(fn($goal) => $goal->update(['status' => 0]));
+
+        $this->update([
+            'deadline' => Carbon::tomorrow()->startOfDay(),
+        ]);
+    }
+
     public function getStatus(): ?array
     {
         $completed = $this->isCompleted();
+        $cyclic = $this->isCyclic();
+
+        if ($cyclic) {
+            if (!$completed && $this->hasExpired()) {
+                $this->resetCollection();
+                return [
+                    'title' => 'Oops! ⌛',
+                    'message' => "The deadline for this collection has expired. You didn't complete this collection in time, however, you can aways try again!",
+                    'status' => 'error',
+                ];
+            }
+
+            if ($completed) {
+                $title = $this->hasExpired() ? 'Better late than never!' : 'Congrats! 🎉';
+                $message = $this->hasExpired()
+                    ? "You've completed this collection!"
+                    : "You've completed this collection in time!";
+
+                $this->resetCollection();
+                return [
+                    'title' => $title,
+                    'message' => $message,
+                    'status' => 'success',
+                ];
+            }
+        }
 
         if (!$completed && $this->hasExpired()) {
             return [
@@ -69,7 +109,7 @@ class Collection extends Model
         return null;
     }
 
-    public function formatedDeadline(): string
+    public function formattedDeadline(): string
     {
         $deadline = $this->deadline;
 

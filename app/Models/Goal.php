@@ -21,4 +21,11 @@ class Goal extends Model
     {
         return $this->belongsTo(Collection::class);
     }
+
+    public function setStatus()
+    {
+        $new_status = $this->status === 0 ? 1 : 0;
+
+        $this->update(['status' => $new_status]);
+    }
 }

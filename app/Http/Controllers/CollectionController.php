@@ -20,7 +20,7 @@ class CollectionController extends Controller
         return view('collections.collection', [
             'collection' => $collection,
             'goals' => $goals,
-            'deadline' => $collection->formatedDeadline(),
+            'deadline' => $collection->formattedDeadline(),
             'status' => $status,
         ]);
     }

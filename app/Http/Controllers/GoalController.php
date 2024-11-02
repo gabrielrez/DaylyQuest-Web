@@ -36,9 +36,7 @@ class GoalController extends Controller
 
     public function setStatus(Goal $goal)
     {
-        $new_status = $goal->status === 0 ? 1 : 0;
-
-        $goal->update(['status' => $new_status]);
+        $goal->setStatus();
 
         return redirect()->back();
     }
