@@ -21,7 +21,13 @@
                 <!-- Goals -->
                 @foreach($collections as $collection)
                 <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md relative hover:scale-105 transition-all duration-200 ease-in-out">
-                    <span class="absolute top-6 right-6 bg-yellow-500 w-6 h-6 flex items-center justify-center rounded-full text-white font-poppins text-xs font-bold">!</span>
+                    @if($collection->isCompleted())
+                    <span class="absolute top-6 right-6 bg-secondary w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs font-bold">Completed :)</span>
+                    @elseif($collection->hasExpired())
+                    <span class="absolute top-6 right-6 bg-error w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs font-bold">Expired :(</span>
+                    @else
+                    <span class="absolute top-6 right-6 border-2 border-detail w-max h-6 p-3 flex items-center justify-center rounded-full text-text_gray font-poppins text-xs font-bold">In progress...</span>
+                    @endif
                     <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
                     <p class="text-text_gray mb-4">Access your {{ strtolower($collection['title']) }} goals</p>
                     <a href="/collection/{{ $collection['id'] }}" class="text-white hover:text-text_gray underline transition-all duration-200 ease-in-out">See All</a>
