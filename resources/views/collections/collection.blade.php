@@ -5,7 +5,15 @@
         <div class="flex-1 p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
+                @if(!$collection->hasExpired() && !$collection->isCompleted())
                 <p class="text-text_gray font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
+                @endif
+                @if($collection->hasExpired() && !$collection->isCompleted())
+                <p class="text-error font-roboto">This collection has expired on {{ $deadline }}.</p>
+                @endif
+                @if(!$collection->hasExpired() && $collection->isCompleted())
+                <p class="text-secondary font-roboto">You've completed this collection.</p>
+                @endif
                 <x-app.profile-picture />
             </div>
             <div class="flex justify-between items-center mb-10">
@@ -45,7 +53,7 @@
 </x-modals.complete-goal>
 
 <!-- Modal completed -->
-@if($status)
+@if($status != null)
 <x-modals.collection-status
     :title="$status['title']"
     :message="$status['message']"

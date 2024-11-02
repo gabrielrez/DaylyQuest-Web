@@ -70,4 +70,23 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+    public function update($id)
+    {
+        $user = User::findOrFail($id);
+
+        request()->validate([
+            'name' => ['required', 'min:3', 'max:28'],
+            'nickname' => ['required', 'unique:users,nickname,' . $user->id, 'max:18'],
+        ]);
+
+        //authorize
+
+        $user->update([
+            'name' => request('name'),
+            'nickname' => request('nickname'),
+        ]);
+
+        return redirect('/profile');
+    }
 }

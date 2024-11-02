@@ -22,6 +22,9 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index']);
     Route::get('/profile', [ProfileController::class, 'index']);
 
+    Route::get('/profile/edit', [ProfileController::class, 'edit']);
+    Route::patch('/user/{id}', [UserController::class, 'update']);
+
     // Collections
     Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show']);
 

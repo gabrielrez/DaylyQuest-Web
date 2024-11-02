@@ -33,28 +33,37 @@ class Collection extends Model
 
     public function hasExpired(): bool
     {
-        return Carbon::now()->greaterThan($this->deadline) && $this->cyclic != 1;
+        return Carbon::now()->greaterThan($this->deadline);
     }
 
-    public function getStatus(): array|null
+    public function isCompleted()
     {
-        // Not Cyclic
-        if ($this->cyclic != 1) {
-            if (Carbon::now()->greaterThan($this->deadline)) {
-                return [
-                    'title' => 'Oops! ⌛',
-                    'message' => "The deadline for this collection has expired. You didn't complete this collection in time!",
-                    'status' => 'error',
-                ];
-            }
+        return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === 1);
+    }
 
-            if ($this->goals->every(fn($goal) => $goal->status === 1)) {
-                return [
-                    'title' => 'Congrats! 🎉',
-                    'message' => "You've completed this collection!",
-                    'status' => 'success',
-                ];
-            }
+    public function getStatus(): ?array
+    {
+        $completed = $this->isCompleted();
+
+        if (!$completed && $this->hasExpired()) {
+            return [
+                'title' => 'Oops! ⌛',
+                'message' => "The deadline for this collection has expired. You didn't complete this collection in time! Time to create a new collection and try again!",
+                'status' => 'error',
+            ];
+        }
+
+        if ($completed) {
+            $title = $this->hasExpired() ? 'Better late than never!' : 'Congrats! 🎉';
+            $message = $this->hasExpired()
+                ? "You've completed this collection!"
+                : "You've completed this collection in time!";
+
+            return [
+                'title' => $title,
+                'message' => $message,
+                'status' => 'success',
+            ];
         }
 
         return null;
@@ -62,14 +71,8 @@ class Collection extends Model
 
     public function formatedDeadline(): string
     {
-        $now = Carbon::now();
         $deadline = $this->deadline;
-        $parsed_deadline = Carbon::parse($this->deadline);
 
-        if ($now->diffInHours($parsed_deadline, false) < 24) {
-            return 'tomorow';
-        }
-
-        return str_replace('/', '-', $deadline);
+        return str_replace('-', '/', $deadline);
     }
 }
