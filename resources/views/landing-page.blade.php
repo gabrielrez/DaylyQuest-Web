@@ -17,7 +17,7 @@
     <section id="hover-section" class="mt-20 flex flex-col gap-10 md:flex-row items-center">
         <div class="md:w-1/2">
             <h1 class="text-white text-6xl font-poppins font-semibold leading-tight">Level up <br>your <span class="underline-secondary">productivity</span /> <br><span class="underline-secondary">and discipline</span></h1>
-            <p class="text-text_gray text-xl mt-8">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo obcaecati molestiae ullam voluptatem, enim assumenda suscipit. Placeat esse expedita laudantium dicta.</p>
+            <p class="text-text_gray text-xl mt-8">DaylyQuest helps you organize and achieve your goals with ease. Create custom collections, set deadlines, and track your progress. Make each day a quest toward your best self.</p>
         </div>
         <div class="md:w-1/2">
             <img src="<?= asset('images/lp-img.svg') ?>" alt="Level Up Image" class="w-full h-auto">
