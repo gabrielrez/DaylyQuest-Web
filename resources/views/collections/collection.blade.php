@@ -6,13 +6,13 @@
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
                 @if(!$collection->hasExpired() && !$collection->isCompleted())
-                <p class="text-text_gray font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
+                <p class="text-text_gray italic font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
                 @endif
                 @if($collection->hasExpired() && !$collection->isCompleted())
-                <p class="text-error font-roboto">This collection has expired on {{ $deadline }}.</p>
+                <p class="text-error italic font-roboto">This collection has expired on {{ $deadline }}.</p>
                 @endif
                 @if(!$collection->hasExpired() && $collection->isCompleted())
-                <p class="text-secondary font-roboto">You've completed this collection.</p>
+                <p class="text-secondary italic font-roboto">You've completed this collection.</p>
                 @endif
                 <x-app.profile-picture />
             </div>
@@ -24,7 +24,7 @@
                 <a href="/goal/create/{{ $collection['id'] }}" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create Goal</a>
             </div>
             <!-- Description -->
-            <p class="text-text_gray font-roboto">{{ $collection['description'] }}</p>
+            <p class="text-text_gray text-lg font-roboto">{{ $collection['description'] }}</p>
 
             <!-- Goals -->
             <ul class="flex flex-col gap-4 mt-8">
