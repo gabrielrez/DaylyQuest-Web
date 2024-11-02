@@ -25,7 +25,7 @@
             </div>
 
             <!-- Form -->
-            <div class="w-full mt-8 flex gap-10">
+            <div class="w-full max-w-[680px] mt-8 flex gap-10">
                 <form action="/user/{{ Auth::user()->id }}" method="POST" class="flex flex-col items-center gap-5 w-full">
                     @csrf
                     @method('PATCH')
@@ -52,10 +52,6 @@
                     </ul>
                     @endif
                 </form>
-                <div class="text-text_gray text-lg font-roboto max-w-md">
-                    <p>Here you can update your personal information such as name, nickname and profile picture. <br><br> Don't forget to save your changes when you're done to ensure your data is always up to date.
-                    </p>
-                </div>
             </div>
         </div>
     </div>
