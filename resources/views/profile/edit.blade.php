@@ -26,11 +26,11 @@
 
             <!-- Form -->
             <div class="w-full max-w-[680px] mt-8 flex gap-10">
-                <form action="/user/{{ Auth::user()->id }}" method="POST" class="flex flex-col items-center gap-5 w-full">
+                <form action="/user/{{ Auth::user()->id }}" method="POST" class="flex flex-col items-center gap-5 w-full" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="flex gap-3 items-center self-start">
-                        <img src="<?= asset('images/profile-picture-default.jpg') ?>" class="w-60 h-60 rounded-full border-4 border-detail bg-bg_black">
+                        <img src="{{ asset('images/profile-picture-default.jpg') }}" class="w-60 h-60 rounded-full border-4 border-detail bg-bg_black">
                         <input type="file" name="profile-picture">
                     </div>
                     <input type="text" placeholder="Name" name="name"

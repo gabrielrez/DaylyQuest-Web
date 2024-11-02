@@ -6,7 +6,7 @@
             <!-- Header -->
             <div class="flex justify-between items-center mb-12">
                 <div class="text-3xl flex items-center gap-[16px]">
-                    <img src="<?= asset('images/profile-picture-default.jpg') ?>" class="w-60 h-60 rounded-full border-4 border-detail bg-bg_black">
+                    <img src="{{ asset('images/profile-picture-default.jpg') }}" class="w-60 h-60 rounded-full border-4 border-detail bg-bg_black">
                     <div class="flex flex-col font-poppins">
                         <a href="/profile/edit" class="text-base text-text_gray font-roboto pb-3 underline">Edit Profile</a>
                         <h3 class="font-bold">{{ Auth::user()->name }}</h3>
