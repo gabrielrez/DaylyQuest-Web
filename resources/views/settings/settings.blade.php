@@ -1,4 +1,10 @@
 <x-layouts.layout>
+    <style>
+        .icon-width {
+            width: 24px;
+        }
+    </style>
+
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
         <!-- Main Content -->
@@ -12,9 +18,74 @@
             </div>
 
             <!-- Settings Options -->
-            <div class="grid grid-cols-2 gap-8">
-                SETTINGS
-            </div>
+            <ul class="flex flex-col gap-4 mt-8">
+                <li>
+                    <a href="#" class="bg-bg_gray flex items-center gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
+                        <i class="fas fa-info-circle fa-xl text-text_gray icon-width"></i>
+                        <span class="w-0.5 h-8 bg-detail"></span>
+                        <p class="text-text_gray mb-1">Information</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="bg-bg_gray flex items-center gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
+                        <i class="fas fa-language fa-xl text-text_gray icon-width"></i>
+                        <span class="w-0.5 h-8 bg-detail"></span>
+                        <p class="text-text_gray mb-1">Select Language</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="bg-bg_gray flex items-center gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
+                        <i class="fas fa-clock fa-xl text-text_gray icon-width"></i>
+                        <span class="w-0.5 h-8 bg-detail"></span>
+                        <p class="text-text_gray mb-1">Set Timezone</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="delete_btn" onclick="openModal(this)" data-id="{{ Auth::user()->id }}" class="bg-bg_gray flex items-center gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
+                        <i class="fas fa-trash fa-xl text-error opacity-50 icon-width"></i>
+                        <span class="w-0.5 h-8 bg-detail"></span>
+                        <p class="text-text_gray mb-1">Delete Account</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </x-layouts.layout>
+
+<!-- Modal complete goal -->
+<x-modals.delete-account>
+</x-modals.delete-account>
+
+<script>
+    let user_id = document.getElementById('delete_btn').getAttribute('data-id');
+
+    function openModal(button) {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+
+    async function deleteAccount() {
+        try {
+            const response = await fetch(`/user/${user_id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            });
+            closeModal();
+            location.reload();
+        } catch (error) {
+            alert('Ops, something went wrong while trying to delete your account, please contact support.');
+            closeModal();
+            location.reload();
+        }
+    }
+</script>

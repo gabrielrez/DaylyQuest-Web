@@ -26,6 +26,7 @@ Route::middleware(['auth', NoCache::class])->group(function () {
 
     Route::get('/profile/edit', [ProfileController::class, 'edit']);
     Route::patch('/user/{id}', [UserController::class, 'update']);
+    Route::delete('/user/{id}', [UserController::class, 'destroy']);
 
     // Collections
     Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show']);

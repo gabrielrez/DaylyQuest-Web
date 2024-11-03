@@ -93,4 +93,15 @@ class UserController extends Controller
 
         return redirect('/profile');
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return redirect('/')->with('status', 'Account deleted successfully.');
+        } else {
+            return redirect('/settings')->with('error', 'User not found.');
+        }
+    }
 }
