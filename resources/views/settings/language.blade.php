@@ -13,6 +13,12 @@
             white-space: nowrap;
             z-index: 10;
         }
+
+        .active {
+            border: 4px solid #292929;
+            padding: 0 8px;
+            border-radius: 18px;
+        }
     </style>
 
     <div class="flex h-screen overflow-hidden">
@@ -31,8 +37,8 @@
             <div class="flex flex-col gap-4 mt-8">
                 <a href="/settings" class="underline text-text_gray">Go Back</a>
                 <p class="text-lg font-poppins text-text_gray mt-5">Select a language:</p>
-                <ul class="flex gap-8">
-                    <li data-language="English" class="hover:scale-110 cursor-pointer transition-all duration-200 ease-in-out">
+                <ul id="languages" class="flex gap-8">
+                    <li data-language="English" class="active hover:scale-110 cursor-pointer transition-all duration-200 ease-in-out">
                         <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 32 32">
                             <rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#071b65"></rect>
                             <path d="M5.101,4h-.101c-1.981,0-3.615,1.444-3.933,3.334L26.899,28h.101c1.981,0,3.615-1.444,3.933-3.334L5.101,4Z" fill="#fff"></path>
@@ -108,4 +114,17 @@
             tooltip.style.top = `${event.pageY - tooltipRect.height - 10}px`;
         }
     });
+</script>
+
+<script>
+    let language;
+    const flags = document.querySelectorAll('#languages li');
+
+    flags.forEach((flag => {
+        flag.addEventListener('click', function() {
+            flags.forEach(flag => flag.classList.remove('active'));
+            this.classList.add('active');
+            language = this.getAttribute('data-language');
+        })
+    }))
 </script>

@@ -23,7 +23,7 @@
                 <p class="font-poppins text-lg text-text_gray mt-5">Contact our support via e-mail:</p>
                 <div class="flex gap-5 items-center">
                     <i class="fas fa-envelope fa-2xl text-white icon-width"></i>
-                    <span class="text-2xl text-white underline cursor-pointer">contact@daylyquest.com</span>
+                    <a href="mailto:contact@daylyquest.com" class="text-2xl text-white underline">contact@daylyquest.com</a>
                 </div>
             </div>
         </div>
