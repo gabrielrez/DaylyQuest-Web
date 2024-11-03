@@ -37,4 +37,13 @@ Route::middleware(['auth', NoCache::class])->group(function () {
         Route::post('/{collection_id}', [GoalController::class, 'store']);
         Route::put('/complete/{goal}', [GoalController::class, 'setStatus']);
     });
+
+    // Settings
+    Route::prefix('settings')->group(function () {
+        Route::get('/information', fn() => view('settings.information'));
+        Route::get('/timezone', fn() => view('settings.timezone'));
+        Route::get('/language', fn() => view('settings.language'));
+        Route::get('/account/preferences', fn() => view('settings.account-preferences'));
+        Route::get('/support', fn() => view('settings.support'));
+    });
 });
