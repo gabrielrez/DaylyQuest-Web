@@ -70,11 +70,9 @@ class Collection extends Model
                 ];
             }
 
-            if ($completed) {
-                $title = $this->hasExpired() ? 'Better late than never!' : 'Congrats! 🎉';
-                $message = $this->hasExpired()
-                    ? "You've completed this collection!"
-                    : "You've completed this collection in time! New day, new goals!";
+            if ($completed && $this->hasExpired()) {
+                $title = 'Congrats! 🎉';
+                $message = "You've completed this collection in time! New day, new goals!";
 
                 $this->resetCollection();
                 return [
