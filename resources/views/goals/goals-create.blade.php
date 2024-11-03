@@ -28,18 +28,27 @@
             <div class="w-full max-w-[680px] mt-8 flex gap-10">
                 <form action="/goal/{{ $collection['id'] }}" method="POST" class="flex flex-col items-center gap-5 w-full">
                     @csrf
-                    <input type="text" placeholder="Goal title" name="title"
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-                    <input
-                        type="text"
-                        name="description"
-                        id="goal-description"
-                        placeholder="Goal description"
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required />
+                    <div class="w-full">
+                        <label for="title" class="self-start font-poppins text-text_gray">Goal Title:</label>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            name="title"
+                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required>
+                    </div>
+                    <div class="w-full">
+                        <label for="title" class="self-start font-poppins text-text_gray">Goal Description:</label>
+                        <input
+                            type="text"
+                            name="description"
+                            id="goal-description"
+                            placeholder="Description"
+                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required />
+                    </div>
                     <input type="hidden" name="status" value="0">
                     <input type="hidden" name="collection_id" value="{{ $collection['id'] }}">
                     <button type="submit"
-                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
+                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                         Create Goal
                     </button>
                     <a href="/collection/{{ $collection['id'] }}" class="text-text_gray underline">Cancel</a>

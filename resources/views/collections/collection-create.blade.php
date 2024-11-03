@@ -26,24 +26,37 @@
 
             <!-- Form -->
             <div class="w-full max-w-[680px] mt-8 flex gap-10">
-                <form action="/collection" method="POST" class="flex flex-col items-center gap-5 w-full">
+                <form action="/collection" method="POST" class="flex flex-col items-start gap-5 w-full">
                     @csrf
-                    <input type="text" placeholder="Collection title" name="title"
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-                    <input
-                        type="text"
-                        name="description"
-                        id="collection-description"
-                        placeholder="Collection description"
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required />
-                    <input type="date" name="deadline"
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+                    <div class="w-full">
+                        <label for="title" class="self-start font-poppins text-text_gray">Collection Title:</label>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="Title"
+                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required>
+                    </div>
+                    <div class="w-full">
+                        <label for="description" class="self-start font-poppins text-text_gray">Collection Description:</label>
+                        <input
+                            type="text"
+                            name="description"
+                            placeholder="Description"
+                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required />
+                    </div>
+                    <div class="w-full">
+                        <label for="deadline" class="self-start font-poppins text-text_gray">Collection Deadline:</label>
+                        <input
+                            type="date"
+                            name="deadline"
+                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required>
+                    </div>
                     <input type="hidden" name="status" value="0">
                     <input type="hidden" name="points" value="1">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                     <input type="hidden" name="cyclic" value="0">
                     <button type="submit"
-                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
+                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                         Create Collection
                     </button>
 

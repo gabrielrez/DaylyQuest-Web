@@ -22,9 +22,9 @@
                 @foreach($collections as $collection)
                 <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
                     @if($collection->isCompleted())
-                    <span class="absolute top-6 right-6 bg-secondary w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs italic font-bold">Completed</span>
+                    <i class="fas text-2xl fa-check-circle absolute top-6 right-6 text-secondary"></i>
                     @elseif($collection->hasExpired())
-                    <span class="absolute top-6 right-6 bg-error w-max h-6 p-3 flex items-center justify-center rounded-full text-bg_black font-poppins text-xs italic font-bold">Expired</span>
+                    <i class="fas text-2xl fa-times-circle absolute top-6 right-6 text-error"></i>
                     @else
                     <span class="absolute top-6 right-6 border-2 border-detail w-max h-6 p-3 flex items-center justify-center rounded-full text-text_gray font-poppins text-xs italic font-bold">{{ $collection['deadline'] }}</span>
                     @endif

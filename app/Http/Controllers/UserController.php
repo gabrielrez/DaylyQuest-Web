@@ -55,7 +55,7 @@ class UserController extends Controller
 
         if (!Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => 'Ops, those credentials do not match'
+                'email' => 'Oops, those credentials do not match'
             ]);
         }
 
@@ -80,8 +80,6 @@ class UserController extends Controller
             'nickname' => ['required', 'unique:users,nickname,' . $user->id, 'max:18'],
             'profile-picture' => ['nullable', 'image', 'max:2048'],
         ]);
-
-        //authorize
 
         if (request()->hasFile('profile-picture')) {
             $path = request()->file('profile-picture')->store('profile-pictures', 'public');
