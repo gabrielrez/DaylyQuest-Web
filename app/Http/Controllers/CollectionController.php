@@ -50,4 +50,10 @@ class CollectionController extends Controller
 
         return redirect('/homepage');
     }
+
+    public function destroy($id)
+    {
+        $collection = Collection::findOrFail($id);
+        $collection->delete();
+    }
 }

@@ -21,7 +21,12 @@
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
                     <span class="font-poppins font-bold text-4xl">{{ $collection['title'] }}</span>
                 </div>
-                <a href="/goal/create/{{ $collection['id'] }}" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create Goal</a>
+                <div>
+                    @if($collection->hasExpired() && $collection['cyclic'] == 0)
+                    <a href="#" id="delete-collection-btn" data-id="{{ $collection['id'] }}" class=" mr-3 text-error underline font-roboto">Delete Collection</a>
+                    @endif
+                    <a href="/goal/create/{{ $collection['id'] }}" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create Goal</a>
+                </div>
             </div>
             <!-- Description -->
             <p class="text-text_gray text-lg font-roboto">{{ $collection['description'] }}</p>
@@ -107,6 +112,28 @@
             location.reload();
         }
     }
+</script>
+
+<script>
+    const delete_collection_btn = document.getElementById('delete-collection-btn');
+
+    delete_collection_btn.addEventListener('click', async function() {
+        const collection_id = delete_collection_btn.getAttribute('data-id');
+
+        try {
+            const response = await fetch(`/collection/${collection_id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+            });
+            window.location.href = '/homepage';
+        } catch (error) {
+            alert('Ops, something went wrong while trying to delete collection, please contact support.');
+            location.reload();
+        }
+    })
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>

@@ -29,7 +29,7 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
 
     // Collections
-    Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show']);
+    Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show', 'destroy']);
 
     // Goals
     Route::prefix('goal')->middleware([CheckCollectionDeadline::class])->group(function () {
