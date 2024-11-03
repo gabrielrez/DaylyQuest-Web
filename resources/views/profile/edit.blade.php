@@ -25,14 +25,20 @@
                     @csrf
                     @method('PATCH')
                     <div class="flex gap-3 items-center self-start">
-                        <img id="preview" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}" class="w-60 h-60 object-cover rounded-full border-4 border-detail bg-bg_black">
+                        <img id="preview" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}" class="w-36 h-36 object-cover rounded-full border-4 border-detail bg-bg_black">
                         <input type="file" name="profile-picture" accept=".png, .jpg, .jpeg" onchange="previewImage(event)">
                     </div>
-                    <input type="text" placeholder="Name" name="name"
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" value="{{ Auth::user()->name }}" required>
-                    <input type="text" name="nickname" placeholder="Nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" value="{{ Auth::user()->nickname }}" required />
+                    <div class="w-full">
+                        <label for="name" class="self-start font-poppins text-text_gray">Your Name:</label>
+                        <input type="text" placeholder="Name" name="name"
+                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" value="{{ Auth::user()->name }}" required>
+                    </div>
+                    <div class="w-full">
+                        <label for="nickname" class="self-start font-poppins text-text_gray">Your Nickname:</label>
+                        <input type="text" name="nickname" placeholder="Nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" value="{{ Auth::user()->nickname }}" required />
+                    </div>
                     <button type="submit"
-                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
+                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                         Save Changes
                     </button>
                     <a href="/profile" class="text-text_gray underline">Cancel</a>

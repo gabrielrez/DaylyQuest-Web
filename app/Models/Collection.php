@@ -64,8 +64,8 @@ class Collection extends Model
             if (!$completed && $this->hasExpired()) {
                 $this->resetCollection();
                 return [
-                    'title' => 'Oops! ⌛',
-                    'message' => "The deadline for this collection has expired. You didn't complete this collection in time, however, you can aways try again!",
+                    'title' => "Don't give up! 🔁",
+                    'message' => "The deadline for this collection has expired. You didn't complete this collection in time. However, this is a cyclic collection, you can aways try again!",
                     'status' => 'error',
                 ];
             }
