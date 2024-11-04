@@ -25,25 +25,19 @@
             </div>
 
             <!-- Form -->
-            <div class="w-full max-w-[680px] mt-8 flex gap-10">
-                <form action="/goal/{{ $collection['id'] }}" method="POST" class="flex flex-col items-center gap-5 w-full">
+            <div class="w-full max-w-[600px] mt-8 flex gap-10">
+                <form action="/goal/{{ $collection['id'] }}" method="POST" class="flex flex-col items-center gap-3 w-full">
                     @csrf
                     <div class="w-full">
-                        <label for="title" class="self-start font-poppins text-text_gray">Goal Title:</label>
+                        <label for="title" class="self-start font-roboto text-text_gray">Goal Title:</label>
                         <input
                             type="text"
-                            placeholder="Title"
                             name="title"
                             class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required>
                     </div>
                     <div class="w-full">
-                        <label for="title" class="self-start font-poppins text-text_gray">Goal Description:</label>
-                        <input
-                            type="text"
-                            name="description"
-                            id="goal-description"
-                            placeholder="Description"
-                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required />
+                        <label for="title" class="self-start font-roboto text-text_gray">Goal Description:</label>
+                        <textarea name="description" id="goal-description" class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-6 w-full text-white" required></textarea>
                     </div>
                     <input type="hidden" name="status" value="0">
                     <input type="hidden" name="collection_id" value="{{ $collection['id'] }}">

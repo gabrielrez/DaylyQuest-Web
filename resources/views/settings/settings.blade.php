@@ -26,7 +26,7 @@
                         <p class="text-text_gray mb-1">Support</p>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/settings/account/preferences" class="bg-bg_gray flex items-center gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
                         <i class="fas fa-user fa-xl text-text_gray icon-width"></i>
                         <span class="w-0.5 h-8 bg-detail"></span>
@@ -46,7 +46,7 @@
                         <span class="w-0.5 h-8 bg-detail"></span>
                         <p class="text-text_gray mb-1">Timezone</p>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="settings/information" class="bg-bg_gray flex items-center gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out">
                         <i class="fas fa-info-circle fa-xl text-text_gray icon-width"></i>
