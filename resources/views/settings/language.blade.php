@@ -35,7 +35,6 @@
 
             <!-- Content -->
             <div class="flex flex-col gap-4 mt-8">
-                <a href="/settings" class="underline text-text_gray">Go Back</a>
                 <p class="text-lg font-poppins text-text_gray mt-5">Select a language:</p>
                 <ul id="languages" class="flex gap-8">
                     <li data-language="English" class="active hover:scale-110 cursor-pointer transition-all duration-200 ease-in-out">

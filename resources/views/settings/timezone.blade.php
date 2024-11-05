@@ -19,7 +19,6 @@
 
             <!-- Content -->
             <div class="flex flex-col gap-4 mt-8">
-                <a href="/settings" class="underline text-text_gray">Go Back</a>
             </div>
         </div>
     </div>

@@ -19,7 +19,6 @@
 
             <!-- Content -->
             <div class="flex flex-col gap-4 mt-8">
-                <a href="/settings" class="underline text-text_gray">Go Back</a>
 
                 <ul class="flex flex-col gap-y-3 mt-5 underline text-text_gray">
                     <li class="pl-3 border-l-4 border-detail rounded hover:border-l-8 transition-all duration-200 ease-in-out"><a href="#">contact@daylyquest.com</a></li>
