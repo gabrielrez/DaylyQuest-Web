@@ -78,6 +78,7 @@ class UserController extends Controller
         request()->validate([
             'name' => ['required', 'min:3', 'max:28'],
             'nickname' => ['required', 'unique:users,nickname,' . $user->id, 'max:18'],
+            'bio' => ['required', 'max:260'],
             'profile-picture' => ['nullable', 'image', 'max:2048'],
         ]);
 
@@ -89,6 +90,7 @@ class UserController extends Controller
         $user->update([
             'name' => request('name'),
             'nickname' => request('nickname'),
+            'bio' => request('bio'),
         ]);
 
         return redirect('/profile');

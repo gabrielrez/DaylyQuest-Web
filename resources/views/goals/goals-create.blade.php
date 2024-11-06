@@ -34,7 +34,6 @@
                             type="text"
                             name="title"
                             class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white"
-                            value="My Goal"
                             required>
                     </div>
                     <div class="w-full">
@@ -43,7 +42,7 @@
                         name="description"
                         id="goal-description" 
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" 
-                        required>My Goal's description</textarea>
+                        required></textarea>
                     </div>
                     <input type="hidden" name="status" value="0">
                     <input type="hidden" name="collection_id" value="{{ $collection['id'] }}">

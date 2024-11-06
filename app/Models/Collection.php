@@ -57,51 +57,51 @@ class Collection extends Model
 
     public function getStatus(): ?array
     {
+        // Transformar em ENUM
+        $status_messages = [
+            'error_cyclic' => [
+                'title' => "Don't give up! 🔁",
+                'message' => "The deadline for this collection has expired. You didn't complete this collection in time. However, this is a cyclic collection, you can aways try again!",
+                'status' => 'error',
+            ],
+            'success_cyclic' => [
+                'title' => 'Congrats! 🎉',
+                'message' => "You've completed this collection in time! New day, new goals!",
+                'status' => 'success',
+            ],
+            'error_not_cyclic' => [
+                'title' => 'Oops! ⌛',
+                'message' => "The deadline for this collection has expired. You didn't complete this collection in time! Time to create a new collection and try again!",
+                'status' => 'error',
+            ],
+            'success_not_cyclic' => [
+                'title' => 'Congrats! 🎉',
+                'message' => "You've completed this collection in time!",
+                'status' => 'success',
+            ],
+        ];
+
         $completed = $this->isCompleted();
         $cyclic = $this->isCyclic();
 
         if ($cyclic) {
             if (!$completed && $this->hasExpired()) {
                 $this->resetCollection();
-                return [
-                    'title' => "Don't give up! 🔁",
-                    'message' => "The deadline for this collection has expired. You didn't complete this collection in time. However, this is a cyclic collection, you can aways try again!",
-                    'status' => 'error',
-                ];
+                return $status_messages['error_cyclic'];
             }
 
             if ($completed && $this->hasExpired()) {
-                $title = 'Congrats! 🎉';
-                $message = "You've completed this collection in time! New day, new goals!";
-
                 $this->resetCollection();
-                return [
-                    'title' => $title,
-                    'message' => $message,
-                    'status' => 'success',
-                ];
+                return $status_messages['success_cyclic'];
             }
         }
 
         if (!$completed && $this->hasExpired()) {
-            return [
-                'title' => 'Oops! ⌛',
-                'message' => "The deadline for this collection has expired. You didn't complete this collection in time! Time to create a new collection and try again!",
-                'status' => 'error',
-            ];
+            return $status_messages['error_not_cyclic'];
         }
 
         if ($completed) {
-            $title = $this->hasExpired() ? 'Better late than never!' : 'Congrats! 🎉';
-            $message = $this->hasExpired()
-                ? "You've completed this collection!"
-                : "You've completed this collection in time!";
-
-            return [
-                'title' => $title,
-                'message' => $message,
-                'status' => 'success',
-            ];
+            return $status_messages['success_not_cyclic'];
         }
 
         return null;

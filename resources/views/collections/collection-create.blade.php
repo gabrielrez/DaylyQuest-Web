@@ -29,19 +29,18 @@
                 <form action="/collection" method="POST" class="flex flex-col items-start gap-3 w-full">
                     @csrf
                     <div class="w-full">
-                    <label for="deadline" class="self-start font-roboto text-text_gray">Title:</label>
+                    <label for="title" class="self-start font-roboto text-text_gray">Title:</label>
                         <input
                             type="text"
                             name="title"
-                            value="My Collection"
                             class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" required>
                     </div>
                     <div class="w-full">
-                        <label for="deadline" class="self-start font-roboto text-text_gray">Description:</label>
+                        <label for="description" class="self-start font-roboto text-text_gray">Description:</label>
                         <textarea 
                         name="description" 
                         class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white"  
-                        required>My Collection's description</textarea>
+                        required></textarea>
                     </div>
                     <div class="w-full">
                     <label for="deadline" class="self-start font-roboto text-text_gray">Deadline:</label>
