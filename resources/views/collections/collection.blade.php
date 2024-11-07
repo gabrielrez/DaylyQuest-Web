@@ -42,7 +42,12 @@
                             <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
                             <p class="text-text_gray mb-1">{{ $goal->description }}</p>
                         </div>
-                        <div>
+                        <div class="flex items-center gap-5">
+                            <form action="/goal/{{ $goal['id'] }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-text_gray underline font-roboto">Delete</button>
+                            </form>
                             <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}"
                                 class="border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
                                 {{ $goal->status === 0 ? 'Complete' : 'Completed' }}

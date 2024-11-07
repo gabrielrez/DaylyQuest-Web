@@ -40,4 +40,12 @@ class GoalController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        $goal = Goal::findOrFail($id);
+        $goal->delete();
+
+        return redirect()->back();
+    }
 }

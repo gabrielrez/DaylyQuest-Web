@@ -38,6 +38,8 @@ Route::middleware(['auth', NoCache::class])->group(function () {
         Route::put('/complete/{goal}', [GoalController::class, 'setStatus']);
     });
 
+    Route::delete('/goal/{goal_id}', [GoalController::class, 'destroy']);
+
     // Settings
     Route::prefix('settings')->group(function () {
         Route::get('/information', fn() => view('settings.information'));
