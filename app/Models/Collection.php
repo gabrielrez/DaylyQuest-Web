@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusMessage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -57,54 +58,49 @@ class Collection extends Model
 
     public function getStatus(): ?array
     {
-        // Transformar em ENUM
-        $status_messages = [
-            'error_cyclic' => [
-                'title' => "Don't give up! 🔁",
-                'message' => "The deadline for this collection has expired. You didn't complete this collection in time. However, this is a cyclic collection, you can aways try again!",
-                'status' => 'error',
-            ],
-            'success_cyclic' => [
-                'title' => 'Congrats! 🎉',
-                'message' => "You've completed this collection in time! New day, new goals!",
-                'status' => 'success',
-            ],
-            'error_not_cyclic' => [
-                'title' => 'Oops! ⌛',
-                'message' => "The deadline for this collection has expired. You didn't complete this collection in time! Time to create a new collection and try again!",
-                'status' => 'error',
-            ],
-            'success_not_cyclic' => [
-                'title' => 'Congrats! 🎉',
-                'message' => "You've completed this collection in time!",
-                'status' => 'success',
-            ],
-        ];
-
         $completed = $this->isCompleted();
         $cyclic = $this->isCyclic();
+        $expired = $this->hasExpired();
 
         if ($cyclic) {
-            if (!$completed && $this->hasExpired()) {
-                $this->resetCollection();
-                return $status_messages['error_cyclic'];
-            }
-
-            if ($completed && $this->hasExpired()) {
-                $this->resetCollection();
-                return $status_messages['success_cyclic'];
-            }
+            return $this->getCyclicStatus($completed, $expired);
         }
 
-        if (!$completed && $this->hasExpired()) {
-            return $status_messages['error_not_cyclic'];
-        }
+        return $this->getNonCyclicStatus($completed, $expired);
+    }
 
-        if ($completed) {
-            return $status_messages['success_not_cyclic'];
+    private function getCyclicStatus(bool $completed, bool $expired): ?array
+    {
+        if ($expired) {
+            $this->resetCollection();
+            return $completed
+                ? $this->createStatus(StatusMessage::SUCCESS_CYCLIC)
+                : $this->createStatus(StatusMessage::ERROR_CYCLIC);
         }
 
         return null;
+    }
+
+    private function getNonCyclicStatus(bool $completed, bool $expired): ?array
+    {
+        if ($expired) {
+            return $this->createStatus(StatusMessage::ERROR_NOT_CYCLIC);
+        }
+
+        if ($completed) {
+            return $this->createStatus(StatusMessage::SUCCESS_NOT_CYCLIC);
+        }
+
+        return null;
+    }
+
+    private function createStatus(StatusMessage $statusMessage): array
+    {
+        return [
+            'title' => $statusMessage->title(),
+            'message' => $statusMessage->message(),
+            'status' => $statusMessage->status(),
+        ];
     }
 
     public function formattedDeadline(): string
