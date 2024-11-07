@@ -26,10 +26,10 @@
 
             <!-- Form -->
             <div class="w-full max-w-[600px] mt-8 flex gap-10">
-                <form action="/collection" method="POST" class="flex flex-col items-start gap-3 w-full">
+                <form action="/collection" method="POST" class="flex flex-col items-center gap-3 w-full">
                     @csrf
                     <div class="w-full">
-                    <label for="title" class="self-start font-roboto text-text_gray">Title:</label>
+                        <label for="title" class="self-start font-roboto text-text_gray">Title:</label>
                         <input
                             type="text"
                             name="title"
@@ -37,13 +37,13 @@
                     </div>
                     <div class="w-full">
                         <label for="description" class="self-start font-roboto text-text_gray">Description:</label>
-                        <textarea 
-                        name="description" 
-                        class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white"  
-                        required></textarea>
+                        <textarea
+                            name="description"
+                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white"
+                            required></textarea>
                     </div>
                     <div class="w-full">
-                    <label for="deadline" class="self-start font-roboto text-text_gray">Deadline:</label>
+                        <label for="deadline" class="self-start font-roboto text-text_gray">Deadline:</label>
                         <input
                             type="date"
                             name="deadline"
@@ -57,6 +57,7 @@
                         class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                         Create Collection
                     </button>
+                    <a href="/homepage" class="text-text_gray underline">Cancel</a>
 
                     @if($errors->any())
                     <ul class="self-start">
