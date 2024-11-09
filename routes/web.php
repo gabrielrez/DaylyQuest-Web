@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoalController;
@@ -48,4 +49,6 @@ Route::middleware(['auth', NoCache::class])->group(function () {
         Route::get('/account/preferences', fn() => view('settings.account-preferences'));
         Route::get('/support', fn() => view('settings.support'));
     });
+
+    Route::get('/community', [CommunityController::class, 'index']);
 });

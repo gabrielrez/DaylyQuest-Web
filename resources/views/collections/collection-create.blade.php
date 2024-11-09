@@ -33,13 +33,13 @@
                         <input
                             type="text"
                             name="title"
-                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" required>
+                            class="input-field font-roboto bg-bg_gray border-2 border-detail mt-2 px-4 w-full text-white" required>
                     </div>
                     <div class="w-full">
                         <label for="description" class="self-start font-roboto text-text_gray">Description:</label>
                         <textarea
                             name="description"
-                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white"
+                            class="input-field font-roboto bg-bg_gray border-2 border-detail mt-2 px-4 w-full text-white"
                             required></textarea>
                     </div>
                     <div class="w-full">
@@ -47,7 +47,7 @@
                         <input
                             type="date"
                             name="deadline"
-                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" required>
+                            class="input-field font-roboto bg-bg_gray border-2 border-detail mt-2 px-4 w-full text-white" required>
                     </div>
                     <input type="hidden" name="status" value="0">
                     <input type="hidden" name="points" value="1">
