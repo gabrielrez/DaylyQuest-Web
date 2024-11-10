@@ -42,7 +42,7 @@
                         <textarea name="bio" class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" id="bio-input" required>{{ Auth::user()->bio }}</textarea>
                     </div>
                     <button type="submit"
-                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
+                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
                         Save Changes
                     </button>
                     <a href="/profile" class="text-text_gray underline">Cancel</a>
