@@ -25,7 +25,7 @@
                     @if($collection['cyclic'] == 0)
                     <a href="#" id="delete-collection-btn" data-id="{{ $collection['id'] }}" class=" mr-3 text-error underline font-roboto">Delete Collection</a>
                     @endif
-                    <a href="/goal/create/{{ $collection['id'] }}" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create Goal</a>
+                    <button onclick="openNewGoalModal()" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create Goal</button>
                 </div>
             </div>
             <!-- Description -->
@@ -61,8 +61,12 @@
 </x-layouts.layout>
 
 <!-- Modal complete goal -->
-<x-modals.complete-goal>
-</x-modals.complete-goal>
+<x-modals.goal-complete>
+</x-modals.goal-complete>
+
+<!-- Modal new goal -->
+<x-modals.goal-new :collection="$collection">
+</x-modals.goal-new>
 
 <!-- Modal status -->
 @if($status != null)

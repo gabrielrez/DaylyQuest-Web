@@ -78,7 +78,7 @@ class UserController extends Controller
         request()->validate([
             'name' => ['required', 'min:3', 'max:28'],
             'nickname' => ['required', 'unique:users,nickname,' . $user->id, 'max:18'],
-            'bio' => ['required', 'max:260'],
+            'bio' => ['required', 'max:120'],
             'profile-picture' => ['nullable', 'image', 'max:2048'],
         ]);
 

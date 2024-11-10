@@ -67,8 +67,8 @@
 </x-layouts.layout>
 
 <!-- Modal complete goal -->
-<x-modals.delete-account>
-</x-modals.delete-account>
+<x-modals.account-delete>
+</x-modals.account-delete>
 
 <script>
     let user_id = document.getElementById('delete_btn').getAttribute('data-id');

@@ -13,7 +13,9 @@
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
                     <span class="font-poppins font-bold text-4xl">My Collections</span>
                 </div>
-                <a href="/collection/create" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create personalized collection</a>
+                <button onclick="openModal()" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
+                    Create personalized collection
+                </button>
             </div>
 
             <!-- Cards -->
@@ -36,4 +38,8 @@
             </div>
         </div>
     </div>
+
+    <x-modals.collection-new>
+    </x-modals.collection-new>
+
 </x-layouts.layout>

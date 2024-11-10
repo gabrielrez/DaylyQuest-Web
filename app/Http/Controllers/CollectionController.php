@@ -6,12 +6,17 @@ use App\Models\Collection;
 use App\Models\Goal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
     public function show($id)
     {
-        $collection = Collection::find($id);
+        $collection = Collection::findOrFail($id);
+
+        if ($collection->user_id !== Auth::id()) {
+            abort(404);
+        }
 
         $goals = Goal::where('collection_id', $id)->get();
 
