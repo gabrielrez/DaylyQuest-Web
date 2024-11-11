@@ -73,7 +73,8 @@
 <x-modals.collection-status
     :title="$status['title']"
     :message="$status['message']"
-    :status="$status['status']" />
+    :status="$status['status']"
+    :collection="$collection" />
 @endif
 
 <script>
