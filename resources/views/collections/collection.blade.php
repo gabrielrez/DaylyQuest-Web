@@ -11,7 +11,7 @@
                 @if($collection->hasExpired() && !$collection->isCompleted())
                 <p class="text-error italic font-roboto">This collection has expired on {{ $deadline }}.</p>
                 @endif
-                @if(!$collection->hasExpired() && $collection->isCompleted())
+                @if($collection->isCompleted())
                 <p class="text-secondary italic font-roboto">You've completed this collection.</p>
                 @endif
                 <x-app.profile-picture />

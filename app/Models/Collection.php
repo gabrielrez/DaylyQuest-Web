@@ -83,7 +83,7 @@ class Collection extends Model
 
     private function getNonCyclicStatus(bool $completed, bool $expired): ?array
     {
-        if ($expired) {
+        if ($expired && !$completed) {
             return $this->createStatus(StatusMessage::ERROR_NOT_CYCLIC);
         }
 
