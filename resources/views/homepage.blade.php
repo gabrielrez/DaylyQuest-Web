@@ -22,7 +22,7 @@
             <div class="grid grid-cols-2 gap-8">
                 <!-- Goals -->
                 @foreach($collections as $collection)
-                <div class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
+                <a href="/collection/{{ $collection['id'] }}" class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
                     @if($collection->isCompleted())
                     <i class="fas text-2xl fa-check-circle absolute top-6 right-6 text-secondary"></i>
                     @elseif($collection->hasExpired())
@@ -32,8 +32,8 @@
                     @endif
                     <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
                     <p class="text-text_gray mb-4">Access your {{ strtolower($collection['title']) }} goals</p>
-                    <a href="/collection/{{ $collection['id'] }}" class="text-white hover:text-text_gray underline transition-all duration-200 ease-in-out">See All</a>
-                </div>
+                    <span class="text-white hover:text-text_gray underline transition-all duration-200 ease-in-out">See All</span>
+                </a>
                 @endforeach
             </div>
         </div>

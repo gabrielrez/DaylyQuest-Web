@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\StatusMessage;
+use App\Enums\Cyclic;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -22,6 +23,10 @@ class Collection extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'cyclic' => Cyclic::class,
+    ];    
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -35,11 +40,6 @@ class Collection extends Model
     public function hasExpired(): bool
     {
         return Carbon::now()->greaterThan($this->deadline);
-    }
-
-    public function isCyclic()
-    {
-        return $this->cyclic == 1;
     }
 
     public function isCompleted()
@@ -59,7 +59,7 @@ class Collection extends Model
     public function getStatus(): ?array
     {
         $completed = $this->isCompleted();
-        $cyclic = $this->isCyclic();
+        $cyclic = $this->cyclic->isCyclic();
         $expired = $this->hasExpired();
 
         if ($cyclic) {
