@@ -97,7 +97,6 @@
             closeModal();
             location.reload();
         } catch (error) {
-            alert('Ops, something went wrong while trying to delete your account, please contact support.');
             closeModal();
             location.reload();
         }

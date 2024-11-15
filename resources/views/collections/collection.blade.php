@@ -117,7 +117,6 @@
             closeModal();
             location.reload();
         } catch (error) {
-            alert('Ops, something went wrong while trying to complete the goal, please contact support.');
             closeModal();
             location.reload();
         }
@@ -140,7 +139,7 @@
             });
             window.location.href = '/homepage';
         } catch (error) {
-            alert('Ops, something went wrong while trying to delete collection, please contact support.');
+            ('Ops, something went wrong while trying to delete collection, please contact support.');
             location.reload();
         }
     })
