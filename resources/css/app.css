@@ -4,12 +4,13 @@
 
 @layer base {
     :root {
-      --bg-black: 18 18 18;
-      --bg-gray: 30 30 30;
-      --primary: 187 134 252;
-      --secondary: 3 218 198;
-      --text-gray: 123 123 123;
-      --detail: 41 41 41;
-      --error: 255 82 82;
+        --bg-black: 18 18 18;
+        --bg-gray: 30 30 30;
+        --primary: 187 134 252;
+        --secondary: 3 218 198;
+        --text-gray: 123 123 123;
+        --detail: 41 41 41;
+        --error: 255 65 129;
+        --gold: 255 215 0;
     }
-  }
+}

@@ -23,7 +23,31 @@
 <script>
     const cyclic_expired_btn = document.getElementById('cyclic-expired-btn');
 
-    cyclic_expired_btn.addEventListener('click', function(){
+    cyclic_expired_btn.addEventListener('click', function() {
         location.reload();
     })
 </script>
+
+@if ($collection->isCompleted())
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<script>
+    const duration = 100;
+    const end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 4,
+            angle: 90,
+            spread: 150,
+            origin: {
+                x: 0.5
+            }
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    }());
+</script>
+@endif
