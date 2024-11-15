@@ -176,6 +176,7 @@
             animation: 200,
             ghostClass: 'drag-ghost',
             chosenClass: 'drag-chosen',
+            handle: '.grab-handle',
             onEnd: function(evt) {
                 saveGoalsToLocalStorage();
             }
