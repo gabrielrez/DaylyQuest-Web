@@ -44,6 +44,12 @@ class GoalController extends Controller
     public function destroy($id)
     {
         $goal = Goal::findOrFail($id);
+        $collection = $goal->collection;
+
+        if ($collection->hasExpired()) {
+            return redirect()->back();
+        }
+
         $goal->delete();
 
         return redirect()->back();

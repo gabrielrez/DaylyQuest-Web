@@ -22,7 +22,7 @@
                     <span class="font-poppins font-bold text-4xl">{{ $collection['title'] }}</span>
                 </div>
                 <div>
-                    @if($collection['cyclic'] == 0)
+                    @if(!$collection['cyclic']->isCyclic())
                     <a href="#" id="delete-collection-btn" data-id="{{ $collection['id'] }}" class=" mr-3 text-error underline font-roboto">Delete Collection</a>
                     @endif
                     <button onclick="openNewGoalModal()" class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">Create Goal</button>
