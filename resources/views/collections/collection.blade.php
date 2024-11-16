@@ -34,9 +34,9 @@
             <!-- Goals -->
             <ul id="goal-list" class="flex flex-col gap-4 mt-8">
                 @foreach($goals as $goal)
-                <li class="bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
+                <li class="group bg-bg_gray flex gap-5 px-6 py-5 cursor-pointer rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
                     data-id="{{ $goal->id }}">
-                    <img src="{{ asset('images/grabme.svg') }}" class="max-w-5 hover:cursor-grab grab-handle">
+                    <img src="{{ asset('images/grabme.svg') }}" class="dont-open-steps max-w-5 hover:cursor-grab grab-handle">
                     <div class="w-full flex items-center justify-between">
                         <div>
                             <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
@@ -46,10 +46,10 @@
                             <form action="/goal/{{ $goal['id'] }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-text_gray underline font-roboto">Delete</button>
+                                <button type="submit" class="dont-open-steps text-text_gray underline font-roboto">Delete</button>
                             </form>
                             <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}"
-                                class="border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
+                                class="dont-open-steps border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
                                 {{ $goal->status === 0 ? 'Complete' : 'Completed' }}
                             </button>
                         </div>
@@ -57,8 +57,59 @@
                 </li>
                 @endforeach
             </ul>
+            <span id="tooltip" class="hidden px-3 py-1 bg-primary text-bg_black font-bold font-poppins italic text-sm rounded-md">Click to See steps</span>
         </div>
 </x-layouts.layout>
+
+<style>
+    #tooltip {
+        position: absolute;
+        pointer-events: none;
+        z-index: 50;
+        transition: opacity 0.2s ease-in-out;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const goalItems = document.querySelectorAll('#goal-list li');
+        const tooltip = document.getElementById('tooltip');
+        let opacityTimeout;
+        let mouseMoveTimeout;
+
+        goalItems.forEach(item => {
+            item.addEventListener('mouseenter', (event) => {
+                tooltip.classList.remove('hidden');
+            });
+
+            item.addEventListener('mousemove', (event) => {
+                const target = event.target.closest('li');
+                const isDontOpenStep = event.target.classList.contains('dont-open-steps');
+
+                if (target && !isDontOpenStep) {
+                    tooltip.style.left = `${event.pageX + 16}px`;
+                    tooltip.style.top = `${event.pageY - 32}px`;
+                    tooltip.style.opacity = '0.25';
+
+                    clearTimeout(mouseMoveTimeout);
+                    mouseMoveTimeout = setTimeout(() => {
+                        tooltip.style.opacity = '1';
+                    }, 1000);
+                } else {
+                    tooltip.style.opacity = '0';
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                tooltip.classList.add('hidden');
+                tooltip.style.opacity = '0';
+                clearTimeout(opacityTimeout);
+                clearTimeout(mouseMoveTimeout);
+            });
+        });
+
+    });
+</script>
 
 <!-- Modal complete goal -->
 <x-modals.goal-complete>
@@ -199,3 +250,22 @@
         margin-top: 16px;
     }
 </style>
+
+<script>
+    const goals = document.querySelectorAll('#goal-list li');
+
+    goals.forEach(goal => {
+        goal.addEventListener('click', function(event) {
+            const target = event.target;
+
+            if (!target.classList.contains('dont-open-steps')) {
+                const goalId = goal.dataset.id;
+                openStepsModal(goalId);
+            }
+        });
+    });
+
+    function openStepsModal(goalId) {
+        alert(`Open steps for goal with id = ${goalId}`);
+    }
+</script>
