@@ -14,7 +14,7 @@
                                 <a href="/profile/edit" class="text-base text-text_gray font-roboto mt-3 underline">Edit Profile<i class="fa fa-edit ml-3"></i></a>
                             </div>
                             <span class="text-xl font-bold text-text_gray">{{ Auth::user()->nickname }}</span>
-                            <p class="text-base mt-4 max-w-[600px] text-text_gray font-poppins">{{ Auth::user()->bio }}</p>
+                            <p class="text-base mt-4 max-w-[600px] text-text_gray font-roboto">{{ Auth::user()->bio }}</p>
                             <span class="text-xl font-roboto font-light mt-4">Joined at {{ Auth::user()->created_at->format('Y/m/d') }}</span>
                         </div>
                     </div>
