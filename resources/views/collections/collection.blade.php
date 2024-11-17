@@ -70,6 +70,7 @@
     }
 </style>
 
+<!-- Check if settings is configured to show tooltip -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const goalItems = document.querySelectorAll('#goal-list li');
@@ -250,22 +251,3 @@
         margin-top: 16px;
     }
 </style>
-
-<script>
-    const goals = document.querySelectorAll('#goal-list li');
-
-    goals.forEach(goal => {
-        goal.addEventListener('click', function(event) {
-            const target = event.target;
-
-            if (!target.classList.contains('dont-open-steps')) {
-                const goalId = goal.dataset.id;
-                openStepsModal(goalId);
-            }
-        });
-    });
-
-    function openStepsModal(goalId) {
-        alert(`Open steps for goal with id = ${goalId}`);
-    }
-</script>
