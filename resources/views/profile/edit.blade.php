@@ -1,12 +1,3 @@
-<style>
-    .input-field,
-    .submit-btn {
-        border-radius: 16px;
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
-</style>
-
 <x-layouts.layout>
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
@@ -60,30 +51,36 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function previewImage(event) {
-            const preview = document.getElementById('preview');
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                };
-
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-
-    <script>
-        const preview = document.getElementById('preview');
-
-        preview.addEventListener('click', function() {
-            document.getElementById('file-input').click();
-        })
-    </script>
-
 </x-layouts.layout>
+
+<style>
+    .input-field,
+    .submit-btn {
+        border-radius: 16px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+</style>
+
+<script>
+    const preview = document.getElementById('preview');
+
+    function previewImage(event) {
+        const preview = document.getElementById('preview');
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+
+    preview.addEventListener('click', function() {
+        document.getElementById('file-input').click();
+    })
+</script>

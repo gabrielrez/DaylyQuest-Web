@@ -23,16 +23,16 @@
             <img src="<?= asset('images/lp-img.svg') ?>" alt="Level Up Image" class="w-full h-auto">
         </div>
     </section>
-
-    <script>
-        const section = document.getElementById('hover-section');
-
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth - e.pageX) / 480;
-            const y = (window.innerHeight - e.pageY) / 480;
-
-            section.style.transform = `translate(${x}px, ${y}px)`;
-            section.style.transition = 'transform 0.1s ease-out';
-        });
-    </script>
 </x-layouts.layout-lp>
+
+<script>
+    const section = document.getElementById('hover-section');
+
+    document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth - e.pageX) / 480;
+        const y = (window.innerHeight - e.pageY) / 480;
+
+        section.style.transform = `translate(${x}px, ${y}px)`;
+        section.style.transition = 'transform 0.1s ease-out';
+    });
+</script>

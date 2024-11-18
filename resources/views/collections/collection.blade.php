@@ -61,6 +61,23 @@
         </div>
 </x-layouts.layout>
 
+<!-- Modal complete goal -->
+<x-modals.goal-complete>
+</x-modals.goal-complete>
+
+<!-- Modal new goal -->
+<x-modals.goal-new :collection="$collection">
+</x-modals.goal-new>
+
+<!-- Modal status -->
+@if($status != null)
+<x-modals.collection-status
+    :title="$status['title']"
+    :message="$status['message']"
+    :status="$status['status']"
+    :collection="$collection" />
+@endif
+
 <style>
     #tooltip {
         position: absolute;
@@ -68,11 +85,33 @@
         z-index: 50;
         transition: opacity 0.2s ease-in-out;
     }
+
+    .drag-ghost {
+        opacity: 0.5;
+        transform: scale(1.02);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .drag-chosen {
+        border: 2px dashed #FFFFFF;
+        background-color: #292929;
+    }
+
+    #goal-list>.sortable-ghost+* {
+        margin-top: 16px;
+    }
 </style>
 
-<!-- Check if settings is configured to show tooltip -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        initStepsTooltip();
+        initDragAndDrop();
+    });
+
+    function initStepsTooltip() {
+        // Check if settings is configured to show tooltip
         const goalItems = document.querySelectorAll('#goal-list li');
         const tooltip = document.getElementById('tooltip');
         let opacityTimeout;
@@ -108,26 +147,41 @@
                 clearTimeout(mouseMoveTimeout);
             });
         });
+    }
 
-    });
+    function initDragAndDrop() {
+        const goalList = document.querySelector('#goal-list');
+        const goals = [...goalList.children];
+        const collectionId = '{{ $collection->id }}';
+
+        function loadGoalsFromLocalStorage() {
+            const savedOrder = JSON.parse(localStorage.getItem(`goalOrder_${collectionId}`));
+            if (savedOrder) {
+                savedOrder.forEach(id => {
+                    const goal = goals.find(item => item.getAttribute('data-id') == id);
+                    if (goal) goalList.appendChild(goal);
+                });
+            }
+        }
+
+        function saveGoalsToLocalStorage() {
+            const goalIds = [...goalList.children].map(item => item.getAttribute('data-id'));
+            localStorage.setItem(`goalOrder_${collectionId}`, JSON.stringify(goalIds));
+        }
+
+        loadGoalsFromLocalStorage();
+
+        Sortable.create(goalList, {
+            animation: 200,
+            ghostClass: 'drag-ghost',
+            chosenClass: 'drag-chosen',
+            handle: '.grab-handle',
+            onEnd: function(evt) {
+                saveGoalsToLocalStorage();
+            }
+        });
+    }
 </script>
-
-<!-- Modal complete goal -->
-<x-modals.goal-complete>
-</x-modals.goal-complete>
-
-<!-- Modal new goal -->
-<x-modals.goal-new :collection="$collection">
-</x-modals.goal-new>
-
-<!-- Modal status -->
-@if($status != null)
-<x-modals.collection-status
-    :title="$status['title']"
-    :message="$status['message']"
-    :status="$status['status']"
-    :collection="$collection" />
-@endif
 
 <script>
     let goal_id = null;
@@ -173,9 +227,7 @@
             location.reload();
         }
     }
-</script>
 
-<script>
     const delete_collection_btn = document.getElementById('delete-collection-btn');
 
     delete_collection_btn.addEventListener('click', async function() {
@@ -196,58 +248,3 @@
         }
     })
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const goalList = document.querySelector('#goal-list');
-        const goals = [...goalList.children];
-        const collectionId = '{{ $collection->id }}';
-
-        function loadGoalsFromLocalStorage() {
-            const savedOrder = JSON.parse(localStorage.getItem(`goalOrder_${collectionId}`));
-            if (savedOrder) {
-                savedOrder.forEach(id => {
-                    const goal = goals.find(item => item.getAttribute('data-id') == id);
-                    if (goal) goalList.appendChild(goal);
-                });
-            }
-        }
-
-
-        function saveGoalsToLocalStorage() {
-            const goalIds = [...goalList.children].map(item => item.getAttribute('data-id'));
-            localStorage.setItem(`goalOrder_${collectionId}`, JSON.stringify(goalIds));
-        }
-
-        loadGoalsFromLocalStorage();
-
-        Sortable.create(goalList, {
-            animation: 200,
-            ghostClass: 'drag-ghost',
-            chosenClass: 'drag-chosen',
-            handle: '.grab-handle',
-            onEnd: function(evt) {
-                saveGoalsToLocalStorage();
-            }
-        });
-    });
-</script>
-
-<style>
-    .drag-ghost {
-        opacity: 0.5;
-        transform: scale(1.02);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-
-    .drag-chosen {
-        border: 2px dashed #FFFFFF;
-        background-color: #292929;
-    }
-
-    #goal-list>.sortable-ghost+* {
-        margin-top: 16px;
-    }
-</style>
