@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\StepController;
 use App\Http\Middleware\CheckCollectionDeadline;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\NoCache;
@@ -35,11 +36,20 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     // Goals
     Route::prefix('goal')->middleware([CheckCollectionDeadline::class])->group(function () {
         Route::get('/create/{collection_id}', [GoalController::class, 'create']);
+        Route::get('/steps/{goal}', [GoalController::class, 'steps']);
         Route::post('/{collection_id}', [GoalController::class, 'store']);
         Route::put('/complete/{goal}', [GoalController::class, 'setStatus']);
     });
 
     Route::delete('/goal/{goal_id}', [GoalController::class, 'destroy']);
+
+    // Steps
+    Route::prefix('step')->middleware([CheckCollectionDeadline::class])->group(function () {
+        Route::post('/{goal_id}', [StepController::class, 'store']);
+        Route::put('/complete/{step}', [StepController::class, 'setStatus']);
+    });
+
+    Route::delete('/step/{step_id}', [StepController::class, 'destroy']);
 
     // Settings
     Route::prefix('settings')->group(function () {
