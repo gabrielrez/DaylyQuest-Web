@@ -36,7 +36,7 @@ class UserController extends Controller
                 'description' => 'The best way to achieve your long-term goals is to stay consistent every day',
                 'deadline' => now()->addDay()->setTime(0, 1),
                 'cyclic' => 1,
-                'status' => 0,
+                'status' => 'inProgress',
                 'points' => 0,
             ]
         ];
