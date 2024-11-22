@@ -24,7 +24,7 @@ class Goal extends Model
 
     public function setStatus()
     {
-        $new_status = $this->status === 0 ? 1 : 0;
+        $new_status = $this->status === 'inProgress' ? 'completed' : 'inProgress';
 
         $this->update(['status' => $new_status]);
     }

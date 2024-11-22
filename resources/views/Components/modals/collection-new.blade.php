@@ -30,7 +30,7 @@
                         name="deadline"
                         class="input-field font-roboto bg-bg_gray border-2 border-detail mt-2 px-4 w-full text-white" required>
                 </div>
-                <input type="hidden" name="status" value="0">
+                <input type="hidden" name="status" value="inProgress">
                 <input type="hidden" name="points" value="1">
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                 <input type="hidden" name="cyclic" value="0">

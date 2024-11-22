@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->date('deadline');
             $table->integer('cyclic')->default(0);
-            $table->integer('status');
+            $table->string('status')->default('inProgress');
             $table->integer('points');
             $table->foreignIdFor(User::class);
             $table->timestamps();

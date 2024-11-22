@@ -44,12 +44,12 @@ class Collection extends Model
 
     public function isCompleted()
     {
-        return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === 1);
+        return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === "completed");
     }
 
     public function resetCollection()
     {
-        $this->goals->each(fn($goal) => $goal->update(['status' => 0]));
+        $this->goals->each(fn($goal) => $goal->update(['status' => "inProgress"]));
 
         $this->update([
             'deadline' => Carbon::tomorrow()->startOfDay(),

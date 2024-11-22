@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->integer('status')->default(0);
+            $table->string('status')->default('inProgress');
             $table->foreignIdFor(Collection::class);
             $table->timestamps();
         });

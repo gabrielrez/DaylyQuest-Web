@@ -25,7 +25,7 @@
                         class="input-field font-roboto bg-bg_gray border-2 border-detail mt-2 px-4 w-full text-white"
                         required></textarea>
                 </div>
-                <input type="hidden" name="status" value="0">
+                <input type="hidden" name="status" value="inProgress">
                 <input type="hidden" name="collection_id" value="{{ $collection['id'] }}">
                 <button type="submit"
                     class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:translate-y-[-4px] transition-all duration-200 ease-in-out">

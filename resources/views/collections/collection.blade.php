@@ -49,8 +49,8 @@
                                 <button type="submit" class="dont-open-steps text-text_gray underline font-roboto">Delete</button>
                             </form>
                             <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}"
-                                class="dont-open-steps border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 0 ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
-                                {{ $goal->status === 0 ? 'Complete' : 'Completed' }}
+                                class="dont-open-steps border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
+                                {{ $goal->status === 'inProgress' ? 'Complete' : 'Completed' }}
                             </button>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
         goal_id = button.getAttribute('data-id');
         const status = button.getAttribute('data-status');
 
-        if (status == 0) {
+        if (status == 'inProgress') {
             const modal = document.getElementById('modal');
             modal.classList.remove('hidden');
             modal.setAttribute('aria-hidden', 'false');
