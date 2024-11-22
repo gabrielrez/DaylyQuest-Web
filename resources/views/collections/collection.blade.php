@@ -34,9 +34,9 @@
             <!-- Goals -->
             <ul id="goal-list" class="flex flex-col gap-4 mt-8">
                 @foreach($goals as $goal)
-                <li class="group bg-bg_gray flex gap-5 px-6 py-5 cursor-pointer rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
+                <li class="group bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
                     data-id="{{ $goal->id }}">
-                    <img src="{{ asset('images/grabme.svg') }}" class="dont-open-steps max-w-5 hover:cursor-grab grab-handle">
+                    <img src="{{ asset('images/grabme.svg') }}" class="dont-open-steps max-w-6 hover:cursor-grab grab-handle">
                     <div class="w-full flex items-center justify-between">
                         <div>
                             <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
@@ -57,7 +57,6 @@
                 </li>
                 @endforeach
             </ul>
-            <span id="tooltip" class="hidden px-3 py-1 bg-primary text-bg_black font-bold font-poppins italic text-sm rounded-md">Click to See steps</span>
         </div>
 </x-layouts.layout>
 
@@ -79,13 +78,6 @@
 @endif
 
 <style>
-    #tooltip {
-        position: absolute;
-        pointer-events: none;
-        z-index: 50;
-        transition: opacity 0.2s ease-in-out;
-    }
-
     .drag-ghost {
         opacity: 0.5;
         transform: scale(1.02);
@@ -106,50 +98,11 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        initStepsTooltip();
         initDragAndDrop();
     });
 
-    function initStepsTooltip() {
-        // Check if settings is configured to show tooltip
-        const goalItems = document.querySelectorAll('#goal-list li');
-        const tooltip = document.getElementById('tooltip');
-        let opacityTimeout;
-        let mouseMoveTimeout;
-
-        goalItems.forEach(item => {
-            item.addEventListener('mouseenter', (event) => {
-                tooltip.classList.remove('hidden');
-            });
-
-            item.addEventListener('mousemove', (event) => {
-                const target = event.target.closest('li');
-                const isDontOpenStep = event.target.classList.contains('dont-open-steps');
-
-                if (target && !isDontOpenStep) {
-                    tooltip.style.left = `${event.pageX + 16}px`;
-                    tooltip.style.top = `${event.pageY - 32}px`;
-                    tooltip.style.opacity = '0.25';
-
-                    clearTimeout(mouseMoveTimeout);
-                    mouseMoveTimeout = setTimeout(() => {
-                        tooltip.style.opacity = '1';
-                    }, 1000);
-                } else {
-                    tooltip.style.opacity = '0';
-                }
-            });
-
-            item.addEventListener('mouseleave', () => {
-                tooltip.classList.add('hidden');
-                tooltip.style.opacity = '0';
-                clearTimeout(opacityTimeout);
-                clearTimeout(mouseMoveTimeout);
-            });
-        });
-    }
-
     function initDragAndDrop() {
+        const goalItems = document.querySelectorAll('#goal-list li');
         const goalList = document.querySelector('#goal-list');
         const goals = [...goalList.children];
         const collectionId = '{{ $collection->id }}';
