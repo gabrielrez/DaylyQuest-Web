@@ -30,7 +30,7 @@
                     <span class="absolute top-6 right-6 border-2 border-detail w-max h-6 p-3 flex items-center justify-center rounded-full text-text_gray font-poppins text-xs italic font-bold">{{ $collection['deadline'] }}</span>
                     @endif
                     @if($collection->cyclic->isCyclic())
-                    <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }} <i class="fas fa-sync opacity-20 ml-2"></i></h3>
+                    <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }} <i class="fas text-xl fa-sync opacity-20 ml-2"></i></h3>
                     @else
                     <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
                     @endif
