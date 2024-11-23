@@ -38,7 +38,7 @@ class GoalController extends Controller
     {
         $goal->setStatus();
 
-        return redirect()->back();
+        return response()->json($goal);
     }
 
     public function destroy($id)

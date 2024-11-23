@@ -34,7 +34,7 @@
             <!-- Goals -->
             <ul id="goal-list" class="flex flex-col gap-4 mt-8">
                 @foreach($goals as $goal)
-                <li class="group bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 1 || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
+                <li class="group bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 'completed' || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
                     data-id="{{ $goal->id }}">
                     <img src="{{ asset('images/grabme.svg') }}" class="dont-open-steps max-w-6 hover:cursor-grab grab-handle">
                     <div class="w-full flex items-center justify-between">

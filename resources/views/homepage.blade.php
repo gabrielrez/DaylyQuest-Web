@@ -18,9 +18,8 @@
                 </button>
             </div>
 
-            <!-- Cards -->
             <div class="grid grid-cols-2 gap-8">
-                <!-- Goals -->
+                <!-- Collections -->
                 @foreach($collections as $collection)
                 <a href="/collection/{{ $collection['id'] }}" class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
                     @if($collection->isCompleted())
@@ -30,7 +29,11 @@
                     @else
                     <span class="absolute top-6 right-6 border-2 border-detail w-max h-6 p-3 flex items-center justify-center rounded-full text-text_gray font-poppins text-xs italic font-bold">{{ $collection['deadline'] }}</span>
                     @endif
+                    @if($collection->cyclic->isCyclic())
+                    <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }} <i class="fas fa-sync opacity-20 ml-2"></i></h3>
+                    @else
                     <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
+                    @endif
                     <p class="text-text_gray mb-4">Access your {{ strtolower($collection['title']) }} goals</p>
                     <span class="text-white hover:text-text_gray underline transition-all duration-200 ease-in-out">See All</span>
                 </a>
