@@ -22,7 +22,7 @@ enum StatusMessage: string
     public function message(): string
     {
         return match ($this) {
-            self::ERROR_CYCLIC => "The deadline for this collection has expired. However, this is a cyclic collection. Don't give up, you can always try again! 🔁",
+            self::ERROR_CYCLIC => "The deadline for this collection has expired. New day, new goals! 🔁",
             self::SUCCESS_CYCLIC => "You've completed this collection in time! New day, new goals!",
             self::ERROR_NOT_CYCLIC => "The deadline for this collection has expired. You didn't complete this collection in time! Time to create a new collection and try again!",
             self::SUCCESS_NOT_CYCLIC => "You've completed this collection in time!",

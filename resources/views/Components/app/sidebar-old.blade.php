@@ -1,27 +1,27 @@
-<div class="w-1/6 p-6 m-8 rounded-3xl sticky top-0">
-    <a href="/homepage" class="text-2xl font-bold pb-8 font-poppins">
+<div class="w-1/6 bg-bg_gray p-6 m-8 rounded-3xl shadow-md sticky top-0">
+    <div class="text-2xl text-center font-bold border-b-2 border-detail pb-8 font-poppins cursor-default">
         <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span>
-    </a>
-    <nav class="mt-12 flex flex-col gap-y-6 text-xl font-poppins">
+    </div>
+    <nav class="mt-8 flex flex-col gap-y-8 text-xl items-center font-poppins">
         <a href="/homepage" class="{{ request()->is('homepage*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
-            <i class="fas fa-home mr-3"></i> Home Page
+            Home Page
         </a>
         <!-- <a href="/collection/create" class="{{ request()->is('collection/create*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             New Collection
         </a> -->
         <a href="/profile" class="{{ request()->is('profile*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
-            <i class="fas fa-user mr-3"></i> My Profile
+            My Profile
         </a>
         <!-- <a href="/community" class="{{ request()->is('community*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
-            <i class="fas fa-users mr-3"></i> Community
+            Community
         </a> -->
         <a href="/settings" class="{{ request()->is('settings*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
-            <i class="fas fa-cog mr-3"></i> Settings
+            Settings
         </a>
         <form action="/logout" method="POST">
             @csrf
             <button class="block py-2 text-lg font-poppins hover:text-text_gray cursor-pointer transition-all duration-200 ease-in-out">
-                <i class="fas fa-sign-out-alt mr-3"></i> Logout
+                Logout
             </button>
         </form>
     </nav>
