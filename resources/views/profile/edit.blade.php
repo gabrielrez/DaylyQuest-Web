@@ -11,32 +11,41 @@
             </div>
 
             <!-- Form -->
-            <div class="w-full max-w-[600px] mt-8 flex gap-10">
-                <form action="/user/{{ Auth::user()->id }}" method="POST" class="flex flex-col items-center gap-3 w-full" enctype="multipart/form-data">
+            <div class="w-full mt-8 flex gap-10">
+                <form action="/user/{{ Auth::user()->id }}" class="w-full" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
-                    <div class="flex gap-3 items-center self-start mb-5">
-                        <img id="preview" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}" class="w-36 h-36 object-cover rounded-full border-4 border-detail bg-bg_black cursor-pointer hover:scale-95 transition-all duration-200 ease-in-out">
-                        <input type="file" name="profile-picture" id="file-input" accept=".png, .jpg, .jpeg" onchange="previewImage(event)">
+                    <div class="flex gap-20">
+                        <div class="min-w-60 flex flex-col gap-3 items-center">
+                            <img id="preview" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}"
+                                class="w-60 h-60 object-cover rounded-full border-4 border-detail bg-bg_black cursor-pointer hover:scale-95 transition-all duration-200 ease-in-out">
+                            <input type="file" name="profile-picture" id="file-input" accept=".png, .jpg, .jpeg" onchange="previewImage(event)" class="hidden">
+                            <label for="file-input" class="cursor-pointer text-sm text-text_gray font-roboto hover:underline">
+                                Upload Profile Picture
+                            </label>
+                        </div>
+
+                        <div class="w-full pr-40 flex flex-col gap-3 items-center">
+                            <div class="w-full">
+                                <label for="name" class="self-start font-poppins text-text_gray">Your Name:</label>
+                                <input type="text" name="name"
+                                    class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" value="{{ Auth::user()->name }}" required>
+                            </div>
+                            <div class="w-full">
+                                <label for="nickname" class="self-start font-poppins text-text_gray">Your Nickname:</label>
+                                <input type="text" name="nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" value="{{ Auth::user()->nickname }}" required />
+                            </div>
+                            <div class="w-full">
+                                <label for="bio" class="self-start font-poppins text-text_gray">Your Bio:</label>
+                                <textarea name="bio" class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" id="bio-input" required>{{ Auth::user()->bio }}</textarea>
+                            </div>
+                            <button type="submit"
+                                class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                                Save Changes
+                            </button>
+                            <a href="/profile" class="text-text_gray underline">Cancel</a>
+                        </div>
                     </div>
-                    <div class="w-full">
-                        <label for="name" class="self-start font-poppins text-text_gray">Your Name:</label>
-                        <input type="text" name="name"
-                            class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" value="{{ Auth::user()->name }}" required>
-                    </div>
-                    <div class="w-full">
-                        <label for="nickname" class="self-start font-poppins text-text_gray">Your Nickname:</label>
-                        <input type="text" name="nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" value="{{ Auth::user()->nickname }}" required />
-                    </div>
-                    <div class="w-full">
-                        <label for="bio" class="self-start font-poppins text-text_gray">Your Bio:</label>
-                        <textarea name="bio" class="input-field font-roboto bg-bg_gray border border-2 border-detail mt-2 px-4 w-full text-white" id="bio-input" required>{{ Auth::user()->bio }}</textarea>
-                    </div>
-                    <button type="submit"
-                        class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
-                        Save Changes
-                    </button>
-                    <a href="/profile" class="text-text_gray underline">Cancel</a>
 
                     @if($errors->any())
                     <ul class="self-start">
