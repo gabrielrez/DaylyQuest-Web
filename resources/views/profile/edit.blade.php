@@ -43,7 +43,7 @@
                                 class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
                                 Save Changes
                             </button>
-                            <a href="/profile" class="text-text_gray underline">Cancel</a>
+                            <a href="/profile/{{ Auth::user()->id }}" class="text-text_gray underline">Cancel</a>
                         </div>
                     </div>
 

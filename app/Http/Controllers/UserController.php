@@ -93,7 +93,7 @@ class UserController extends Controller
             'bio' => request('bio'),
         ]);
 
-        return redirect('/profile');
+        return redirect('/profile/' . Auth::user()->id);
     }
 
     public function destroy($id)

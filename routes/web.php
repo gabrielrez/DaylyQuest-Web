@@ -21,15 +21,20 @@ Route::get('/login', fn() => view('auth.login'))->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
+Route::get('/profile/edit', [ProfileController::class, 'edit']);
+
 // Middleware Auth
 Route::middleware(['auth', NoCache::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index']);
-    Route::get('/profile/{id}', [ProfileController::class, 'show']);
     Route::get('/settings', [SettingsController::class, 'index']);
 
-    Route::get('/profile/edit', [ProfileController::class, 'edit']);
     Route::patch('/user/{id}', [UserController::class, 'update']);
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
+
+    // Profile
+    Route::prefix('profile')->group(function () {
+        Route::get('/{id}', [ProfileController::class, 'show']);
+    });
 
     // Collections
     Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show', 'destroy']);
