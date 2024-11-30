@@ -53,4 +53,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Collection::class);
     }
+
+    public function calculateStatistics()
+    {
+        $collections_qtd = $this->Collections->count();
+        $goals_qtd = $this->collections->flatMap(function ($collection) {
+            return $collection->goals;
+        })->count();
+
+        return [$collections_qtd, $goals_qtd];
+    }
 }

@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function show($id)
     {
-        return view('profile.profile');
+        $user = User::findOrFail($id);
+
+        [$collections_qtd, $goals_qtd] = $user->calculateStatistics();
+
+        return view('profile.profile', [
+            'collections' => $collections_qtd,
+            'goals' => $goals_qtd,
+        ]);
     }
 
     public function edit()

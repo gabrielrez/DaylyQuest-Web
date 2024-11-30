@@ -21,9 +21,10 @@ Route::get('/login', fn() => view('auth.login'))->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
+// Middleware Auth
 Route::middleware(['auth', NoCache::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index']);
-    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::get('/profile/{id}', [ProfileController::class, 'show']);
     Route::get('/settings', [SettingsController::class, 'index']);
 
     Route::get('/profile/edit', [ProfileController::class, 'edit']);
@@ -60,5 +61,6 @@ Route::middleware(['auth', NoCache::class])->group(function () {
         Route::get('/support', fn() => view('settings.support'));
     });
 
+    // Community
     Route::get('/community', [CommunityController::class, 'index']);
 });

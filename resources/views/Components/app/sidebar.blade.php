@@ -9,7 +9,7 @@
         <!-- <a href="/collection/create" class="{{ request()->is('collection/create*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             New Collection
         </a> -->
-        <a href="/profile" class="{{ request()->is('profile*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
+        <a href="/profile/{{ Auth::user()->id }}" class="{{ request()->is('profile*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
             <i class="fas fa-user mr-3"></i> My Profile
         </a>
         <!-- <a href="/community" class="{{ request()->is('community*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block py-2 text-lg font-poppins transition-all duration-200 ease-in-out">
