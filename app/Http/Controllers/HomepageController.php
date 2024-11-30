@@ -12,8 +12,15 @@ class HomepageController extends Controller
     {
         $collections = Collection::where('user_id', Auth::id())->get();
 
+        $show_notice_modal = session('show_notice_modal', true);
+
+        if ($show_notice_modal) {
+            session(['show_notice_modal' => false]);
+        }
+
         return view('homepage', [
-            'collections' => $collections
+            'collections' => $collections,
+            'show_notice_modal' => $show_notice_modal,
         ]);
     }
 }

@@ -68,6 +68,8 @@ class UserController extends Controller
     {
         Auth::logout();
 
+        session()->forget('show_notice_modal');
+
         return redirect('/');
     }
 

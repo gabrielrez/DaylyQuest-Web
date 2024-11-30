@@ -51,4 +51,9 @@
     <x-modals.collection-new>
     </x-modals.collection-new>
 
+    @if ($show_notice_modal)
+    <x-modals.notice>
+    </x-modals.notice>
+    @endif
+
 </x-layouts.layout>
