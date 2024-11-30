@@ -26,17 +26,9 @@
 
             <!-- Content -->
             <div class="flex flex-col gap-8 mt-8 max-w-[600px]">
-                <div class="flex flex-col gap-3 w-full">
-                    <label class="font-poppins text-lg text-white font-medium">Toggle Tooltips:</label>
-                    <select name="toggle" class="text-text_gray font-medium bg-bg_gray px-3 py-5 rounded-lg" id="toggle_tooltips">
-                        <option value="enable">Enable</option>
-                        <option value="disable">Disable</option>
-                    </select>
-                </div>
-
                 <div class="flex flex-col gap-3 max-w-[600px]">
                     <label class="font-poppins text-lg text-white font-medium">Theme Color:</label>
-                    <select name="toggle" class="text-text_gray font-medium bg-bg_gray px-3 py-5 rounded-lg" id="toggle_tooltips">
+                    <select name="toggle" class="text-text_gray font-medium bg-bg_gray px-3 py-5 rounded-2xl" id="toggle_tooltips">
                         <option value="enable">Dark Theme</option>
                     </select>
                 </div>

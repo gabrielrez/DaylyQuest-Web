@@ -28,13 +28,23 @@
             <div class="mt-10">
                 <h3 class="font-poppins font-bold text-4xl">Statistics</h3>
                 <div class="mt-8 flex gap-10">
-                    <div class="flex gap-3 items-baseline bg-primary px-6 py-5 rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
-                        <h3 class="text-6xl font-poppins font-bold text-bg_black">{{ $collections }}</h3>
-                        <p class="text-bg_black italic font-roboto font-semibold text-xl">Collections</p>
+                    <div class="flex gap-3 items-end">
+                        <div class="flex gap-3 items-baseline bg-primary px-6 py-5 rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                            <h3 class="text-6xl font-poppins font-bold text-bg_black">{{ $collections }}</h3>
+                            <p class="text-bg_black italic font-poppins font-semibold text-lg">Collections</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-base italic text-primary opacity-70">{{ $collections_completed }} Completed</p>
+                        </div>
                     </div>
-                    <div class="flex gap-3 items-baseline bg-secondary px-6 py-5 rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
-                        <h3 class="text-6xl font-poppins font-bold text-bg_black">{{ $goals }}</h3>
-                        <p class="text-bg_black italic font-roboto font-semibold text-xl">Goals</p>
+                    <div class="flex gap-3 items-end">
+                        <div class="flex gap-3 items-baseline bg-secondary px-6 py-5 rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                            <h3 class="text-6xl font-poppins font-bold text-bg_black">{{ $goals }}</h3>
+                            <p class="text-bg_black italic font-poppins font-semibold text-lg">Goals</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-base italic text-secondary opacity-70">{{ $goals_completed }} Completed</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -16,11 +16,18 @@ class ProfileController extends Controller
             abort(404);
         }
 
-        [$collections_qtd, $goals_qtd] = $user->calculateStatistics();
+        [
+            $collections_qtd,
+            $goals_qtd,
+            $collections_completed,
+            $goals_completed
+        ] = $user->calculateStatistics();
 
         return view('profile.profile', [
             'collections' => $collections_qtd,
             'goals' => $goals_qtd,
+            'collections_completed' => $collections_completed,
+            'goals_completed' => $goals_completed,
         ]);
     }
 

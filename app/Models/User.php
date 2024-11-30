@@ -56,11 +56,27 @@ class User extends Authenticatable
 
     public function calculateStatistics()
     {
-        $collections_qtd = $this->Collections->count();
-        $goals_qtd = $this->collections->flatMap(function ($collection) {
+        $collections_total = $this->Collections->count();
+
+        $goals_total = $this->collections->flatMap(function ($collection) {
             return $collection->goals;
         })->count();
 
-        return [$collections_qtd, $goals_qtd];
+        $collections_completed = $this->collections->filter(function ($collection) {
+            return $collection->goals->every(function ($goal) {
+                return $goal->status === 'completed';
+            });
+        })->count();
+
+        $goals_completed = $this->collections->flatMap(function ($collection) {
+            return $collection->goals->where('status', 'completed');
+        })->count();
+
+        return [
+            $collections_total,
+            $goals_total,
+            $collections_completed,
+            $goals_completed
+        ];
     }
 }
