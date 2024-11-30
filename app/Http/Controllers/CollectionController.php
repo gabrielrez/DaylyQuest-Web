@@ -22,7 +22,9 @@ class CollectionController extends Controller
 
         $status = $collection->getStatus();
 
-        $completion_percentage = ($goals->where('status', 'completed')->count() / $goals->count()) * 100;
+        $completion_percentage = $goals->count() > 0
+            ? ($goals->where('status', 'completed')->count() / $goals->count()) * 100
+            : 0;
 
         return view('collections.collection', [
             'collection' => $collection,
