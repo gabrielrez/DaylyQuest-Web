@@ -63,9 +63,10 @@ class User extends Authenticatable
         })->count();
 
         $collections_completed = $this->collections->filter(function ($collection) {
-            return $collection->goals->every(function ($goal) {
-                return $goal->status === 'completed';
-            });
+            return $collection->goals->isNotEmpty() &&
+                $collection->goals->every(function ($goal) {
+                    return $goal->status === 'completed';
+                });
         })->count();
 
         $goals_completed = $this->collections->flatMap(function ($collection) {
