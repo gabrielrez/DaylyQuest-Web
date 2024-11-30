@@ -25,7 +25,7 @@
 
 </html>
 
-<script>
+<!-- <script>
     const section = document.getElementById('hover-section');
 
     document.addEventListener('mousemove', (e) => {
@@ -35,4 +35,4 @@
         section.style.transform = `translate(${x}px, ${y}px)`;
         section.style.transition = 'transform 0.1s ease-out';
     });
-</script>
+</script> -->
