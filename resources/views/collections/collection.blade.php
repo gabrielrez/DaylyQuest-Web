@@ -20,6 +20,13 @@
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
                     <span class="font-poppins font-bold text-4xl">{{ $collection['title'] }}</span>
+                    <div class="flex gap-1.5 items-end">
+                        <svg class="w-10 h-10 ml-4" viewBox="0 0 36 36" class="circular-chart" xmlns="http://www.w3.org/2000/svg">
+                            <path class="circle-bg" fill="none" stroke="#1E1E1E" stroke-width="4" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32" />
+                            <path class="circle" fill="none" stroke="#03DAC6" stroke-width="4" stroke-dasharray="{{ $completion_percentage }}, 100" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32" />
+                        </svg>
+                        <span class="text-base text-poppins {{ $collection->isCompleted() ? 'text-secondary' : 'text-text_gray' }} font-semibold italic">{{ number_format($completion_percentage, 0) }}%</span>
+                    </div>
                 </div>
                 <div>
                     @if($collection['cyclic'] != 1)
@@ -37,7 +44,7 @@
                 <li class="group bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 'completed' || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
                     data-id="{{ $goal->id }}">
                     <img src="{{ asset('images/grabme.svg') }}" class="dont-open-steps max-w-6 hover:cursor-grab grab-handle">
-                    <div class="w-full flex items-center justify-between">
+                    <div class="w-full flex gap-3 items-center justify-between">
                         <div>
                             <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
                             <p class="text-text_gray mb-1">{{ $goal->description }}</p>
