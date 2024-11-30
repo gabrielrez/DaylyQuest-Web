@@ -27,8 +27,8 @@
         <div class="flex flex-col">
             <h1 class="text-white text-center text-4xl font-poppins font-semibold leading-tight underline-secondary">Organize your most different goals<span class="text-secondary">!</span></h1>
             <p class="mt-6 text-white text-lg text-center font-roboto">Create custom collections, set deadlines, and track your progress.</p>
+            <a href="/register" class="self-center mt-10 text-center font-poppins font-bold bg-primary px-20 py-2.5 shadow-xl rounded-lg hover:scale-95 transition-all duration-200 ease-in-out">Start Right Now!</a>
             <img class="mt-12 border-2 border-detail rounded-2xl hover:translate-y-[-8px] hover:shadow-xl hover:shadow-[rgba(41,41,41,0.1)] transition-all duration-200 ease-in-out" src="<?= asset('images/homepage-lp.png') ?>" alt="DaylyQuest homepage image">
-            <a href="/register" class="self-center mt-10 text-white text-center font-poppins font-bold px-20 py-2.5 bg-detail rounded-lg hover:bg-primary hover:text-black transition-all duration-200 ease-in-out">Start Right Now!</a>
         </div>
     </section>
 

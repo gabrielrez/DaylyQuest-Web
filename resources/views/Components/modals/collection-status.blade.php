@@ -3,7 +3,7 @@
         <h2 class="text-3xl font-poppins font-semibold mb-4">{{ $title }}</h2>
         <p class="text-lg text-text_gray">{{ $message }}</p>
         <div class="flex gap-x-5 mt-10 justify-end">
-            @if($collection['cyclic']->isCyclic())
+            @if($collection['cyclic'] === 1)
             <button id="cyclic-expired-btn"
                 class="{{ $status === 'success' ? 'bg-secondary text-bg_black' : 'border-2 border-detail text-text_gray' }}
                     font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">

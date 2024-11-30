@@ -23,10 +23,6 @@ class Collection extends Model
         'user_id',
     ];
 
-    protected $casts = [
-        'cyclic' => Cyclic::class,
-    ];    
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -56,10 +52,15 @@ class Collection extends Model
         ]);
     }
 
+    public function isCyclic()
+    {
+        return $this->cyclic === 1;
+    }
+
     public function getStatus(): ?array
     {
         $completed = $this->isCompleted();
-        $cyclic = $this->cyclic->isCyclic();
+        $cyclic = $this->isCyclic();
         $expired = $this->hasExpired();
 
         if ($cyclic) {
