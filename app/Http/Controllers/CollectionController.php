@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
+    protected $collection_model;
+
+    public function __construct(Collection $collection_model)
+    {
+        $this->collection_model = $collection_model;
+    }
+
     public function show($id)
     {
         $collection = Collection::findOrFail($id);
@@ -18,13 +25,11 @@ class CollectionController extends Controller
             abort(404);
         }
 
-        $goals = Goal::where('collection_id', $id)->get();
-
         $status = $collection->getStatus();
 
-        $completion_percentage = $goals->count() > 0
-            ? ($goals->where('status', 'completed')->count() / $goals->count()) * 100
-            : 0;
+        $goals = Goal::where('collection_id', $id)->get();
+
+        $completion_percentage = $this->collection_model->completetionPercentage($goals);
 
         return view('collections.collection', [
             'collection' => $collection,

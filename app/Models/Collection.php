@@ -104,6 +104,13 @@ class Collection extends Model
         ];
     }
 
+    public function completetionPercentage($goals)
+    {
+        return $goals->count() > 0
+            ? ($goals->where('status', 'completed')->count() / $goals->count()) * 100
+            : 0;
+    }
+
     public function formattedDeadline(): string
     {
         $deadline = $this->deadline;
