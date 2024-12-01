@@ -20,7 +20,7 @@
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
                     <span class="font-poppins font-bold text-4xl">{{ $collection['title'] }}</span>
-                    <div class="flex gap-1.5 items-end">
+                    <div class="flex gap-1.5 items-center">
                         <svg class="w-10 h-10 ml-4" viewBox="0 0 36 36" class="circular-chart" xmlns="http://www.w3.org/2000/svg">
                             <path class="circle-bg" fill="none" stroke="#1E1E1E" stroke-width="4" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32" />
                             <path class="circle" fill="none" stroke="#03DAC6" stroke-width="4" stroke-dasharray="{{ $completion_percentage }}, 100" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32" />
@@ -49,16 +49,16 @@
                             <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
                             <p class="text-text_gray mb-1">{{ $goal->description }}</p>
                         </div>
-                        <div class="flex items-center gap-5">
-                            <form action="/goal/{{ $goal['id'] }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="dont-open-steps text-text_gray underline font-roboto">Delete</button>
-                            </form>
+                        <div class="flex items-center gap-3">
                             <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}"
                                 class="dont-open-steps border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
                                 {{ $goal->status === 'inProgress' ? 'Complete' : 'Completed' }}
                             </button>
+                            <form action="/goal/{{ $goal['id'] }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="dont-open-steps text-text_gray underline hover:text-error font-roboto"><i class="fas fa-xmark text-xl"></i></button>
+                            </form>
                         </div>
                     </div>
                 </li>
