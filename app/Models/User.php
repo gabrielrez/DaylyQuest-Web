@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(Collection::class);
     }
 
-    public function calculateStatistics()
+    public function calculateStatistics(): array
     {
         $collections_total = $this->Collections->count();
 

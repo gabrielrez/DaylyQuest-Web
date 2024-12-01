@@ -25,18 +25,14 @@ class CollectionController extends Controller
             abort(404);
         }
 
-        $status = $collection->getStatus();
-
         $goals = Goal::where('collection_id', $id)->get();
-
-        $completion_percentage = $this->collection_model->completetionPercentage($goals);
 
         return view('collections.collection', [
             'collection' => $collection,
             'goals' => $goals,
             'deadline' => $collection->formattedDeadline(),
-            'status' => $status,
-            'completion_percentage' => $completion_percentage,
+            'status' => $collection->getStatus(),
+            'completion_percentage' => $this->collection_model->completetionPercentage($goals),
         ]);
     }
 

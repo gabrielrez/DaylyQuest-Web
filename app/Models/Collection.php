@@ -38,7 +38,7 @@ class Collection extends Model
         return Carbon::now()->greaterThan($this->deadline);
     }
 
-    public function isCompleted()
+    public function isCompleted(): bool
     {
         return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === "completed");
     }
@@ -52,7 +52,7 @@ class Collection extends Model
         ]);
     }
 
-    public function isCyclic()
+    public function isCyclic(): bool
     {
         return $this->cyclic === 1;
     }
@@ -104,7 +104,7 @@ class Collection extends Model
         ];
     }
 
-    public function completetionPercentage($goals)
+    public function completetionPercentage($goals): float
     {
         return $goals->count() > 0
             ? ($goals->where('status', 'completed')->count() / $goals->count()) * 100
