@@ -20,8 +20,8 @@ class GoalController extends Controller
     public function store($collection_id)
     {
         request()->validate([
-            'title' => ['required'],
-            'description' => ['required'],
+            'title' => ['required', 'max:36'],
+            'description' => ['required', 'max:100'],
         ]);
 
         Goal::create([
