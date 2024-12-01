@@ -42,6 +42,10 @@ class CollectionController extends Controller
 
     public function store()
     {
+        if (Auth::user()->collections->count() >= 4) {
+            return redirect('/homepage')->with('show_limit_modal', true);
+        }
+
         request()->validate([
             'title' => ['required'],
             'description' => ['required'],

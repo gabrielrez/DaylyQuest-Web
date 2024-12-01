@@ -51,6 +51,11 @@
     <x-modals.collection-new>
     </x-modals.collection-new>
 
+    @if (session('show_limit_modal'))
+    <x-modals.collections-limit>
+    </x-modals.collections-limit>
+    @endif
+
     @if ($show_notice_modal)
     <x-modals.notice>
     </x-modals.notice>

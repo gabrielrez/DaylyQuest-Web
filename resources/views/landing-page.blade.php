@@ -34,7 +34,7 @@
 
     <section class="mt-20">
         <div class="grid grid-cols-2 gap-10 items-center">
-            <img class="mt-12 border-2 border-detail rounded-2xl shadow-xl hover:scale-105 transition-all duration-200 ease-in-out" src="<?= asset('images/collections-lp.png') ?>" alt="DaylyQuest collections interface">
+            <img class="mt-12 border-2 border-detail rounded-2xl shadow-xl transition-all duration-200 ease-in-out" src="<?= asset('images/collections-lp.png') ?>" alt="DaylyQuest collections interface">
             <div class="flex flex-col">
                 <h1 class="text-white text-4xl font-poppins font-semibold leading-tight underline-secondary">
                     Take Control of Your Ambitions<span class="text-secondary">!</span>

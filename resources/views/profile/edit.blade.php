@@ -16,11 +16,11 @@
                     @csrf
                     @method('PATCH')
                     <div class="flex gap-20">
-                        <div class="min-w-60 flex flex-col gap-3 items-center">
+                        <div class="min-w-60 flex flex-col gap-3 items-center group">
                             <img id="preview" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}"
                                 class="w-60 h-60 object-cover rounded-full border-4 border-detail bg-bg_black cursor-pointer hover:scale-95 transition-all duration-200 ease-in-out">
                             <input type="file" name="profile-picture" id="file-input" accept=".png, .jpg, .jpeg" onchange="previewImage(event)" class="hidden">
-                            <label for="file-input" class="cursor-pointer text-sm text-text_gray font-roboto hover:underline">
+                            <label for="file-input" class="cursor-pointer text-sm text-text_gray font-roboto group-hover:underline">
                                 Upload Profile Picture
                             </label>
                         </div>
