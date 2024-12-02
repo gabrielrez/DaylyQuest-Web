@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'profile_picture',
+        'points',
     ];
 
     /**
@@ -77,7 +78,7 @@ class User extends Authenticatable
             $collections_total,
             $goals_total,
             $collections_completed,
-            $goals_completed
+            $goals_completed,
         ];
     }
 }

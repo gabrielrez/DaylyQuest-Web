@@ -40,7 +40,13 @@ class Collection extends Model
 
     public function isCompleted(): bool
     {
-        return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === "completed");
+        $completed = $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === "completed");
+
+        $completed
+            ? $this->update(['status' => 'completed'])
+            : $this->update(['status' => 'inProgress']);
+
+        return $completed;
     }
 
     public function resetCollection()

@@ -24,7 +24,7 @@
                 @foreach ($collections as $collection)
                 <a href="/collection/{{ $collection['id'] }}"
                     class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
-                    @if ($collection->isCompleted())
+                    @if ($collection->status == 'completed')
                     <i class="fas text-2xl fa-check-circle absolute top-6 right-6 text-secondary"></i>
                     @elseif($collection->hasExpired())
                     <i class="fas text-2xl fa-times-circle absolute top-6 right-6 text-error"></i>

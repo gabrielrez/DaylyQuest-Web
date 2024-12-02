@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    protected $user_model;
+
+    public function __construct(User $user)
+    {
+        $this->user_model = $user;
+    }
+
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -20,7 +27,7 @@ class ProfileController extends Controller
             $collections_qtd,
             $goals_qtd,
             $collections_completed,
-            $goals_completed
+            $goals_completed,
         ] = $user->calculateStatistics();
 
         return view('profile.profile', [

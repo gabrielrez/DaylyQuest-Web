@@ -26,11 +26,15 @@
             </div>
             <div class="w-full h-px bg-detail"></div>
             <div class="mt-10">
-                <h3 class="font-poppins font-bold text-4xl">Statistics</h3>
-                <div class="mt-8 flex gap-10">
+                <h3 class="font-poppins font-bold text-4xl">Current statistics</h3>
+                <div class="mt-8 flex gap-10 flex-wrap">
                     <div class="flex gap-3 items-end">
                         <div class="flex gap-3 items-baseline bg-primary px-6 py-5 rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                            @if($collections > 9)
                             <h3 class="text-6xl font-poppins font-bold text-bg_black">{{ $collections }}</h3>
+                            @else
+                            <h3 class="text-6xl font-poppins font-bold text-bg_black">0{{ $collections }}</h3>
+                            @endif
                             <p class="text-bg_black italic font-poppins font-semibold text-lg">Collections</p>
                         </div>
                         <div class="flex flex-col">
@@ -39,7 +43,11 @@
                     </div>
                     <div class="flex gap-3 items-end">
                         <div class="flex gap-3 items-baseline bg-secondary px-6 py-5 rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                            @if($goals > 9)
                             <h3 class="text-6xl font-poppins font-bold text-bg_black">{{ $goals }}</h3>
+                            @else
+                            <h3 class="text-6xl font-poppins font-bold text-bg_black">0{{ $goals }}</h3>
+                            @endif
                             <p class="text-bg_black italic font-poppins font-semibold text-lg">Goals</p>
                         </div>
                         <div class="flex flex-col">
