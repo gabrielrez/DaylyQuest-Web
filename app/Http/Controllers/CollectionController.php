@@ -66,6 +66,23 @@ class CollectionController extends Controller
         return redirect('/homepage');
     }
 
+    public function update($id)
+    {
+        $collection = Collection::findOrFail($id);
+
+        request()->validate([
+            'title' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        $collection->update([
+            'title' => request('title'),
+            'description' => request('description'),
+        ]);
+
+        return redirect('/collection/' . $collection->id);
+    }
+
     public function destroy($id)
     {
         $collection = Collection::findOrFail($id);

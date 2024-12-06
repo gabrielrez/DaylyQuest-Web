@@ -36,7 +36,10 @@
                 </div>
             </div>
             <!-- Description -->
-            <p class="text-text_gray text-lg font-roboto">{{ $collection['description'] }}</p>
+            <div class="flex items-center gap-5">
+                <p class="text-text_gray text-lg font-roboto">{{ $collection['description'] }}</p>
+                <i onclick="openEditCollectiomModal()" class="fas fa-edit text-text_gray cursor-pointer hover:text-white transition-all duration-200 ease-in-out" id="edit-icon" data-id="{{ $collection['id'] }}"></i>
+            </div>
 
             <!-- Goals -->
             <ul id="goal-list" class="flex flex-col gap-4 mt-8">
@@ -74,6 +77,10 @@
 <!-- Modal new goal -->
 <x-modals.goal-new :collection="$collection">
 </x-modals.goal-new>
+
+<!-- Modal edit collection -->
+<x-modals.collection-description-edit :collection="$collection">
+</x-modals.collection-description-edit>
 
 <!-- Modal status -->
 @if($status != null)

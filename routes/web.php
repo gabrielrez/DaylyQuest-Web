@@ -37,7 +37,7 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     });
 
     // Collections
-    Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show', 'destroy']);
+    Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show', 'update', 'destroy']);
 
     // Goals
     Route::prefix('goal')->middleware([CheckCollectionDeadline::class])->group(function () {
