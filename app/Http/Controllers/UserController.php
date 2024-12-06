@@ -28,9 +28,9 @@ class UserController extends Controller
         return redirect('/homepage');
     }
 
-    public function createDefaultCollections(User $user)
+    public function defaultCollection(): array
     {
-        $default_collections = [
+        return [
             [
                 'title' => 'Daily Goals',
                 'description' => 'The best way to achieve your long-term goals is to stay consistent every day',
@@ -40,9 +40,14 @@ class UserController extends Controller
                 'points' => 0,
             ]
         ];
+    }
 
-        foreach ($default_collections as $collection_data) {
-            $user->collections()->create($collection_data);
+    public function createDefaultCollections(User $user)
+    {
+        $default_collections = $this->defaultCollection();
+
+        foreach ($default_collections as $collection) {
+            $user->collections()->create($collection);
         }
     }
 

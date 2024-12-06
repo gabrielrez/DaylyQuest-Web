@@ -94,6 +94,7 @@ class Collection extends Model
             return $this->createStatus(StatusMessage::ERROR_NOT_CYCLIC);
         }
 
+        // Maybe should I check for $expired as well? 🤔
         if ($completed) {
             return $this->createStatus(StatusMessage::SUCCESS_NOT_CYCLIC);
         }
