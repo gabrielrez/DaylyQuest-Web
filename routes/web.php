@@ -67,5 +67,5 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     });
 
     // Community
-    Route::get('/community', [CommunityController::class, 'index']);
+    // Route::get('/community', [CommunityController::class, 'index']);
 });

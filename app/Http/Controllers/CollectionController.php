@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Goal;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class CollectionController extends Controller
 {
@@ -17,7 +20,7 @@ class CollectionController extends Controller
         $this->collection_model = $collection_model;
     }
 
-    public function show($id)
+    public function show(int $id): View|Response
     {
         $collection = Collection::findOrFail($id);
 
@@ -36,12 +39,12 @@ class CollectionController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('collections.collection-create');
     }
 
-    public function store()
+    public function store(): RedirectResponse
     {
         // if (Auth::user()->collections->count() >= 4) {
         //     return redirect('/homepage')->with('show_limit_modal', true);
@@ -66,7 +69,7 @@ class CollectionController extends Controller
         return redirect('/homepage');
     }
 
-    public function update($id)
+    public function update(int $id): RedirectResponse
     {
         $collection = Collection::findOrFail($id);
 
@@ -83,7 +86,7 @@ class CollectionController extends Controller
         return redirect('/collection/' . $collection->id);
     }
 
-    public function destroy($id)
+    public function destroy(int $id): void
     {
         $collection = Collection::findOrFail($id);
         $collection->delete();

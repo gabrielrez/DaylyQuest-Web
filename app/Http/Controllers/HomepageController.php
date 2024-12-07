@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class HomepageController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $collections = Collection::where('user_id', Auth::id())->get();
 

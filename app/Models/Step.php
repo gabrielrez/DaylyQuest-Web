@@ -17,7 +17,7 @@ class Step extends Model
         return $this->belongsTo(Goal::class);
     }
 
-    public function setStatus()
+    public function setStatus(): void
     {
         $new_status = $this->status === 0 ? 1 : 0;
 

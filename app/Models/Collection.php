@@ -49,7 +49,7 @@ class Collection extends Model
         return $completed;
     }
 
-    public function resetCollection()
+    public function resetCollection(): void
     {
         $this->goals->each(fn($goal) => $goal->update(['status' => "inProgress"]));
 

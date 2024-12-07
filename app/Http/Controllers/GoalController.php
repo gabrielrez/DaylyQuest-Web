@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Goal;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class GoalController extends Controller
 {
-    public function create($collection_id)
+    public function create(int $collection_id): View
     {
         $collection = Collection::findOrFail($collection_id);
 
@@ -17,7 +20,7 @@ class GoalController extends Controller
         ]);
     }
 
-    public function store($collection_id)
+    public function store(int $collection_id): RedirectResponse
     {
         request()->validate([
             'title' => ['required', 'max:36'],
@@ -34,14 +37,14 @@ class GoalController extends Controller
         return redirect("/collection/{$collection_id}");
     }
 
-    public function setStatus(Goal $goal)
+    public function setStatus(Goal $goal): JsonResponse
     {
         $goal->setStatus();
 
         return response()->json($goal);
     }
 
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
         $goal = Goal::findOrFail($id);
         $collection = $goal->collection;

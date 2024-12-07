@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
@@ -10,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-    public function store()
+    public function store(): RedirectResponse
     {
         $attributes = request()->validate([
             'name' => ['required', 'min:3', 'max:28'],
@@ -42,7 +43,7 @@ class UserController extends Controller
         ];
     }
 
-    public function createDefaultCollections(User $user)
+    public function createDefaultCollections(User $user): void
     {
         $default_collections = $this->defaultCollection();
 
@@ -51,7 +52,7 @@ class UserController extends Controller
         }
     }
 
-    public function login()
+    public function login(): RedirectResponse
     {
         $attributes = request()->validate([
             'email' => ['required', 'email'],
@@ -69,7 +70,7 @@ class UserController extends Controller
         return redirect('/homepage');
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
 
@@ -78,7 +79,7 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function update($id)
+    public function update(int $id): RedirectResponse
     {
         $user = User::findOrFail($id);
 
@@ -103,7 +104,7 @@ class UserController extends Controller
         return redirect('/profile/' . Auth::user()->id);
     }
 
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
         $user = User::find($id);
         if ($user) {

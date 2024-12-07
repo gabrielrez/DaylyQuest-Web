@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
@@ -15,7 +17,7 @@ class ProfileController extends Controller
         $this->user_model = $user;
     }
 
-    public function show($id)
+    public function show(int $id): View|Response
     {
         $user = User::findOrFail($id);
 
@@ -38,7 +40,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function edit()
+    public function edit(): View
     {
         return view('profile.edit');
     }

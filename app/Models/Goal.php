@@ -22,7 +22,7 @@ class Goal extends Model
         return $this->belongsTo(Collection::class);
     }
 
-    public function setStatus()
+    public function setStatus(): void
     {
         $new_status = $this->status === 'inProgress' ? 'completed' : 'inProgress';
 
