@@ -2,24 +2,27 @@
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
         <!-- Main Content -->
-        <div class="flex-1 p-10 overflow-y-auto">
+        <div class="flex-1 p-5 sm:p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
                 @if(!$collection->hasExpired() && !$collection->isCompleted())
-                <p class="text-text_gray italic font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
+                <p class="hidden sm:block text-text_gray italic font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
                 @endif
                 @if($collection->hasExpired() && !$collection->isCompleted())
-                <p class="text-error italic font-roboto">This collection has expired on {{ $deadline }}.</p>
+                <p class="hidden sm:block text-error italic font-roboto">This collection has expired on {{ $deadline }}.</p>
                 @endif
                 @if($collection->isCompleted())
-                <p class="text-secondary italic font-roboto">You've completed this collection.</p>
+                <p class="hidden sm:block text-secondary italic font-roboto">You've completed this collection.</p>
                 @endif
+                <h1 class="block sm:hidden text-2xl font-poppins font-bold cursor-default text-center">
+                    <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span>
+                </h1>
                 <x-app.profile-picture />
             </div>
-            <div class="flex justify-between items-center mb-10">
+            <div class="block sm:flex justify-between items-center mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
-                    <span class="font-poppins font-bold text-4xl">{{ $collection['title'] }}</span>
+                    <span class="font-poppins font-bold text-3xl md:text-4xl">{{ $collection['title'] }}</span>
                     <div class="flex gap-1.5 items-center">
                         <svg class="w-10 h-10 ml-4" viewBox="0 0 36 36" class="circular-chart" xmlns="http://www.w3.org/2000/svg">
                             <path class="circle-bg" fill="none" stroke="#1E1E1E" stroke-width="4" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32" />
@@ -28,7 +31,7 @@
                         <span class="text-base text-poppins {{ $collection->isCompleted() ? 'text-secondary' : 'text-text_gray' }} font-semibold italic">{{ number_format($completion_percentage, 0) }}%</span>
                     </div>
                 </div>
-                <div>
+                <div class="mt-10 sm:mt-0">
                     @if($collection['cyclic'] != 1)
                     <a href="#" id="delete-collection-btn" data-id="{{ $collection['id'] }}" class=" mr-3 text-error underline font-roboto">Delete Collection</a>
                     @endif
@@ -47,14 +50,14 @@
                 <li class="group bg-bg_gray flex gap-5 px-6 py-5 rounded-3xl shadow-md relative hover:translate-x-3 transition-all duration-200 ease-in-out {{ $goal->status === 'completed' || $goal->collection->hasExpired() ? 'opacity-50' : 'opacity-100' }}"
                     data-id="{{ $goal->id }}">
                     <img src="{{ asset('images/grabme.svg') }}" class="dont-open-steps max-w-6 hover:cursor-grab grab-handle">
-                    <div class="w-full flex gap-3 items-center justify-between">
+                    <div class="w-full block sm:flex gap-3 items-center justify-between">
                         <div>
-                            <h3 class="text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
-                            <p class="text-text_gray mb-1">{{ $goal->description }}</p>
+                            <h3 class="text-lg sm:text-xl mb-1 font-poppins font-medium">{{ $goal->title }}</h3>
+                            <p class="text-text_gray text-sm sm:text-base mb-1">{{ $goal->description }}</p>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="mt-3 sm:mt-0 flex items-center gap-3">
                             <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}"
-                                class="dont-open-steps border-2 font-poppins font-semibold px-6 py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
+                                class="dont-open-steps border-2 font-poppins font-semibold px-6 py-1.5 sm:py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
                                 {{ $goal->status === 'inProgress' ? 'Complete' : 'Completed' }}
                             </button>
                             <form action="/goal/{{ $goal['id'] }}" method="POST">

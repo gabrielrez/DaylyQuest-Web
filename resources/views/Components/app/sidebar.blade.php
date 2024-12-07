@@ -1,4 +1,4 @@
-<div class="w-1/6 p-6 m-8 rounded-3xl sticky top-0">
+<div class="w-1/6 p-6 m-8 rounded-3xl sticky top-0 hidden xl:block">
     <a href="/homepage" class="text-2xl font-bold pb-8 font-poppins">
         <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span><span class="text-xs italic ml-1.5 font-normal">Beta</span>
     </a>

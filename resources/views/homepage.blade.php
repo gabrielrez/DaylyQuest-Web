@@ -2,28 +2,31 @@
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
         <!-- Main Content -->
-        <div class="flex-1 p-10 overflow-y-auto">
+        <div class="flex-1 p-5 sm:p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
-                <p class="text-text_gray italic font-roboto">Complete your goals within the set deadline!</p>
+                <h1 class="block sm:hidden text-2xl font-poppins font-bold cursor-default text-center">
+                    <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span>
+                </h1>
+                <p class="hidden sm:block text-text_gray italic text-sm sm:text-base font-roboto">Complete your goals within the set deadline!</p>
                 <x-app.profile-picture />
             </div>
-            <div class="flex justify-between items-center mb-10">
+            <div class="block sm:flex justify-between items-center mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
-                    <span class="font-poppins font-bold text-4xl">My Collections</span>
+                    <span class="font-poppins font-bold text-3xl md:text-4xl">My Collections</span>
                 </div>
                 <button onclick="openModal()"
-                    class="bg-primary text-bg_black font-bold font-poppins text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
+                    class="mt-10 sm:mt-0 bg-primary text-bg_black font-bold font-poppins text-base px-5 sm:px-10 py-3 rounded-full shadow-md cursor-pointer hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                     Create personalized collection
                 </button>
             </div>
 
-            <div class="grid grid-cols-2 gap-8">
+            <div class="flex flex-wrap md:grid md:grid-cols-2 gap-8">
                 <!-- Collections -->
                 @foreach ($collections as $collection)
                 <a href="/collection/{{ $collection['id'] }}"
-                    class="bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
+                    class="flex-1 min-w-full bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
                     @if ($collection->status == 'completed')
                     <i class="fas text-2xl fa-check-circle absolute top-6 right-6 text-secondary"></i>
                     @elseif($collection->hasExpired())
