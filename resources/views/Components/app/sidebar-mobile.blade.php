@@ -7,9 +7,9 @@
             </div>
         </div>
         <ul class="mt-10 flex flex-col gap-8">
-            <li><a href="/homepage" class="block text-lg font-poppins py-2"><i class="fas fa-home mr-3"></i>Home Page</a></li>
-            <li><a href="/profile/{{ Auth::user()->id }}" class="block text-lg font-poppins py-2"><i class="fas fa-user mr-3"></i>My Profile</a></li>
-            <li><a href="/settings" class="block text-lg font-poppins py-2"><i class="fas fa-cog mr-3"></i>Settings</a></li>
+            <li><a href="/homepage" class="{{ request()->is('homepage*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-home mr-3"></i>Home Page</a></li>
+            <li><a href="/profile/{{ Auth::user()->id }}" class="{{ request()->is('profile*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-user mr-3"></i>My Profile</a></li>
+            <li><a href="/settings" class="{{ request()->is('settings*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-cog mr-3"></i>Settings</a></li>
             <li>
                 <form action="/logout" method="POST">
                     @csrf

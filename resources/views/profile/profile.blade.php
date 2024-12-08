@@ -11,9 +11,9 @@
                 <div class="text-3xl">
                     <div class="sm:flex sm:items-center gap-5 sm:gap-8">
                         <img src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}"
-                            class="w-20 h-20 sm:w-60 sm:h-60 object-cover rounded-full border-4 border-detail bg-bg_black">
+                            class="w-28 h-28 sm:w-60 sm:h-60 object-cover rounded-full border-4 border-detail bg-bg_black">
                         <div class="flex flex-col font-poppins">
-                            <div class="mt-3 sm:mt-0 flex gap-5 items-baseline">
+                            <div class="mt-2 sm:mt-0 flex gap-5 items-baseline">
                                 <h3 class="font-bold text-xl sm:text-3xl">{{ Auth::user()->name }}</h3>
                                 <a href="/profile/edit" class="text-base text-text_gray font-roboto mt-3 underline">Edit
                                     Profile<i class="fa fa-edit ml-3"></i></a>
