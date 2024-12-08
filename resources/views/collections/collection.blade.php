@@ -5,6 +5,7 @@
         <div class="flex-1 p-5 sm:p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
+                <button id="menu-toggle" class="block xl:hidden font-poppins font-bold text-xl"><i class="fas fa-bars mr-2"></i>Menu</button>
                 @if(!$collection->hasExpired() && !$collection->isCompleted())
                 <p class="hidden sm:block text-text_gray italic font-roboto">You have until <span class="font-bold text-white">{{ $deadline }}</span> to complete this collection.</p>
                 @endif
@@ -14,7 +15,6 @@
                 @if($collection->isCompleted())
                 <p class="hidden sm:block text-secondary italic font-roboto">You've completed this collection.</p>
                 @endif
-                <button id="menu-toggle" class="block xl:hidden font-poppins font-bold text-xl"><i class="fas fa-bars mr-2"></i>Menu</button>
                 <x-app.profile-picture />
             </div>
             <div class="block sm:flex justify-between items-center mb-10">

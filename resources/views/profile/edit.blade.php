@@ -3,7 +3,7 @@
         <x-app.sidebar />
         <!-- Main Content -->
         <div class="flex-1 p-5 sm:p-10 overflow-y-auto">
-            <div class="mb-10 flex sm:hidden items-center justify-between">
+            <div class="mb-10 flex xl:hidden items-center justify-between">
                 <button id="menu-toggle" class="block xl:hidden font-poppins font-bold text-xl"><i class="fas fa-bars mr-2"></i>Menu</button>
             </div>
             <div class="flex justify-between items-center mb-10">
@@ -18,7 +18,7 @@
                 <form action="/user/{{ Auth::user()->id }}" class="w-full" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
-                    <div class="block sm:flex gap-20">
+                    <div class="block lg:flex gap-20">
                         <div class="min-w-60 flex flex-col gap-3 items-center group">
                             <img id="preview" src="{{ Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('images/profile-picture-default.jpg') }}"
                                 class="w-60 h-60 object-cover rounded-full border-4 border-detail bg-bg_black cursor-pointer hover:scale-95 transition-all duration-200 ease-in-out">
@@ -28,7 +28,7 @@
                             </label>
                         </div>
 
-                        <div class="w-full mt-5 sm:mt-0 sm:pr-40 flex flex-col gap-3 items-center">
+                        <div class="w-full mt-5 lg:mt-0 lg:pr-40 flex flex-col gap-3 items-center">
                             <div class="w-full">
                                 <label for="name" class="self-start font-poppins text-text_gray">Your Name:</label>
                                 <input type="text" name="name"
