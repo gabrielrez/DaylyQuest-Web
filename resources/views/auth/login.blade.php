@@ -25,7 +25,7 @@
     }
 
     body {
-        max-width: 450px;
+        max-width: 500px;
         background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
             linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
         background-size: 120px 120px;
@@ -40,7 +40,7 @@
     }
 </style>
 
-<body class="bg-bg_black mx-auto">
+<body class="bg-bg_black mx-auto px-5 sm:px-10">
     <section class="flex flex-col h-screen justify-center">
         <div class="text-3xl font-semibold flex items-center gap-[16px]">
             <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>

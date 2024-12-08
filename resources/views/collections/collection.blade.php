@@ -14,9 +14,7 @@
                 @if($collection->isCompleted())
                 <p class="hidden sm:block text-secondary italic font-roboto">You've completed this collection.</p>
                 @endif
-                <h1 class="block sm:hidden text-2xl font-poppins font-bold cursor-default text-center">
-                    <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span>
-                </h1>
+                <button id="menu-toggle" class="block xl:hidden font-poppins font-bold text-xl"><i class="fas fa-bars mr-2"></i>Menu</button>
                 <x-app.profile-picture />
             </div>
             <div class="block sm:flex justify-between items-center mb-10">
@@ -57,7 +55,7 @@
                         </div>
                         <div class="mt-3 sm:mt-0 flex items-center gap-3">
                             <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}"
-                                class="dont-open-steps border-2 font-poppins font-semibold px-6 py-1.5 sm:py-3 rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
+                                class="dont-open-steps w-full sm:w-max border-2 font-poppins font-semibold px-6 py-3 rounded-2xl sm:rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
                                 {{ $goal->status === 'inProgress' ? 'Complete' : 'Completed' }}
                             </button>
                             <form action="/goal/{{ $goal['id'] }}" method="POST">
@@ -72,6 +70,8 @@
             </ul>
         </div>
 </x-layouts.layout>
+
+<x-app.sidebar-mobile />
 
 <!-- Modal complete goal -->
 <x-modals.goal-complete>

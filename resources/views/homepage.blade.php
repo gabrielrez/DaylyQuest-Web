@@ -5,10 +5,8 @@
         <div class="flex-1 p-5 sm:p-10 overflow-y-auto">
             <!-- Header -->
             <div class="mb-10 flex items-center justify-between">
-                <h1 class="block sm:hidden text-2xl font-poppins font-bold cursor-default text-center">
-                    <span class="text-primary">Dayly</span><span class="text-secondary">Quest</span>
-                </h1>
-                <p class="hidden sm:block text-text_gray italic text-sm sm:text-base font-roboto">Complete your goals within the set deadline!</p>
+                <button id="menu-toggle" class="z-50 block xl:hidden font-poppins font-bold text-xl"><i class="fas fa-bars mr-2"></i>Menu</button>
+                <p class="hidden lg:block text-text_gray italic text-sm sm:text-base font-roboto">Complete your goals within the set deadline!</p>
                 <x-app.profile-picture />
             </div>
             <div class="block sm:flex justify-between items-center mb-10">
@@ -22,7 +20,7 @@
                 </button>
             </div>
 
-            <div class="flex flex-wrap md:grid md:grid-cols-2 gap-8">
+            <div class="flex flex-wrap md:grid md:grid-cols-2 gap-5 sm:gap-8">
                 <!-- Collections -->
                 @foreach ($collections as $collection)
                 <a href="/collection/{{ $collection['id'] }}"
@@ -50,6 +48,8 @@
             </div>
         </div>
     </div>
+
+    <x-app.sidebar-mobile />
 
     <x-modals.collection-new>
     </x-modals.collection-new>

@@ -19,7 +19,7 @@
     }
 </style>
 
-<body class="bg-bg_black w-9/12 mx-auto">
+<body class="bg-bg_black w-11/12 sm:w-9/12 mx-auto">
     {{ $slot }}
 </body>
 

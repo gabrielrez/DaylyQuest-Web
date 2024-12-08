@@ -20,18 +20,21 @@
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
         <!-- Main Content -->
-        <div class="flex-1 p-10 overflow-y-auto">
+        <div class="flex-1 p-5 sm:p-10 overflow-y-auto">
             <!-- Header -->
-            <div class="flex justify-between items-center mb-10">
+            <div class="mb-10 flex sm:hidden items-center justify-between">
+                <button id="menu-toggle" class="block xl:hidden font-poppins font-bold text-xl"><i class="fas fa-bars mr-2"></i>Menu</button>
+            </div>
+            <div class="flex justify-between items-center mb-5 sm:mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
-                    <span class="font-poppins font-bold text-4xl">Support</span>
+                    <span class="font-poppins font-bold text-2xl sm:text-4xl">Support</span>
                 </div>
             </div>
 
             <!-- Content -->
             <div class="flex flex-col gap-4 mt-8 w-full">
-                <div class="w-full flex gap-10">
+                <div class="w-full block flex-col-reverse sm:flex-row flex gap-10">
                     <div class="w-full max-w-[600px]">
                         <h3 class="text-2xl font-poppins font-semibold mt-1.5">How Can We Help You <span class="text-secondary">?</span></h3>
                         <form action="" class="flex flex-col items-center gap-3 w-full mt-5">
@@ -62,9 +65,9 @@
                             </button>
                         </form>
                     </div>
-                    <div class="w-full max-w-[600px]">
-                        <h3 class="text-2xl font-poppins font-semibold mt-1.5">Contact</h3>
-                        <ul class="flex flex-col gap-y-3 mt-8 underline text-text_gray">
+                    <div class="mt-2 sm:mt-8 sm:mt-0 w-full max-w-[600px]">
+                        <h3 class="text-xl sm:text-2xl font-poppins font-semibold mt-1.5">Contact</h3>
+                        <ul class="flex flex-col gap-y-3 mt-3 sm:mt-8 underline text-text_gray">
                             <li class="pl-3 border-l-4 border-secondary rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-envelope fa-lg mr-3 icon-width"></i><a href="#">dq.support@gmail.com</a></li>
                             <!-- <li class="pl-3 border-l-4 border-detail rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-facebook fa-lg mr-3 icon-width"></i><a href="#">facebook.com/daylyquest</a></li>
                             <li class="pl-3 border-l-4 border-detail rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-instagram fa-lg mr-3 icon-width"></i><a href="#">instagram.com/daylyquest</a></li> -->
@@ -74,4 +77,6 @@
             </div>
         </div>
     </div>
+
+    <x-app.sidebar-mobile />
 </x-layouts.layout>

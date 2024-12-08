@@ -1,10 +1,10 @@
 <div id="editCollectionModal" class="fixed hidden inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
-    <div class="w-full max-w-[600px] bg-bg_gray px-6 py-5 rounded-3xl shadow-md flex gap-10">
+    <div class="w-11/12 sm:w-full max-w-[600px] bg-bg_gray px-6 py-5 rounded-3xl shadow-md flex gap-10">
         <div class="flex-1 p-3 overflow-y-auto">
-            <div class="flex justify-between items-center mb-10">
+            <div class="flex justify-between items-center mb-5 sm:mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
-                    <span class="font-poppins font-bold text-4xl">Edit Collection</span>
+                    <span class="font-poppins font-bold text-3xl sm:text-4xl">Edit Collection</span>
                 </div>
             </div>
             <form action="/collection/{{ $collection['id'] }}"
@@ -39,7 +39,7 @@
                     class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
                     Save Changes
                 </button>
-                <a onclick="closeEditCollectiomModal()" class="text-text_gray underline cursor-pointer">Cancel</a>
+                <a onclick="closeEditCollectiomModal()" class="mt-3 text-text_gray underline cursor-pointer">Cancel</a>
 
                 @if($errors->any())
                 <ul class="self-start">

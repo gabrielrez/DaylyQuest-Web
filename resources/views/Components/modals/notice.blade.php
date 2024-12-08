@@ -1,5 +1,5 @@
 <div id="modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
-    <div class="bg-bg_gray rounded-3xl shadow-md w-10/12 lg:w-8/12 xl:w-6/12 px-9 py-8">
+    <div class="bg-bg_gray rounded-3xl shadow-md w-11/12 lg:w-8/12 xl:w-6/12 px-9 py-8">
         <h2 class="text-2xl sm:text-3xl font-poppins font-semibold mb-4">Welcome to <span class="text-primary font-bold">Dayly</span><span class="text-secondary font-bold">Quest</span> ! 🤩</h2>
         <p class="text-lg text-text_gray">You're currently using the beta version. We’d love to hear your thoughts — please share any feedback through the settings menu under "Support."<br><span class="italic block mt-2">Enjoy your experience!</span></p>
         <div class="flex gap-x-5 mt-10 justify-center sm:justify-end">
