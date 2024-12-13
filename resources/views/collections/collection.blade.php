@@ -55,8 +55,8 @@
                         </div>
                         <div class="mt-3 sm:mt-0 flex items-center gap-3">
                             <button onclick="openModal(this)" data-id="{{ $goal->id }}" data-status="{{ $goal->status }}"
-                                class="dont-open-steps w-full sm:w-max border-2 font-poppins font-semibold px-6 py-3 rounded-2xl sm:rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
-                                {{ $goal->status === 'inProgress' ? 'Complete' : 'Completed' }}
+                                class="dont-open-steps w-full sm:w-max border-2 font-poppins font-semibold px-10 py-3 rounded-2xl sm:rounded-3xl transition-all duration-200 ease-in-out {{ $goal->status === 'inProgress' ? 'border-detail text-white hover:scale-105 hover:bg-secondary hover:border-secondary hover:text-bg_black' : 'bg-secondary border-secondary text-bg_black hover:scale-105' }}">
+                                {{ $goal->status === 'inProgress' ? 'I did it!' : 'Done' }}
                             </button>
                             <form action="/goal/{{ $goal['id'] }}" method="POST">
                                 @csrf

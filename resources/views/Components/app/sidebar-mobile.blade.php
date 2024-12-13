@@ -1,5 +1,5 @@
-<div id="side-menu" class="fixed left-0 top-0 z-40 w-64 bg-bg_black h-full border-r-2 border-bg_gray shadow-lg transform-translate-x-full transition-transform duration-300 ease-in-out">
-    <div class="p-4">
+<div id="side-menu" class="fixed left-0 top-0 z-40 w-72 bg-bg_black h-full border-r-2 border-bg_gray shadow-lg transform-translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="p-5">
         <div class="flex gap-5 items-center">
             <button id="close-menu" class="text-3xl font-bold text-right">&times;</button>
             <div class="text-xl font-poppins font-bold cursor-default text-center">
@@ -46,5 +46,12 @@
     close_menu.addEventListener('click', () => {
         side_menu.style.transform = 'translateX(-100%)';
         menu_toggle.classList.remove('active');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!side_menu.contains(event.target) && !menu_toggle.contains(event.target)) {
+            side_menu.style.transform = 'translateX(-100%)';
+            menu_toggle.classList.remove('active');
+        }
     });
 </script>

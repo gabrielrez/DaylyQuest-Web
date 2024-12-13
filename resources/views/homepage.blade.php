@@ -34,12 +34,12 @@
                         class="absolute top-6 right-6 border-2 border-detail w-max h-6 p-3 flex items-center justify-center rounded-full text-text_gray font-poppins text-xs italic font-bold">{{ $collection['deadline'] }}</span>
                     @endif
                     @if ($collection->cyclic === 1)
-                    <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }} <i
-                            class="fas text-xl fa-sync opacity-20 ml-2"></i></h3>
+                    <h3 class="text-xl mb-3 font-poppins font-medium">{{ $collection['title'] }} <i
+                            class="fas text-xl fa-sync opacity-20 ml-2 cyclic-icon"></i></h3>
                     @else
-                    <h3 class="text-xl mb-4 font-poppins font-medium">{{ $collection['title'] }}</h3>
+                    <h3 class="text-xl mb-3 font-poppins font-medium">{{ $collection['title'] }}</h3>
                     @endif
-                    <p class="text-text_gray mb-4">Access your {{ strtolower($collection['title']) }} goals</p>
+                    <p class="text-text_gray mb-5">{{ strlen($collection['description']) > 36 ? substr($collection['description'], 0, 36) . '...' : $collection['description'] }}</p>
                     <span
                         class="text-white hover:text-text_gray underline transition-all duration-200 ease-in-out">See
                         All</span>
@@ -65,3 +65,51 @@
     @endif
 
 </x-layouts.layout>
+
+<style>
+    .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    opacity: 0;
+    transform: translate(-50%, -120%);
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.tooltip.show {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+}
+
+</style>
+
+<script>
+    let cyclic_icons = document.querySelectorAll('.cyclic-icon');
+
+    cyclic_icons.forEach(icon => {
+    const tooltip = document.createElement('div');
+    tooltip.textContent = "Cyclic collection";
+    tooltip.className = 'tooltip';
+    document.body.appendChild(tooltip);
+
+    icon.addEventListener('mouseover', function () {
+        const rect = icon.getBoundingClientRect();
+        tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
+        tooltip.style.top = `${rect.top + window.scrollY - 10}px`;
+        tooltip.classList.add('show');
+    });
+
+    icon.addEventListener('mouseout', function () {
+        tooltip.classList.remove('show');
+        });
+    });
+</script>
