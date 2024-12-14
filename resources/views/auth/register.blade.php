@@ -71,7 +71,7 @@
             <span>Already have an account? <a href="/login" class="inline-block text-white underline">Login</a></span>
         </div>
         <div class="text-center text-text_gray text-base" style="margin-top: 8px;">
-            <a href="/" class="inline-block underline">Go Back</a>
+            <a href="/" class="inline-block underline">Return </a>
         </div>
     </section>
 </body>

@@ -3,7 +3,7 @@
         <h2 class="text-3xl font-poppins font-semibold mb-4">Oops... 🫢</h2>
         <p class="text-lg text-text_gray">It seems you've reached the maximum limit for your collections.</p>
         <div class="flex gap-x-5 mt-10 justify-end">
-            <button onclick="closeModal()" class="border-2 border-text_gray font-bold font-poppins text-text_gray text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">Go Back</button>
+            <button onclick="closeModal()" class="border-2 border-text_gray font-bold font-poppins text-text_gray text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">Return </button>
             <!-- <button onclick="alert('This is a beta version. Account upgrades are not available at this time.')" class="bg-secondary font-bold font-poppins text-bg_black text-base px-10 py-3 rounded-full shadow-md cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out">Upgrade Account!</button> -->
         </div>
     </div>
