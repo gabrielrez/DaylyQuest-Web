@@ -43,10 +43,20 @@ class Collection extends Model
         $completed = $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === "completed");
 
         $completed
-            ? $this->update(['status' => 'completed'])
-            : $this->update(['status' => 'inProgress']);
+            ? $this->updateCompletedStatus()
+            : $this->updateNotCompletedStatus();
 
         return $completed;
+    }
+
+    private function updateCompletedStatus(): void
+    {
+        $this->update(['status' => 'completed']);
+    }
+
+    private function updateNotCompletedStatus(): void
+    {
+        $this->update(['status' => 'inProgress']);
     }
 
     public function resetCollection(): void
