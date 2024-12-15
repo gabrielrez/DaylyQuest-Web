@@ -28,40 +28,92 @@
                 </div>
             </div>
             <div class="w-full h-px bg-detail"></div>
-            <div class="flex gap-20">
+            <div class="flex flex-col-reverse md:flex-row gap-10 md:gap-20">
+                <!-- <div class="mt-0 sm:mt-10 max-w-full md:max-w-96">
+                    <h3 class="font-poppins font-bold text-2xl sm:text-4xl flex items-center gap-3">Achievements <a href="/achievements"><i class="fa-solid fa-circle-info text-lg text-text_gray hover:text-white transition-all duration-200 ease-in-out"></i></a></h3>
+                    <div class="mt-5 sm:mt-8 flex justify-center sm:justify-normal gap-3 flex-wrap">
+                        <p data-tooltip="First Step" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-white text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-solid fa-person-walking"></i>
+                        </p>
+                        <p data-tooltip="Pioneer" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-gold text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-solid fa-award"></i>
+                        </p>
+                        <p data-tooltip="Ally" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-secondary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-solid fa-people-arrows"></i>
+                        </p>
+                        <p data-tooltip="Disciplined" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-secondary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-regular fa-calendar-days"></i>
+                        </p>
+                        <p data-tooltip="Magician" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-primary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </p>
+                        <p data-tooltip="Daily Ritual" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-primary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-solid fa-hourglass-start"></i>
+                        </p>
+                        <p data-tooltip="Conqueror" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-error text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-solid fa-hand-fist"></i>
+                        </p>
+                    </div>
+                </div> -->
                 <div class="mt-5 sm:mt-10">
                     <h3 class="font-poppins font-bold text-2xl sm:text-4xl">Current Statistics</h3>
                     <div class="mt-5 sm:mt-8 flex gap-3 flex-wrap">
                         <div class="flex gap-3 items-end">
-                            <div class="flex gap-3 items-baseline bg-primary px-3 sm:px-6 py-2.5 sm:py-5 rounded-2xl sm:rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                            <div class="flex gap-3 items-baseline bg-bg_gray px-3 sm:px-6 py-2.5 sm:py-5 rounded-2xl sm:rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
                                 @if($collections > 9)
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-bg_black">{{ $collections }}</h3>
+                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $collections }}</h3>
                                 @else
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-bg_black">0{{ $collections }}</h3>
+                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $collections }}</h3>
                                 @endif
-                                <p class="text-bg_black italic font-poppins font-semibold text-lg">Collections</p>
+                                <p class="text-text_gray italic font-poppins font-semibold text-lg">Collections</p>
                             </div>
                         </div>
                         <div class="flex gap-3 items-end">
-                            <div class="flex gap-3 items-baseline bg-secondary px-3 sm:px-6 py-2.5 sm:py-5 rounded-2xl sm:rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                            <div class="flex gap-3 items-baseline bg-bg_gray px-3 sm:px-6 py-2.5 sm:py-5 rounded-2xl sm:rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
                                 @if($goals > 9)
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-bg_black">{{ $goals }}</h3>
+                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $goals }}</h3>
                                 @else
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-bg_black">0{{ $goals }}</h3>
+                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $goals }}</h3>
                                 @endif
-                                <p class="text-bg_black italic font-poppins font-semibold text-lg">Goals</p>
+                                <p class="text-text_gray italic font-poppins font-semibold text-lg">Goals</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div class="mt-10">
-                    <h3 class="font-poppins font-bold text-4xl">Achievements</h3>
-                    <div class="mt-8 flex gap-3 flex-wrap">
-                        <p class="bg-white px-6 py-1.5 rounded-3xl shadow-md cursor-default text-bg_black italic font-poppins font-semibold text-lg">The Hero</p>
-                        <p class="bg-error px-6 py-1.5 rounded-3xl shadow-md cursor-default text-bg_black italic font-poppins font-semibold text-lg">Disciplined</p>
-                    </div>
-                </div> -->
             </div>
 
             <x-app.sidebar-mobile />
 </x-layouts.layout>
+
+<style>
+    .achievement {
+        position: relative;
+    }
+
+    .achievement:hover::after {
+        content: attr(data-tooltip);
+        font-family: 'Poppins', sans-serif;
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 0 8px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        opacity: 1;
+        visibility: visible;
+        z-index: 10;
+        transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    }
+
+    .achievement::after {
+        content: '';
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+    }
+</style>
