@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\StatusMessage;
 use App\Enums\Cyclic;
+use App\Services\CollectionCyclicService;
+use App\Services\CollectionNonCyclicService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -40,7 +42,8 @@ class Collection extends Model
 
     public function isCompleted(): bool
     {
-        $completed = $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === "completed");
+        $goals = $this->goals;
+        $completed = $goals->isNotEmpty() && $goals->every(fn($goal) => $goal->status === "completed");
 
         $completed
             ? $this->updateCompletedStatus()
@@ -75,50 +78,11 @@ class Collection extends Model
 
     public function getStatus(): ?array
     {
-        $completed = $this->isCompleted();
-        $cyclic = $this->isCyclic();
-        $expired = $this->hasExpired();
-
-        if ($cyclic) {
-            return $this->getCyclicStatus($completed, $expired);
+        if ($this->isCyclic()) {
+            return app(CollectionCyclicService::class)->getStatus($this);
         }
 
-        return $this->getNonCyclicStatus($completed, $expired);
-    }
-
-    private function getCyclicStatus(bool $completed, bool $expired): ?array
-    {
-        if ($expired) {
-            $this->resetCollection();
-            return $completed
-                ? $this->createStatus(StatusMessage::SUCCESS_CYCLIC)
-                : $this->createStatus(StatusMessage::ERROR_CYCLIC);
-        }
-
-        return null;
-    }
-
-    private function getNonCyclicStatus(bool $completed, bool $expired): ?array
-    {
-        if ($expired && !$completed) {
-            return $this->createStatus(StatusMessage::ERROR_NOT_CYCLIC);
-        }
-
-        // Maybe should I check for $expired as well? 🤔
-        if ($completed) {
-            return $this->createStatus(StatusMessage::SUCCESS_NOT_CYCLIC);
-        }
-
-        return null;
-    }
-
-    private function createStatus(StatusMessage $statusMessage): array
-    {
-        return [
-            'title' => $statusMessage->title(),
-            'message' => $statusMessage->message(),
-            'status' => $statusMessage->status(),
-        ];
+        return app(CollectionNonCyclicService::class)->getStatus($this);
     }
 
     public function completetionPercentage($goals): float

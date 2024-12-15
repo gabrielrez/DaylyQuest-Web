@@ -27,10 +27,10 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full h-px bg-detail"></div>
+            <div class="sm:hidden w-full h-px bg-detail"></div>
             <div class="flex flex-col-reverse md:flex-row gap-10 md:gap-20">
                 <!-- <div class="mt-0 sm:mt-10 max-w-full md:max-w-96">
-                    <h3 class="font-poppins font-bold text-2xl sm:text-4xl flex items-center gap-3">Achievements <a href="/achievements"><i class="fa-solid fa-circle-info text-lg text-text_gray hover:text-white transition-all duration-200 ease-in-out"></i></a></h3>
+                    <h3 class="font-poppins font-bold text-xl sm:text-4xl flex items-center gap-3">Achievements <a href="/achievements"><i class="fa-solid fa-circle-info text-base sm:text-lg text-text_gray hover:text-white transition-all duration-200 ease-in-out"></i></a></h3>
                     <div class="mt-5 sm:mt-8 flex justify-center sm:justify-normal gap-3 flex-wrap">
                         <p data-tooltip="First Step" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-white text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
                             <i class="fa-solid fa-person-walking"></i>
@@ -54,29 +54,26 @@
                             <i class="fa-solid fa-hand-fist"></i>
                         </p>
                     </div>
-                </div> -->
+                </div>
+                <div class="hidden sm:block w-px h-80 bg-detail"></div> -->
                 <div class="mt-5 sm:mt-10">
-                    <h3 class="font-poppins font-bold text-2xl sm:text-4xl">Current Statistics</h3>
-                    <div class="mt-5 sm:mt-8 flex gap-3 flex-wrap">
+                    <h3 class="font-poppins font-bold text-xl sm:text-4xl">Current Statistics</h3>
+                    <div class="mt-5 sm:mt-8 flex gap-5 sm:gap-10 flex-wrap">
                         <div class="flex gap-3 items-end">
-                            <div class="flex gap-3 items-baseline bg-bg_gray px-3 sm:px-6 py-2.5 sm:py-5 rounded-2xl sm:rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
-                                @if($collections > 9)
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $collections }}</h3>
-                                @else
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $collections }}</h3>
-                                @endif
-                                <p class="text-text_gray italic font-poppins font-semibold text-lg">Collections</p>
-                            </div>
+                            @if($collections > 9)
+                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $collections }}</h3>
+                            @else
+                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $collections }}</h3>
+                            @endif
+                            <p class="text-text_gray italic font-poppins font-semibold text-lg">Collections</p>
                         </div>
                         <div class="flex gap-3 items-end">
-                            <div class="flex gap-3 items-baseline bg-bg_gray px-3 sm:px-6 py-2.5 sm:py-5 rounded-2xl sm:rounded-3xl shadow-md cursor-default hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
-                                @if($goals > 9)
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $goals }}</h3>
-                                @else
-                                <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $goals }}</h3>
-                                @endif
-                                <p class="text-text_gray italic font-poppins font-semibold text-lg">Goals</p>
-                            </div>
+                            @if($goals > 9)
+                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $goals }}</h3>
+                            @else
+                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $goals }}</h3>
+                            @endif
+                            <p class="text-text_gray italic font-poppins font-semibold text-lg">Goals</p>
                         </div>
                     </div>
                 </div>
