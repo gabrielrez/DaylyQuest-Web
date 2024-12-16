@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Goal;
+use App\Services\CollectionService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,10 +15,12 @@ use Illuminate\View\View;
 class CollectionController extends Controller
 {
     protected $collection_model;
+    protected $collection_service;
 
-    public function __construct(Collection $collection_model)
+    public function __construct(Collection $collection, CollectionService $collectionService)
     {
-        $this->collection_model = $collection_model;
+        $this->collection_model = $collection;
+        $this->collection_service = $collectionService;
     }
 
     public function show(int $id): View|Response
@@ -28,13 +31,15 @@ class CollectionController extends Controller
             abort(404);
         }
 
+        $collection_status = $this->collection_service->getStatus($collection);
+
         $goals = Goal::where('collection_id', $id)->get();
 
         return view('collections.collection', [
             'collection' => $collection,
             'goals' => $goals,
-            'deadline' => $collection->formattedDeadline(),
-            'status' => $collection->getStatus(),
+            'deadline' => str_replace('-', '/', $collection->deadline),
+            'status' => $collection_status,
             'completion_percentage' => $this->collection_model->completetionPercentage($goals),
         ]);
     }

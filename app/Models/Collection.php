@@ -42,22 +42,15 @@ class Collection extends Model
 
     public function isCompleted(): bool
     {
-        $goals = $this->goals;
-        $completed = $goals->isNotEmpty() && $goals->every(fn($goal) => $goal->status === "completed");
-
-        $completed
-            ? $this->updateCompletedStatus()
-            : $this->updateNotCompletedStatus();
-
-        return $completed;
+        return $this->goals->isNotEmpty() && $this->goals->every(fn($goal) => $goal->status === "completed");
     }
 
-    private function updateCompletedStatus(): void
+    public function updateCompletedStatus(): void
     {
         $this->update(['status' => 'completed']);
     }
 
-    private function updateNotCompletedStatus(): void
+    public function updateNotCompletedStatus(): void
     {
         $this->update(['status' => 'inProgress']);
     }
@@ -76,26 +69,10 @@ class Collection extends Model
         return $this->cyclic === 1;
     }
 
-    public function getStatus(): ?array
-    {
-        if ($this->isCyclic()) {
-            return app(CollectionCyclicService::class)->getStatus($this);
-        }
-
-        return app(CollectionNonCyclicService::class)->getStatus($this);
-    }
-
     public function completetionPercentage($goals): float
     {
         return $goals->count() > 0
             ? ($goals->where('status', 'completed')->count() / $goals->count()) * 100
             : 0;
-    }
-
-    public function formattedDeadline(): string
-    {
-        $deadline = $this->deadline;
-
-        return str_replace('-', '/', $deadline);
     }
 }
