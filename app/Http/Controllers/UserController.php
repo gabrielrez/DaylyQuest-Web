@@ -4,13 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use Illuminate\View\View as ViewView;
 
 class UserController extends Controller
 {
+    public function show(int $id): View|Response
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->id !== Auth::id()) {
+            abort(404);
+        }
+
+        [
+            $collections_qtd,
+            $goals_qtd,
+            $collections_completed,
+            $goals_completed,
+        ] = $user->calculateStatistics();
+
+        return view('profile.profile', [
+            'collections' => $collections_qtd,
+            'goals' => $goals_qtd,
+            'collections_completed' => $collections_completed,
+            'goals_completed' => $goals_completed,
+        ]);
+    }
+
     public function store(): RedirectResponse
     {
         $attributes = request()->validate([
@@ -70,13 +96,9 @@ class UserController extends Controller
         return redirect('/homepage');
     }
 
-    public function logout(): RedirectResponse
+    public function edit(): View
     {
-        Auth::logout();
-
-        session()->forget('show_notice_modal');
-
-        return redirect('/');
+        return view('profile.edit');
     }
 
     public function update(int $id): RedirectResponse
@@ -102,6 +124,15 @@ class UserController extends Controller
         ]);
 
         return redirect('/profile/' . Auth::user()->id);
+    }
+
+    public function logout(): RedirectResponse
+    {
+        Auth::logout();
+
+        session()->forget('show_notice_modal');
+
+        return redirect('/');
     }
 
     public function destroy(int $id): RedirectResponse

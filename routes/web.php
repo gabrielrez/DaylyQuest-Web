@@ -3,9 +3,8 @@
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\GoalController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StepController;
 use App\Http\Middleware\CheckCollectionDeadline;
@@ -21,7 +20,7 @@ Route::get('/login', fn() => view('auth.login'))->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-Route::get('/profile/edit', [ProfileController::class, 'edit']);
+Route::get('/profile/edit', [UserController::class, 'edit']);
 
 // Middleware Auth
 Route::middleware(['auth', NoCache::class])->group(function () {
@@ -33,7 +32,7 @@ Route::middleware(['auth', NoCache::class])->group(function () {
 
     // Profile
     Route::prefix('profile')->group(function () {
-        Route::get('/{id}', [ProfileController::class, 'show']);
+        Route::get('/{id}', [UserController::class, 'show']);
     });
 
     // Collections

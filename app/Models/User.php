@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function calculateStatistics(): array
     {
-        $collections_total = $this->Collections->count();
+        $collections_total = $this->collections->count();
 
         $goals_total = $this->collections->flatMap(function ($collection) {
             return $collection->goals;
@@ -80,5 +80,8 @@ class User extends Authenticatable
             $collections_completed,
             $goals_completed,
         ];
+
+        // Add to the database if the statistic number is greater than the previous/current one 
+        // as it means it is a new statistic 🤯
     }
 }
