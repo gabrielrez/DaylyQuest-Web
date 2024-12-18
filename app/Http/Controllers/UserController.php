@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -14,6 +15,13 @@ use Illuminate\View\View as ViewView;
 
 class UserController extends Controller
 {
+    protected $user_service;
+
+    public function __construct(UserService $user_service)
+    {
+        $this->user_service = $user_service;
+    }
+
     public function show(int $id): View|Response
     {
         $user = User::findOrFail($id);
@@ -48,34 +56,11 @@ class UserController extends Controller
 
         $user = User::create($attributes);
 
-        $this->createDefaultCollections($user);
+        $this->user_service->createDefaultCollections($user);
 
         Auth::login($user);
 
         return redirect('/homepage');
-    }
-
-    public function defaultCollection(): array
-    {
-        return [
-            [
-                'title' => 'Daily Goals',
-                'description' => 'The best way to achieve your long-term goals is to stay consistent every day',
-                'deadline' => now()->addDay()->setTime(0, 1),
-                'cyclic' => 1,
-                'status' => 'inProgress',
-                'points' => 0,
-            ]
-        ];
-    }
-
-    public function createDefaultCollections(User $user): void
-    {
-        $default_collections = $this->defaultCollection();
-
-        foreach ($default_collections as $collection) {
-            $user->collections()->create($collection);
-        }
     }
 
     public function login(): RedirectResponse

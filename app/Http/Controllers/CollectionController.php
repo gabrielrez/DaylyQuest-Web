@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use App\Models\Goal;
 use App\Services\CollectionService;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,11 +17,16 @@ class CollectionController extends Controller
 {
     protected $collection_model;
     protected $collection_service;
+    protected $user_service;
 
-    public function __construct(Collection $collection, CollectionService $collectionService)
-    {
+    public function __construct(
+        Collection $collection,
+        CollectionService $collection_service,
+        UserService $user_service
+    ) {
         $this->collection_model = $collection;
-        $this->collection_service = $collectionService;
+        $this->collection_service = $collection_service;
+        $this->user_service = $user_service;
     }
 
     public function show(int $id): View|Response
@@ -31,15 +37,13 @@ class CollectionController extends Controller
             abort(404);
         }
 
-        $collection_status = $this->collection_service->getStatus($collection);
-
         $goals = Goal::where('collection_id', $id)->get();
 
         return view('collections.collection', [
             'collection' => $collection,
             'goals' => $goals,
             'deadline' => str_replace('-', '/', $collection->deadline),
-            'status' => $collection_status,
+            'status' => $this->collection_service->getStatus($collection),
             'completion_percentage' => $this->collection_model->completetionPercentage($goals),
         ]);
     }
@@ -51,7 +55,7 @@ class CollectionController extends Controller
 
     public function store(): RedirectResponse
     {
-        // if (Auth::user()->collections->count() >= 4) {
+        // if ($this->user_service->checkLimitCollections()) {
         //     return redirect('/homepage')->with('show_limit_modal', true);
         // }
 
