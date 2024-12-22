@@ -29,33 +29,21 @@
             </div>
             <div class="sm:hidden w-full h-px bg-detail"></div>
             <div class="flex flex-col-reverse md:flex-row gap-10 md:gap-20">
-                <!-- <div class="mt-0 sm:mt-10 max-w-full md:max-w-96">
+                <div class="mt-0 sm:mt-10 max-w-full md:max-w-96">
                     <h3 class="font-poppins font-bold text-xl sm:text-4xl flex items-center gap-3">Achievements <a href="/achievements"><i class="fa-solid fa-circle-info text-base sm:text-lg text-text_gray hover:text-white transition-all duration-200 ease-in-out"></i></a></h3>
                     <div class="mt-5 sm:mt-8 flex justify-center sm:justify-normal gap-3 flex-wrap">
-                        <p data-tooltip="First Step" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-white text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                        @if(empty($achievements))
+                        <p class="font-roboto text-lg text-text_gray italic">No achievements yet...</p>
+                        @else
+                        @foreach($achievements as $achievement)
+                        <p data-tooltip="{{ $achievement['title'] }}" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-white text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
                             <i class="fa-solid fa-person-walking"></i>
                         </p>
-                        <p data-tooltip="Pioneer" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-gold text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
-                            <i class="fa-solid fa-award"></i>
-                        </p>
-                        <p data-tooltip="Ally" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-secondary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
-                            <i class="fa-solid fa-people-arrows"></i>
-                        </p>
-                        <p data-tooltip="Disciplined" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-secondary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
-                            <i class="fa-regular fa-calendar-days"></i>
-                        </p>
-                        <p data-tooltip="Magician" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-primary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        </p>
-                        <p data-tooltip="Daily Ritual" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-primary text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
-                            <i class="fa-solid fa-hourglass-start"></i>
-                        </p>
-                        <p data-tooltip="Conqueror" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-error text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
-                            <i class="fa-solid fa-hand-fist"></i>
-                        </p>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
-                <div class="hidden sm:block w-px h-80 bg-detail"></div> -->
+                <div class="hidden sm:block w-px h-80 bg-detail"></div>
                 <div class="mt-5 sm:mt-10">
                     <h3 class="font-poppins font-bold text-xl sm:text-4xl">Current Statistics</h3>
                     <div class="mt-5 sm:mt-8 flex gap-5 sm:gap-10 flex-wrap">

@@ -42,6 +42,7 @@ class UserController extends Controller
             'goals' => $goals_qtd,
             'collections_completed' => $collections_completed,
             'goals_completed' => $goals_completed,
+            'achievements' => $user->getAchievements($user->id),
         ]);
     }
 
