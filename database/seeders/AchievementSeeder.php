@@ -14,7 +14,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'First Step',
                 'description' => 'Complete your first goal.',
-                'type' => 'bronze',
+                'type' => 'beginner',
                 'icon' => 'first-step.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -22,7 +22,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Pioneer',
                 'description' => 'Create your first collection.',
-                'type' => 'bronze',
+                'type' => 'beginner',
                 'icon' => 'pioneer.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -30,7 +30,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Conqueror',
                 'description' => 'Complete your first collection.',
-                'type' => 'silver',
+                'type' => 'beginner',
                 'icon' => 'conqueror.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -38,7 +38,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Magician',
                 'description' => 'Personalize your profile.',
-                'type' => 'gold',
+                'type' => 'beginner',
                 'icon' => 'magician.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -48,7 +48,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Turbo Productivity',
                 'description' => 'Complete 5 goals in a day.',
-                'type' => 'bronze',
+                'type' => 'productivity',
                 'icon' => 'turbo-productivity.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -56,7 +56,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Goal Marathon',
                 'description' => 'Complete 25 goals in total.',
-                'type' => 'silver',
+                'type' => 'productivity',
                 'icon' => 'goal-marathon.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -64,7 +64,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Golden Legacy',
                 'description' => 'Complete 50 goals in total.',
-                'type' => 'gold',
+                'type' => 'productivity',
                 'icon' => 'golden-legacy.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -72,7 +72,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Daily Ritual',
                 'description' => 'Complete goals for 7 consecutive days.',
-                'type' => 'gold',
+                'type' => 'productivity',
                 'icon' => 'daily-ritual.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -80,7 +80,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Master Habit',
                 'description' => 'Complete goals for 15 consecutive days.',
-                'type' => 'platinum',
+                'type' => 'productivity',
                 'icon' => 'master-habit.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -88,7 +88,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Disciplined',
                 'description' => 'Complete goals for 30 consecutive days.',
-                'type' => 'platinum',
+                'type' => 'productivity',
                 'icon' => 'disciplined.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -98,7 +98,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Collector',
                 'description' => 'Complete 5 different collections (Not cyclic).',
-                'type' => 'bronze',
+                'type' => 'collection',
                 'icon' => 'collector.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -106,7 +106,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Visionary',
                 'description' => 'Complete a collection that took more than 1 month to complete.',
-                'type' => 'gold',
+                'type' => 'collection',
                 'icon' => 'visionary.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -114,7 +114,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Architect of the Future',
                 'description' => 'Plan a collection for the next 6 months.',
-                'type' => 'platinum',
+                'type' => 'collection',
                 'icon' => 'architect-of-the-future.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -124,7 +124,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Inspiring',
                 'description' => 'Share a completed goal and motivate others.',
-                'type' => 'gold',
+                'type' => 'social',
                 'icon' => 'inspiring.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -132,7 +132,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Ally',
                 'description' => 'Create a collaborative collection.',
-                'type' => 'silver',
+                'type' => 'social',
                 'icon' => 'ally.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -140,7 +140,7 @@ class AchievementSeeder extends Seeder
             [
                 'title' => 'Dream Team',
                 'description' => 'Complete a collaborative collection.',
-                'type' => 'gold',
+                'type' => 'social',
                 'icon' => 'dream-team.svg',
                 'created_at' => now(),
                 'updated_at' => now(),
