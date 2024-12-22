@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasMany(Collection::class);
     }
 
+    public function achievements()
+    {
+        return $this->belongsToMany(Achievement::class, 'user_achievements');
+    }
+
     public function calculateStatistics(): array
     {
         $collections_total = $this->collections->count();
