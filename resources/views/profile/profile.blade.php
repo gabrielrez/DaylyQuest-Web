@@ -36,8 +36,8 @@
                         <p class="font-roboto text-lg text-text_gray italic">No achievements yet...</p>
                         @else
                         @foreach($achievements as $achievement)
-                        <p data-tooltip="{{ $achievement['title'] }}" class="achievement w-12 h-12 flex items-center justify-center cursor-default text-white text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
-                            <i class="fa-solid fa-person-walking"></i>
+                        <p data-tooltip="{{ $achievement['title'] }}" class="achievement w-12 h-12 flex items-center justify-center cursor-default {{ $achievement['type'] == 'beginner' ? 'text-primary' : '' }} text-3xl hover:scale-125 transition-all duration-200 ease-in-out">
+                            <i class="fa-solid {{ $achievement['icon'] }}"></i>
                         </p>
                         @endforeach
                         @endif

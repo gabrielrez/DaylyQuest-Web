@@ -20,6 +20,18 @@
                 </button>
             </div>
 
+            <!-- <ul class="mb-10 mt-5 flex gap-8 font-roboto text-base">
+                <li>
+                    <a href="#" class="text-white">All</a>
+                </li>
+                <li>
+                    <a href="#" class="text-text_gray">Completed</a>
+                </li>
+                <li>
+                    <a href="#" class="text-text_gray">Expired</a>
+                </li>
+            </ul> -->
+
             <div class="flex flex-wrap md:grid md:grid-cols-2 gap-5 sm:gap-8">
                 <!-- Collections -->
                 @foreach ($collections as $collection)
@@ -68,48 +80,47 @@
 
 <style>
     .tooltip {
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    display: block;
-    opacity: 0;
-    transform: translate(-50%, -120%);
-    white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-    pointer-events: none;
-}
+        position: absolute;
+        background-color: #333;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: 'Poppins', sans-serif;
+        display: block;
+        opacity: 0;
+        transform: translate(-50%, -120%);
+        white-space: nowrap;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        pointer-events: none;
+    }
 
-.tooltip.show {
-    opacity: 1;
-    transform: translate(-50%, -100%);
-}
-
+    .tooltip.show {
+        opacity: 1;
+        transform: translate(-50%, -100%);
+    }
 </style>
 
 <script>
     let cyclic_icons = document.querySelectorAll('.cyclic-icon');
 
     cyclic_icons.forEach(icon => {
-    const tooltip = document.createElement('div');
-    tooltip.textContent = "Cyclic collection";
-    tooltip.className = 'tooltip';
-    document.body.appendChild(tooltip);
+        const tooltip = document.createElement('div');
+        tooltip.textContent = "Cyclic collection";
+        tooltip.className = 'tooltip';
+        document.body.appendChild(tooltip);
 
-    icon.addEventListener('mouseover', function () {
-        const rect = icon.getBoundingClientRect();
-        tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
-        tooltip.style.top = `${rect.top + window.scrollY - 10}px`;
-        tooltip.classList.add('show');
-    });
+        icon.addEventListener('mouseover', function() {
+            const rect = icon.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
+            tooltip.style.top = `${rect.top + window.scrollY - 10}px`;
+            tooltip.classList.add('show');
+        });
 
-    icon.addEventListener('mouseout', function () {
-        tooltip.classList.remove('show');
+        icon.addEventListener('mouseout', function() {
+            tooltip.classList.remove('show');
         });
     });
 </script>
