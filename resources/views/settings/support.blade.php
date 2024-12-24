@@ -38,7 +38,8 @@
                     <div class="w-full max-w-[600px]">
                         <h3 class="text-2xl font-poppins font-semibold mt-1.5">How Can We Help You <span class="text-secondary">?</span></h3>
                         <p class="texxt-base text-text_gray font-roboto mt-1">Suggestions and feedback are always welcome!</p>
-                        <form action="" class="flex flex-col items-center gap-3 w-full mt-5">
+                        <form action="/support-message" id="support-form" class="flex flex-col items-center gap-3 w-full mt-5" method="POST">
+                            @csrf
                             <div class="w-full">
                                 <label for="name" class="self-start font-roboto text-text_gray">Your name:</label>
                                 <input
@@ -66,14 +67,14 @@
                             </button>
                         </form>
                     </div>
-                    <!-- <div class="mt-2 sm:mt-0 w-full max-w-[600px]">
+                    <div class="mt-2 sm:mt-0 w-full max-w-[600px]">
                         <h3 class="text-xl sm:text-2xl font-poppins font-semibold mt-1.5">Contact</h3>
                         <ul class="flex flex-col gap-y-3 mt-3 sm:mt-8 underline text-text_gray">
-                            <li class="pl-3 border-l-4 border-secondary rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-envelope fa-lg mr-3 icon-width"></i><a href="#">dq.support@gmail.com</a></li>
-                            <li class="pl-3 border-l-4 border-detail rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-facebook fa-lg mr-3 icon-width"></i><a href="#">facebook.com/daylyquest</a></li>
-                            <li class="pl-3 border-l-4 border-detail rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-instagram fa-lg mr-3 icon-width"></i><a href="#">instagram.com/daylyquest</a></li>
+                            <li class="pl-3 border-l-4 border-secondary rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-envelope fa-lg mr-3 icon-width"></i><a href="#">garezp.dev@gmail.com</a></li>
+                            <!-- <li class="pl-3 border-l-4 border-detail rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-facebook fa-lg mr-3 icon-width"></i><a href="#">facebook.com/daylyquest</a></li>
+                            <li class="pl-3 border-l-4 border-detail rounded hover:border-l-8 hover:text-white transition-all duration-200 ease-in-out"><i class="fas fa-instagram fa-lg mr-3 icon-width"></i><a href="#">instagram.com/daylyquest</a></li> -->
                         </ul>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

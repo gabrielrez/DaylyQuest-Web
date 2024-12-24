@@ -7,6 +7,7 @@ use App\Http\Controllers\GoalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StepController;
+use App\Http\Controllers\SupportController;
 use App\Http\Middleware\CheckCollectionDeadline;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\NoCache;
@@ -21,6 +22,8 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 Route::get('/profile/edit', [UserController::class, 'edit']);
+
+Route::post('/support-message', [SupportController::class, 'sendMessage']);
 
 // Middleware Auth
 Route::middleware(['auth', NoCache::class])->group(function () {
