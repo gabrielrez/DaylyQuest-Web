@@ -27,8 +27,9 @@
                     </div>
                 </div>
             </div>
-            <div class="sm:hidden w-full h-px bg-detail"></div>
-            <div class="flex flex-col-reverse md:flex-row gap-10 md:gap-20">
+            <!-- <div class="sm:hidden w-full h-px bg-detail"></div> -->
+            <div class="w-full h-px bg-detail"></div>
+            <!-- <div class="flex flex-col-reverse md:flex-row gap-10 md:gap-20">
                 <div class="mt-0 sm:mt-10 max-w-full md:max-w-96">
                     <h3 class="font-poppins font-bold text-xl sm:text-4xl flex items-center gap-3">Achievements <a href="/achievements"><i class="fa-solid fa-circle-info text-base sm:text-lg text-text_gray hover:text-white transition-all duration-200 ease-in-out"></i></a></h3>
                     <div class="mt-5 sm:mt-8 flex justify-center sm:justify-normal gap-3 flex-wrap">
@@ -43,7 +44,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="hidden sm:block w-px h-80 bg-detail"></div>
+                <div class="hidden sm:block w-px h-80 bg-detail"></div> -->
                 <div class="mt-5 sm:mt-10">
                     <h3 class="font-poppins font-bold text-xl sm:text-4xl">Current Statistics</h3>
                     <div class="mt-5 sm:mt-8 flex gap-5 sm:gap-10 flex-wrap">
