@@ -20,18 +20,18 @@
                 </button>
             </div>
 
-            <ul class="hidden sm:flex mb-10 mt-5 gap-8 font-roboto text-base">
+            <ul class="hidden sm:flex mb-10 mt-5 gap-6 font-roboto text-base">
                 <li>
-                    <a href="/homepage/all" class="{{ $filter === 'all' ? 'text-white underline' : 'text-text_gray' }}">All</a>
+                    <a href="/homepage/all" class="{{ $filter === 'all' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">All</a>
                 </li>
                 <li>
-                    <a href="/homepage/completed" class="{{ $filter === 'completed' ? 'text-white underline' : 'text-text_gray' }}">Completed</a>
+                    <a href="/homepage/completed" class="{{ $filter === 'completed' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">Completed</a>
                 </li>
                 <li>
-                    <a href="/homepage/in-progress" class="{{ $filter === 'in-progress' ? 'text-white underline' : 'text-text_gray' }}">In Progress</a>
+                    <a href="/homepage/in-progress" class="{{ $filter === 'in-progress' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">In Progress</a>
                 </li>
                 <li>
-                    <a href="/homepage/expired" class="{{ $filter === 'expired' ? 'text-white underline' : 'text-text_gray' }}">Expired</a>
+                    <a href="/homepage/expired" class="{{ $filter === 'expired' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">Expired</a>
                 </li>
             </ul>
 
