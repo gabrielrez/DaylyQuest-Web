@@ -9,6 +9,7 @@ use App\Services\CollectionNonCyclicService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Collection extends Model
 {
@@ -37,7 +38,13 @@ class Collection extends Model
 
     public function hasExpired(): bool
     {
-        return Carbon::now()->greaterThan($this->deadline);
+        $expired = Carbon::now()->greaterThan($this->deadline);
+
+        // if($expired && !$this->isCompleted()){
+        //     $this->update(['status' => 'expired']);
+        // }
+
+        return $expired;
     }
 
     public function isCompleted(): bool
@@ -86,5 +93,24 @@ class Collection extends Model
         return $goals->count() > 0
             ? ($goals->where('status', 'completed')->count() / $goals->count()) * 100
             : 0;
+    }
+
+    public function filterCollections(string $filter)
+    {
+        $collections = $this->where('user_id', Auth::id());
+
+        if ($filter === 'completed') {
+            $collections->where('status', 'completed');
+        }
+
+        if ($filter === 'in-progress') {
+            $collections->where('status', 'inProgress');
+        }
+
+        if ($filter === 'expired') {
+            $collections->whereDate('deadline', '<', now());
+        }
+
+        return $collections->get();
     }
 }

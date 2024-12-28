@@ -14,9 +14,11 @@ use App\Http\Middleware\NoCache;
 
 Route::get('/', fn() => view('landing-page'));
 
+// Register
 Route::get('/register', fn() => view('auth.register'));
 Route::post('/register', [UserController::class, 'store']);
 
+// Login
 Route::get('/login', fn() => view('auth.login'))->name('login');
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
@@ -25,7 +27,7 @@ Route::post('/support-message', [SupportController::class, 'sendMessage']);
 
 // Middleware Auth
 Route::middleware(['auth', NoCache::class])->group(function () {
-    Route::get('/homepage', [HomepageController::class, 'index']);
+    Route::get('/homepage/{filter?}', [HomepageController::class, 'index']);
     Route::get('/settings', [SettingsController::class, 'index']);
 
     // User
@@ -38,11 +40,15 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     Route::resource('collection', CollectionController::class)->only(['create', 'store', 'show', 'update', 'destroy']);
 
     // Goals
-    Route::get('/goal/create/{collection_id}', [GoalController::class, 'create']);
-    Route::get('/goal/steps/{goal}', [GoalController::class, 'steps']);
-    Route::post('/goal/{collection_id}', [GoalController::class, 'store']);
-    Route::put('/goal/complete/{goal}', [GoalController::class, 'setStatus']);
-    Route::delete('/goal/{goal_id}', [GoalController::class, 'destroy']);
+    Route::middleware([CheckCollectionDeadline::class])->group(function () {
+        Route::get('/goal/create/{collection}', [GoalController::class, 'create']);
+        Route::post('/goal/{collection}', [GoalController::class, 'store']);
+        Route::delete('/goal/{goal}', [GoalController::class, 'destroy']);
+    });
+
+    // This route is f****ng messing me up 😤
+    Route::put('/goal/{goal}', [GoalController::class, 'setStatus']);
+
 
     // Settings
     Route::get('settings/information', fn() => view('settings.information'));

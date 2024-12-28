@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Collection;
+use App\Models\Goal;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,7 +18,8 @@ class CheckCollectionDeadline
      */
     public function handle(Request $request, Closure $next)
     {
-        $collection_id = $request->route('collection_id') ?? $request->route('goal')->collection_id;
+        $collection_id = request()->route('collection') ?? $this->collectionId();
+
         $collection = Collection::findOrFail($collection_id);
 
         if ($collection->hasExpired()) {
@@ -25,5 +27,12 @@ class CheckCollectionDeadline
         }
 
         return $next($request);
+    }
+
+    private function collectionId()
+    {
+        $goal = Goal::findOrFail(request()->route('goal'));
+
+        return $goal->collection_id;
     }
 }

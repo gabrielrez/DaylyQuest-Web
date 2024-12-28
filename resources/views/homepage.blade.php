@@ -20,17 +20,20 @@
                 </button>
             </div>
 
-            <!-- <ul class="mb-10 mt-5 flex gap-8 font-roboto text-base">
+            <ul class="hidden sm:flex mb-10 mt-5 gap-8 font-roboto text-base">
                 <li>
-                    <a href="#" class="text-white">All</a>
+                    <a href="/homepage/all" class="{{ $filter === 'all' ? 'text-white underline' : 'text-text_gray' }}">All</a>
                 </li>
                 <li>
-                    <a href="#" class="text-text_gray">Completed</a>
+                    <a href="/homepage/completed" class="{{ $filter === 'completed' ? 'text-white underline' : 'text-text_gray' }}">Completed</a>
                 </li>
                 <li>
-                    <a href="#" class="text-text_gray">Expired</a>
+                    <a href="/homepage/in-progress" class="{{ $filter === 'in-progress' ? 'text-white underline' : 'text-text_gray' }}">In Progress</a>
                 </li>
-            </ul> -->
+                <li>
+                    <a href="/homepage/expired" class="{{ $filter === 'expired' ? 'text-white underline' : 'text-text_gray' }}">Expired</a>
+                </li>
+            </ul>
 
             <div class="flex flex-wrap md:grid md:grid-cols-2 gap-5 sm:gap-8">
                 <!-- Collections -->

@@ -39,6 +39,12 @@ class GoalController extends Controller
 
     public function setStatus(Goal $goal): JsonResponse
     {
+        // For some reason this route is not working with the middleware and it is driving me crazy 😩
+        // That's why i'm checking if collections has expired here...
+        if ($goal->collection->hasExpired()) {
+            return redirect()->back();
+        }
+
         $goal->setStatus();
 
         return response()->json($goal);
@@ -47,11 +53,6 @@ class GoalController extends Controller
     public function destroy(int $id): RedirectResponse
     {
         $goal = Goal::findOrFail($id);
-        $collection = $goal->collection;
-
-        if ($collection->hasExpired()) {
-            return redirect()->back();
-        }
 
         $goal->delete();
 

@@ -9,9 +9,20 @@ use Illuminate\View\View;
 
 class HomepageController extends Controller
 {
-    public function index(): View
+    private $collection_model;
+
+    public function __construct(Collection $collection_model)
     {
-        $collections = Collection::where('user_id', Auth::id())->get();
+        $this->collection_model = $collection_model;
+    }
+
+    public function index(string $filter = 'all'): View
+    {
+        if (!in_array($filter, ['all', 'completed', 'in-progress', 'expired'])) {
+            abort('404');
+        }
+
+        $collections = $this->collection_model->filterCollections($filter);
 
         $show_notice_modal = session('show_notice_modal', true);
 
@@ -22,6 +33,7 @@ class HomepageController extends Controller
         return view('homepage', [
             'collections' => $collections,
             'show_notice_modal' => $show_notice_modal,
+            'filter' => $filter,
         ]);
     }
 }

@@ -180,7 +180,7 @@
         if (!goal_id) return;
 
         try {
-            const response = await fetch(`/goal/complete/${goal_id}`, {
+            const response = await fetch(`/goal/${goal_id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
