@@ -20,18 +20,18 @@
                 </button>
             </div>
 
-            <ul class="hidden sm:flex mb-10 mt-5 gap-6 font-roboto text-base">
+            <ul class="hidden sm:flex mb-10 mt-5 gap-3 font-roboto text-base">
                 <li>
-                    <a href="/homepage/all" class="{{ $filter === 'all' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">All</a>
+                    <a href="/homepage/all" class="{{ $filter === 'all' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full"><i class="fa-solid fa-list-ul mr-2 text-sm"></i>All</a>
                 </li>
                 <li>
-                    <a href="/homepage/completed" class="{{ $filter === 'completed' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">Completed</a>
+                    <a href="/homepage/completed" class=" {{ $filter === 'completed' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full"><i class="fa-regular fa-circle-check mr-2 text-sm"></i>Completed</a>
                 </li>
                 <li>
-                    <a href="/homepage/in-progress" class="{{ $filter === 'in-progress' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">In Progress</a>
+                    <a href="/homepage/in-progress" class="{{ $filter === 'in-progress' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full"><i class="fa-solid fa-spinner mr-2 text-sm"></i>In Progress</a>
                 </li>
                 <li>
-                    <a href="/homepage/expired" class="{{ $filter === 'expired' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full">Expired</a>
+                    <a href="/homepage/expired" class="{{ $filter === 'expired' ? 'text-white opacity-100 bg-bg_gray border-2 border-detail' : 'opacity-50 text-text_gray bg-bg_gray border-2 border-detail hover:opacity-75 transition-all duration-200 ease-in-out' }} px-5 py-1.5 rounded-full"><i class="fa-solid fa-hourglass-end mr-2 text-sm"></i>Expired</a>
                 </li>
             </ul>
 
