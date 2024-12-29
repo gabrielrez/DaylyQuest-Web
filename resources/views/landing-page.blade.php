@@ -39,9 +39,8 @@
                     style="z-index: -1;"
                     src="<?= asset('images/logotipo-test.svg') ?>"
                     alt="daylyquest logo"
-                    class="desapear hover-effect w-20 absolute top-[-64px] rotate-6 right-[-32px]">
+                    class="hidden lg:block desapear hover-effect w-20 absolute top-[-64px] rotate-6 right-[-32px]">
             </div>
-
         </div>
     </section>
 
