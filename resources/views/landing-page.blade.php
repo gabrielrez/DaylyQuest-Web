@@ -27,8 +27,21 @@
         <div class="flex flex-col">
             <h1 class="text-white text-center text-2xl sm:text-4xl font-poppins font-semibold leading-tight underline-secondary">Organize your most different goals<span class="text-secondary">!</span></h1>
             <p class="mt-4 sm:mt-6 text-text_gray text-base sm:text-lg text-center font-roboto">Create custom collections, set deadlines, and track your progress.</p>
-            <a href="/register" class="self-center mt-5 sm:mt-10 text-center font-poppins font-bold bg-primary px-10 sm:px-20 py-2.5 shadow-xl rounded-lg hover:scale-95 transition-all duration-200 ease-in-out">Start Right Now!</a>
-            <img class="mt-12 rounded-2xl border-2 border-detail transition-all duration-200 ease-in-out" src="<?= asset('images/homepage-lp.png') ?>" alt="DaylyQuest homepage image">
+            <a href="/register" class="self-center mt-5 sm:mt-10 text-center font-poppins font-bold bg-primary px-10 sm:px-20 py-2.5 shadow-xl rounded-lg hover:scale-95 transition-all duration-200 ease-in-out">
+                Start Right Now!
+            </a>
+            <div class="relative mt-12">
+                <img id="inside-img"
+                    class="rounded-2xl border-2 border-detail transition-all duration-200 ease-in-out"
+                    src="<?= asset('images/homepage-lp.png') ?>"
+                    alt="DaylyQuest homepage image">
+                <img id="logo-img"
+                    style="z-index: -1;"
+                    src="<?= asset('images/logotipo-test.svg') ?>"
+                    alt="daylyquest logo"
+                    class="desapear hover-effect w-20 absolute top-[-64px] rotate-6 right-[-32px]">
+            </div>
+
         </div>
     </section>
 
@@ -55,3 +68,36 @@
         </div>
     </footer>
 </x-layouts.layout-lp>
+
+<style>
+    #logo-img {
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .hover-effect.down {
+        transform: translate(-32px, 32px);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const logo = document.querySelector('#logo-img');
+        const proximityThreshold = 200;
+
+        document.addEventListener('mousemove', (event) => {
+            const rect = logo.getBoundingClientRect();
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+
+            const distanceX = Math.abs(mouseX - (rect.left + rect.width / 2));
+            const distanceY = Math.abs(mouseY - (rect.top + rect.height / 2));
+            const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+
+            if (distance < proximityThreshold) {
+                logo.classList.add('down');
+            } else {
+                logo.classList.remove('down');
+            }
+        });
+    });
+</script>
