@@ -39,7 +39,7 @@
                 <!-- Collections -->
                 @if ($collections->isEmpty())
                 <div class="flex gap-8">
-                    <img src="<?= asset('images/empty-collections.svg') ?>" alt="Level Up Image" class="w-48 h-auto">
+                    <img src="<?= asset('images/empty-collections.svg') ?>" alt="No collections" class="w-48 h-auto">
                     <p class="text-text_gray text-xl italic">No collections here...</p>
                 </div>
                 @endif
