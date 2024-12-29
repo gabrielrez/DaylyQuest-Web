@@ -37,6 +37,12 @@
 
             <div class="flex flex-wrap md:grid md:grid-cols-2 gap-5 sm:gap-8">
                 <!-- Collections -->
+                @if ($collections->isEmpty())
+                <div class="flex gap-8">
+                    <img src="<?= asset('images/empty-collections.svg') ?>" alt="Level Up Image" class="w-48 h-auto">
+                    <p class="text-text_gray text-xl italic">No collections here...</p>
+                </div>
+                @endif
                 @foreach ($collections as $collection)
                 <a href="/collection/{{ $collection['id'] }}"
                     class="flex-1 min-w-full bg-bg_gray px-6 py-5 rounded-3xl shadow-md {{ $collection->hasExpired() ? 'opacity-50' : 'opacity-100' }} relative hover:scale-105 transition-all duration-200 ease-in-out">
