@@ -71,6 +71,7 @@
 <script>
     function openNewGoalModal() {
         document.getElementById('goalModal').classList.remove('hidden');
+        document.getElementById('goal-title').focus();
     }
 
     function closeNewGoalModal() {

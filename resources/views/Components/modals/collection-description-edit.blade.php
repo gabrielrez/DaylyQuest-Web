@@ -19,7 +19,8 @@
                         id="collection-title"
                         type="text"
                         name="title"
-                        class="input-field font-roboto bg-bg_gray border-2 border-detail mt-2 px-4 w-full text-white" required>
+                        class="input-field font-roboto bg-bg_gray border-2 border-detail mt-2 px-4 w-full text-white"
+                        required>
                     <span id="title-error" class="text-sm text-error font-semibold mt-1"></span>
                 </div>
                 <div class="w-full">
@@ -72,6 +73,7 @@
         const modal = document.getElementById('editCollectionModal');
         modal.classList.remove('hidden');
         modal.setAttribute('aria-hidden', 'false');
+        document.getElementById('collection-title').focus();
     }
 
 
