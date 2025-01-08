@@ -46,13 +46,28 @@
         </div>
         <form action="/register" method="POST" class="flex flex-col items-center gap-5 w-full mt-8">
             @csrf
-            <input type="text" placeholder="Your Name" name="name" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-            <input type="text" placeholder="Nickname" name="nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+            <div class="flex gap-5 w-full">
+                <input type="text" placeholder="Your Name" name="name" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+                <input type="text" placeholder="Nickname" name="nickname" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+            </div>
+
             <input type="email" placeholder="E-mail" name="email" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
-            <div class="flex gap-5">
+
+            <select name="timezone" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+                <option value="" disabled selected>Select Your Timezone</option>
+                @foreach (\DateTimeZone::listIdentifiers() as $timezone)
+                <option value="{{ $timezone }}" {{ $timezone === 'America/Sao_Paulo' ? 'selected' : '' }}>
+                    {{ $timezone }}
+                </option>
+                @endforeach
+            </select>
+
+            <div class="flex gap-5 w-full">
                 <input type="password" placeholder="Password" name="password" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
                 <input type="password" placeholder="Confirm Password" name="password_confirmation" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
             </div>
+
+
             <button type="submit" class="submit-btn font-poppins text-lg font-semibold bg-primary px-6 w-full hover:bg-[#A772E8] hover:scale-105 transition-all duration-200 ease-in-out">
                 Create Account
             </button>
@@ -67,6 +82,7 @@
             </ul>
             @endif
         </form>
+
         <div class="mt-8 text-center text-text_gray text-lg">
             <span>Already have an account? <a href="/login" class="inline-block text-white underline">Login</a></span>
         </div>

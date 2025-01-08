@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
-    protected function defaultCollection(): array
+    protected static function defaultCollection(): array
     {
         return [
             [
@@ -21,16 +21,16 @@ class UserService
         ];
     }
 
-    public function createDefaultCollections(User $user): void
+    public static function createDefaultCollections(User $user): void
     {
-        $default_collections = $this->defaultCollection();
+        $default_collections = self::defaultCollection();
 
         foreach ($default_collections as $collection) {
             $user->collections()->create($collection);
         }
     }
 
-    public function checkLimitCollections()
+    public static function checkLimitCollections()
     {
         return Auth::user()->collections->count() >= 4;
     }

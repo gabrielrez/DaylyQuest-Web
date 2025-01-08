@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\TimezoneService;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -53,11 +54,14 @@ class UserController extends Controller
             'nickname' => ['required', 'unique:users,nickname', 'max:18'],
             'email' => ['required', 'email', 'max:254', 'unique:users,email'],
             'password' => ['required', Password::min(6)->max(18)->letters()->numbers(), 'confirmed'],
+            'timezone' => ['required', 'in:' . implode(',', \DateTimeZone::listIdentifiers())],
         ]);
 
         $user = User::create($attributes);
 
-        $this->user_service->createDefaultCollections($user);
+        UserService::createDefaultCollections($user);
+
+        TimezoneService::setTimezone($user->timezone);
 
         Auth::login($user);
 

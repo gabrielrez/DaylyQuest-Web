@@ -1,3 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+?>
 <x-layouts.layout>
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
