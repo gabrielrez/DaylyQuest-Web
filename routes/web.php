@@ -34,6 +34,7 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     Route::get('/profile/edit', [UserController::class, 'edit']);
     Route::get('/profile/{id}', [UserController::class, 'show']);
     Route::patch('/user/{id}', [UserController::class, 'update']);
+    Route::patch('/timezone/{id}', [UserController::class, 'setTimezone']);
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
 
     // Collections

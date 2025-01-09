@@ -1,7 +1,19 @@
 <x-layouts.layout>
     <style>
-        .icon-width {
-            width: 24px;
+        .input-field,
+        .submit-btn {
+            border-radius: 16px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.5);
+            opacity: 1;
+        }
+
+        i {
+            width: 18px;
         }
     </style>
 
@@ -18,8 +30,23 @@
             </div>
 
             <!-- Content -->
-            <div class="flex flex-col gap-4 mt-8">
-            </div>
+            <form action="/timezone/{{Auth::user()->id}}" method="POST" class="flex flex-col gap-4 mt-8 max-w-[600px]">
+                @csrf
+                @method('PATCH')
+                <label for="timezone" class="font-roboto text-text_gray">Select your timezone:</label>
+                <select name="timezone" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
+                    <option value="" disabled selected>Select Your Timezone</option>
+                    @foreach (\DateTimeZone::listIdentifiers() as $timezone)
+                    <option value="{{ $timezone }}" {{ $timezone === Auth::user()->timezone ? 'selected' : '' }}>
+                        {{ $timezone }}
+                    </option>
+                    @endforeach
+                </select>
+                <button type="submit"
+                    class="submit-btn font-poppins text-lg text-bg_black font-semibold bg-primary mt-5 px-6 w-full hover:bg-[#A772E8] hover:translate-y-[-4px] transition-all duration-200 ease-in-out">
+                    Save Changes
+                </button>
+            </form>
         </div>
     </div>
 </x-layouts.layout>

@@ -45,30 +45,30 @@
                     </div>
                 </div>
                 <div class="hidden sm:block w-px h-80 bg-detail"></div> -->
-                <div class="mt-5 sm:mt-10">
-                    <h3 class="font-poppins font-bold text-xl sm:text-4xl">Current Statistics</h3>
-                    <div class="mt-5 sm:mt-8 flex gap-5 sm:gap-10 flex-wrap">
-                        <div class="flex gap-3 items-end">
-                            @if($collections > 9)
-                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $collections }}</h3>
-                            @else
-                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $collections }}</h3>
-                            @endif
-                            <p class="text-text_gray italic font-poppins font-semibold text-lg">Collections</p>
-                        </div>
-                        <div class="flex gap-3 items-end">
-                            @if($goals > 9)
-                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $goals }}</h3>
-                            @else
-                            <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $goals }}</h3>
-                            @endif
-                            <p class="text-text_gray italic font-poppins font-semibold text-lg">Goals</p>
-                        </div>
+            <div class="mt-5 sm:mt-10">
+                <h3 class="font-poppins font-bold text-xl sm:text-4xl">Current Statistics</h3>
+                <div class="mt-5 sm:mt-8 flex gap-5 sm:gap-10 flex-wrap">
+                    <div class="flex gap-3 items-end">
+                        @if($collections > 9)
+                        <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $collections }}</h3>
+                        @else
+                        <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $collections }}</h3>
+                        @endif
+                        <p class="text-text_gray italic font-poppins font-semibold text-lg">Collections</p>
+                    </div>
+                    <div class="flex gap-3 items-end">
+                        @if($goals > 9)
+                        <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">{{ $goals }}</h3>
+                        @else
+                        <h3 class="text-4xl sm:text-6xl font-poppins font-bold text-text_gray">0{{ $goals }}</h3>
+                        @endif
+                        <p class="text-text_gray italic font-poppins font-semibold text-lg">Goals</p>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <x-app.sidebar-mobile />
+        <x-app.sidebar-mobile />
 </x-layouts.layout>
 
 <style>

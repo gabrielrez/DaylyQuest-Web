@@ -116,6 +116,21 @@ class UserController extends Controller
         return redirect('/profile/' . Auth::user()->id);
     }
 
+    public function setTimezone(int $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+
+        request()->validate([
+            'timezone' => ['in:' . implode(',', \DateTimeZone::listIdentifiers())],
+        ]);
+
+        $user->update([
+            'timezone' => request('timezone'),
+        ]);
+
+        return redirect()->back();
+    }
+
     public function logout(): RedirectResponse
     {
         Auth::logout();
