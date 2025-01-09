@@ -20,12 +20,15 @@
     <div class="flex h-screen overflow-hidden">
         <x-app.sidebar />
         <!-- Main Content -->
-        <div class="flex-1 p-10 overflow-y-auto">
+        <div class="flex-1 p-5 sm:p-10 overflow-y-auto">
             <!-- Header -->
-            <div class="flex justify-between items-center mb-10">
+            <div class="mb-10 flex xl:hidden items-center justify-between">
+                <button id="menu-toggle" class="block xl:hidden font-poppins font-bold text-xl"><i class="fas fa-bars mr-2"></i>Menu</button>
+            </div>
+            <div class="flex justify-between items-center mb-5 sm:mb-10">
                 <div class="text-3xl font-semibold flex items-center gap-[16px]">
                     <span class="w-[8px] h-[40px] bg-secondary inline-block rounded"></span>
-                    <span class="font-poppins font-bold text-4xl">Timezone</span>
+                    <span class="font-poppins font-bold text-2xl sm:text-4xl">Timezone</span>
                 </div>
             </div>
 
@@ -50,4 +53,5 @@
             </form>
         </div>
     </div>
+    <x-app.sidebar-mobile />
 </x-layouts.layout>
