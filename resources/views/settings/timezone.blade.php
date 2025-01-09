@@ -33,6 +33,7 @@
             <form action="/timezone/{{Auth::user()->id}}" method="POST" class="flex flex-col gap-4 mt-8 max-w-[600px]">
                 @csrf
                 @method('PATCH')
+                <a href="/settings" class="font-roboto text-base text-text_gray hover:underline"><i class="fa-solid fa-arrow-left"></i>Back</a>
                 <label for="timezone" class="font-roboto text-text_gray">Select your timezone:</label>
                 <select name="timezone" class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" required>
                     <option value="" disabled selected>Select Your Timezone</option>

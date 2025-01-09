@@ -36,8 +36,9 @@
             <div class="flex flex-col gap-4 mt-8 w-full">
                 <div class="w-full block flex-col-reverse sm:flex-row flex gap-10">
                     <div class="w-full max-w-[600px]">
+                        <a href="/settings" class="font-roboto text-base text-text_gray hover:underline"><i class="fa-solid fa-arrow-left"></i>Back</a>
                         <h3 class="text-2xl font-poppins font-semibold mt-1.5">How Can We Help You <span class="text-secondary">?</span></h3>
-                        <p class="texxt-base text-text_gray font-roboto mt-1">Suggestions and feedback are always welcome!</p>
+                        <p class="text-base text-text_gray font-roboto mt-1">Suggestions and feedback are always welcome!</p>
                         <form action="/support-message" id="support-form" class="flex flex-col items-center gap-3 w-full mt-5" method="POST">
                             @csrf
                             <div class="w-full">
