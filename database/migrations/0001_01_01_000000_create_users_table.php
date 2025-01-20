@@ -20,6 +20,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_picture')->nullable();
+            $table->json('statistics')->default(json_encode([
+                'collections_total' => 0,
+                'goals_total' => 0,
+                'collections_completed' => 0,
+                'goals_completed' => 0,
+            ]));
             $table->integer('points')->default(0);
             $table->string('timezone')->default('UTC');
             $table->rememberToken();

@@ -22,10 +22,41 @@ class Goal extends Model
         return $this->belongsTo(Collection::class);
     }
 
+    public function steps()
+    {
+        return $this->hasMany(Step::class);
+    }
+
     public function setStatus(): void
     {
-        $new_status = $this->status === 'inProgress' ? 'completed' : 'inProgress';
+        $this->update(
+            [
+                'status' => $this->status === 'inProgress'
+                    ? 'completed'
+                    : 'inProgress'
+            ]
+        );
+    }
 
-        $this->update(['status' => $new_status]);
+    public function complete(): void
+    {
+        if ($this->status === 'completed') {
+            return;
+        }
+
+        $this->update(['status' => 'completed']);
+
+        $this->steps()->update(['status' => 'completed']);
+    }
+
+    public function uncomplete(): void
+    {
+        if ($this->status != 'completed') {
+            return;
+        }
+
+        $this->update(['status' => 'inProgress']);
+
+        $this->steps()->update(['status' => 'inProgress']);
     }
 }

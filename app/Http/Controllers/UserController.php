@@ -31,18 +31,10 @@ class UserController extends Controller
             abort(404);
         }
 
-        [
-            $collections_qtd,
-            $goals_qtd,
-            $collections_completed,
-            $goals_completed,
-        ] = $user->calculateStatistics();
+        UserService::updateStatisticsIfHigher($user, $user->calculateCurrentStatistics());
 
         return view('profile.profile', [
-            'collections' => $collections_qtd,
-            'goals' => $goals_qtd,
-            'collections_completed' => $collections_completed,
-            'goals_completed' => $goals_completed,
+            'current_statistics' => $user->calculateCurrentStatistics(),
             'achievements' => $user->getAchievements($user->id),
         ]);
     }

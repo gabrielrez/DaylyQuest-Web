@@ -27,6 +27,7 @@ class User extends Authenticatable
         'profile_picture',
         'points',
         'timezone',
+        'statistics',
     ];
 
     /**
@@ -49,6 +50,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'statistics' => 'array',
         ];
     }
 
@@ -73,33 +75,75 @@ class User extends Authenticatable
         return $achievements->toArray();
     }
 
-    public function calculateStatistics(): array
+    public function calculateGoalCompletionPercentageOverTime(): array
     {
-        $collections_total = $this->collections->count();
+        $goals_by_date = $this->collections->flatMap->goals->groupBy(fn($goal) => $goal->created_at->format('Y-m-d'));
 
-        $goals_total = $this->collections->flatMap(function ($collection) {
-            return $collection->goals;
-        })->count();
+        $percentages = [];
 
-        $collections_completed = $this->collections->filter(function ($collection) {
+        foreach ($goals_by_date as $date => $goals) {
+            $total_goals = count($goals);
+            $completed_goals = count(array_filter($goals, fn($goal) => $goal->status === 'completed'));
+
+            $percentage_completed = $total_goals > 0 ? ($completed_goals / $total_goals) * 100 : 0;
+
+            $percentages[] = [
+                'date' => $date,
+                'percentage' => $percentage_completed
+            ];
+        }
+
+        return $percentages;
+    }
+
+
+    public function calculateCurrentStatistics(): array
+    {
+        $current_collections = $this->collections->count();
+
+        $current_goals = $this->collections->flatMap->goals->count();
+
+        $current_collections_in_progress = $this->collections
+            ->where('status', 'inProgress')
+            ->count();
+
+        $current_goals_in_progress = $this->collections->filter(function ($collection) {
             return $collection->goals->isNotEmpty() &&
-                $collection->goals->every(function ($goal) {
-                    return $goal->status === 'completed';
-                });
+                $collection->goals->every(fn($goal) => $goal->status === 'inProgress');
         })->count();
 
-        $goals_completed = $this->collections->flatMap(function ($collection) {
-            return $collection->goals->where('status', 'completed');
+        $current_collections_completed = $this->collections->filter(function ($collection) {
+            return $collection->goals->isNotEmpty() &&
+                $collection->goals->every(fn($goal) => $goal->status === 'completed');
         })->count();
+
+        $current_goals_completed = $this->collections->flatMap->goals
+            ->where('status', 'completed')
+            ->count();
+
+        $current_collections_expired = $this->collections
+            ->where('status', 'expired')
+            ->count();
 
         return [
-            $collections_total,
-            $goals_total,
-            $collections_completed,
-            $goals_completed,
+            'current_collections' => $current_collections,
+            'current_goals' => $current_goals,
+            'current_collections_completed' => $current_collections_completed,
+            'current_goals_completed' => $current_goals_completed,
+            'current_collections_in_progress' => $current_collections_in_progress,
+            'current_goals_in_progress' => $current_goals_in_progress,
+            'current_collections_expired' => $current_collections_expired,
+            'current_collections_completed_percentage' => $current_collections > 0
+                ? ($current_collections_completed / $current_collections) * 100
+                : 0,
+            'current_goals_completed_percentage' => $current_goals > 0
+                ? ($current_goals_completed / $current_goals) * 100
+                : 0,
         ];
+    }
 
-        // Add to the database if the statistic number is greater than the previous/current one 
-        // as it means it is a new statistic 🤯
+    public function calculateGeneralStatistics(): array
+    {
+        return [];
     }
 }

@@ -40,9 +40,9 @@ class Collection extends Model
     {
         $expired = Carbon::now()->greaterThan($this->deadline);
 
-        // if($expired && !$this->isCompleted()){
-        //     $this->update(['status' => 'expired']);
-        // }
+        if ($expired && !$this->isCompleted()) {
+            $this->update(['status' => 'expired']);
+        }
 
         return $expired;
     }

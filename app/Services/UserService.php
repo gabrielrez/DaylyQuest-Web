@@ -34,4 +34,22 @@ class UserService
     {
         return Auth::user()->collections->count() >= 4;
     }
+
+    public static function updateStatisticsIfHigher(User $user, array $current_statistics): void
+    {
+        $current_statistics = [
+            'collections_total' => $current_statistics['current_collections'],
+            'goals_total' => $current_statistics['current_goals'],
+            'collections_completed' => $current_statistics['current_collections_completed'],
+            'goals_completed' => $current_statistics['current_goals_completed'],
+        ];
+
+        $updated_statistics = collect($current_statistics)->filter(function ($value, $key) use ($user) {
+            return $value > ($user->statistics[$key] ?? 0);
+        })->toArray();
+
+        if (!empty($updated_statistics)) {
+            $user->update(['statistics' => array_merge($user->statistics ?? [], $updated_statistics)]);
+        }
+    }
 }

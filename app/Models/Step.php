@@ -19,8 +19,12 @@ class Step extends Model
 
     public function setStatus(): void
     {
-        $new_status = $this->status === 0 ? 1 : 0;
-
-        $this->update(['status' => $new_status]);
+        $this->update(
+            [
+                'status' => $this->status === 'inProgress'
+                    ? 'completed'
+                    : 'inProgress'
+            ]
+        );
     }
 }

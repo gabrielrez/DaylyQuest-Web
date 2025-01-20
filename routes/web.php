@@ -50,7 +50,6 @@ Route::middleware(['auth', NoCache::class])->group(function () {
     // This route is f****ng messing me up 😤
     Route::put('/goal/{goal}', [GoalController::class, 'setStatus']);
 
-
     // Settings
     Route::get('settings/information', fn() => view('settings.information'));
     Route::get('settings/timezone', fn() => view('settings.timezone'));
