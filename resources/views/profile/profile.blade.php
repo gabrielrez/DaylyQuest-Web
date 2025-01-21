@@ -90,7 +90,7 @@
                                     </div>
 
                                     <div>
-                                        <h4 class="text-lg italic text-text_gray font-poppins mb-5">Goals analytics over time</h4>
+                                        <h4 class="text-lg italic text-text_gray font-poppins mb-5">Goals completed over time</h4>
                                         <canvas id="goalsOverTimeChart"></canvas>
                                     </div>
                                 </div>
