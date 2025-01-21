@@ -9,9 +9,9 @@
             <button id="close-menu" class="text-3xl font-bold text-right">&times;</button>
         </div>
         <ul class="mt-10 flex flex-col gap-8">
-            <li><a href="/homepage" class="{{ request()->is('homepage*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-home mr-3"></i>Home Page</a></li>
-            <li><a href="/profile/{{ Auth::user()->id }}" class="{{ request()->is('profile*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-user mr-3"></i>My Profile</a></li>
-            <li><a href="/settings" class="{{ request()->is('settings*') ? 'text-secondary' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-cog mr-3"></i>Settings</a></li>
+            <li><a href="/homepage" class="{{ request()->is('homepage*') ? 'bg-bg_gray px-2 py-4 rounded-xl' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-home mr-3"></i>Home Page</a></li>
+            <li><a href="/profile/{{ Auth::user()->id }}" class="{{ request()->is('profile*') ? 'bg-bg_gray px-2 py-4 rounded-xl' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-user mr-3"></i>My Profile</a></li>
+            <li><a href="/settings" class="{{ request()->is('settings*') ? 'bg-bg_gray px-2 py-4 rounded-xl' : 'text-white hover:text-text_gray'}} block text-lg font-poppins py-2"><i class="fas fa-cog mr-3"></i>Settings</a></li>
             <li>
                 <form action="/logout" method="POST">
                     @csrf

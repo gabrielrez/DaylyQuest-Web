@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,7 @@ class Goal extends Model
         'description',
         'status',
         'collection_id',
+        'completed_at',
     ];
 
     public function collection()
@@ -29,33 +31,31 @@ class Goal extends Model
 
     public function setStatus(): void
     {
-        $this->update(
-            [
-                'status' => $this->status === 'inProgress'
-                    ? 'completed'
-                    : 'inProgress'
-            ]
-        );
+        $this->status === 'inProgress'
+            ? $this->complete()
+            : $this->uncomplete();
     }
 
-    public function complete(): void
+    protected function complete(): void
     {
-        if ($this->status === 'completed') {
-            return;
-        }
-
-        $this->update(['status' => 'completed']);
+        $this->update(
+            [
+                'status' => 'completed',
+                'completed_at' => Carbon::now()    
+            ]
+        );
 
         $this->steps()->update(['status' => 'completed']);
     }
 
-    public function uncomplete(): void
+    protected function uncomplete(): void
     {
-        if ($this->status != 'completed') {
-            return;
-        }
-
-        $this->update(['status' => 'inProgress']);
+        $this->update(
+            [
+                'status' => 'inProgress',
+                'completed_at' => null    
+            ]
+        );
 
         $this->steps()->update(['status' => 'inProgress']);
     }
