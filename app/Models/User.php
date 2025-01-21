@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -125,6 +127,14 @@ class User extends Authenticatable
             ->where('status', 'expired')
             ->count();
 
+        $goals_completed_over_time = $this->collections->flatMap->goals
+            ->where('status', 'completed')
+            ->groupBy(function ($goal) {
+                $completed_at = is_string($goal->completed_at) ? new DateTime($goal->completed_at) : $goal->completed_at;
+                return $completed_at->format('Y-m-d');
+            })
+            ->map->count();
+
         return [
             'current_collections' => $current_collections,
             'current_goals' => $current_goals,
@@ -139,6 +149,7 @@ class User extends Authenticatable
             'current_goals_completed_percentage' => $current_goals > 0
                 ? ($current_goals_completed / $current_goals) * 100
                 : 0,
+            'goals_completed_over_time' => $goals_completed_over_time,
         ];
     }
 

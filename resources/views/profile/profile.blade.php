@@ -88,6 +88,11 @@
                                         <h4 class="text-lg italic text-text_gray font-poppins mb-5">Goals analytics</h4>
                                         <canvas id="goalsChart"></canvas>
                                     </div>
+
+                                    <div>
+                                        <h4 class="text-lg italic text-text_gray font-poppins mb-5">Goals analytics over time</h4>
+                                        <canvas id="goalsOverTimeChart"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +100,6 @@
                 </div>
             </div>
         </div>
-
         <x-app.sidebar-mobile />
 </x-layouts.layout>
 
@@ -103,6 +107,7 @@
 <script>
     const goalsCompleted = <?= $current_statistics['current_goals_completed'] ?>;
     const goalsNotCompleted = <?= $current_statistics['current_goals'] - $current_statistics['current_goals_completed'] ?>;
+    const goalsCompletedOverTime = <?= json_encode($current_statistics['goals_completed_over_time']) ?>;
 
     const ctxGoals = document.getElementById('goalsChart').getContext('2d');
     new Chart(ctxGoals, {
@@ -138,6 +143,53 @@
                         color: 'rgba(41, 41, 41, 0.3)',
                         borderColor: 'rgba(41, 41, 41, 0.3)',
                         borderWidth: 0.5
+                    },
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (tooltipItem) => `${tooltipItem.raw} Goals`,
+                    }
+                }
+            }
+        }
+    });
+
+    const sortedDates = Object.keys(goalsCompletedOverTime).sort((a, b) => new Date(a) - new Date(b));
+    const sortedData = sortedDates.map(date => goalsCompletedOverTime[date]);
+
+    const ctxGoalsOverTime = document.getElementById('goalsOverTimeChart').getContext('2d');
+    new Chart(ctxGoalsOverTime, {
+        type: 'line',
+        data: {
+            labels: sortedDates, // Usando os dias como labels
+            datasets: [{
+                label: 'Goals Completed',
+                data: sortedData,
+                borderColor: 'rgba(3, 218, 198, 1)',
+                backgroundColor: 'rgba(3, 218, 198, 0.2)',
+                fill: true,
+                tension: 0.4,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(41, 41, 41, 0.3)',
+                        borderColor: 'rgba(41, 41, 41, 0.3)',
+                    },
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(41, 41, 41, 0.3)',
+                        borderColor: 'rgba(41, 41, 41, 0.3)',
                     },
                 }
             },
