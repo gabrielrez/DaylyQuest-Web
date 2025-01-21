@@ -48,8 +48,12 @@
         </div>
         <form action="/login" method="POST" class="flex flex-col items-center gap-5 w-full mt-8">
             @csrf
-            <input type="email" placeholder="E-mail" name="email"
-                class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white" value="{{ old('email') }}"
+            <input
+                type="email"
+                placeholder="E-mail"
+                name="email"
+                class="input-field font-roboto bg-bg_gray border-2 border-detail px-6 w-full text-white"
+                value="{{ old('email') }}"
                 required>
             <input type="password" placeholder="Password" name="password"
                 class="input-field font-roboto bg-bg_gray border border-2 border-detail px-6 w-full text-white">

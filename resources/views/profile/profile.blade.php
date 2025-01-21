@@ -166,7 +166,7 @@
     new Chart(ctxGoalsOverTime, {
         type: 'line',
         data: {
-            labels: sortedDates, // Usando os dias como labels
+            labels: sortedDates,
             datasets: [{
                 label: 'Goals Completed',
                 data: sortedData,
