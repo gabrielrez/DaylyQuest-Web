@@ -83,7 +83,7 @@
                         </div>
                         <div class="w-full mt-5">
                             <div id="chartsContainer" class="mt-3">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-20 opacity-1 pointer-events-none transition-opacity duration-200 ease-in-out">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-20">
                                     <div>
                                         <h4 class="text-lg italic text-text_gray font-poppins mb-5">Collections analytics</h4>
                                         <canvas id="collectionsChart"></canvas>
