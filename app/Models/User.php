@@ -77,28 +77,6 @@ class User extends Authenticatable
         return $achievements->toArray();
     }
 
-    public function calculateGoalCompletionPercentageOverTime(): array
-    {
-        $goals_by_date = $this->collections->flatMap->goals->groupBy(fn($goal) => $goal->created_at->format('Y-m-d'));
-
-        $percentages = [];
-
-        foreach ($goals_by_date as $date => $goals) {
-            $total_goals = count($goals);
-            $completed_goals = count(array_filter($goals, fn($goal) => $goal->status === 'completed'));
-
-            $percentage_completed = $total_goals > 0 ? ($completed_goals / $total_goals) * 100 : 0;
-
-            $percentages[] = [
-                'date' => $date,
-                'percentage' => $percentage_completed
-            ];
-        }
-
-        return $percentages;
-    }
-
-
     public function calculateCurrentStatistics(): array
     {
         $current_collections = $this->collections->count();

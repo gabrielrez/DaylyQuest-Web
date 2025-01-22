@@ -85,8 +85,8 @@
                             <div id="chartsContainer" class="mt-3">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 sm:gap-20 opacity-1 pointer-events-none transition-opacity duration-200 ease-in-out">
                                     <div>
-                                        <h4 class="text-lg italic text-text_gray font-poppins mb-5">Goals analytics</h4>
-                                        <canvas id="goalsChart"></canvas>
+                                        <h4 class="text-lg italic text-text_gray font-poppins mb-5">Collections analytics</h4>
+                                        <canvas id="collectionsChart"></canvas>
                                     </div>
 
                                     <div>
@@ -105,22 +105,30 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const goalsCompleted = <?= $current_statistics['current_goals_completed'] ?>;
-    const goalsNotCompleted = <?= $current_statistics['current_goals'] - $current_statistics['current_goals_completed'] ?>;
-    const goalsCompletedOverTime = <?= json_encode($current_statistics['goals_completed_over_time']) ?>;
+    const collectionsCompleted = <?= $current_statistics['current_collections_completed'] ?>;
+    const collectionsInProgress = <?= $current_statistics['current_collections_in_progress'] ?>;
+    const collectionsExpired = <?= $current_statistics['current_collections_expired'] ?>;
 
-    const ctxGoals = document.getElementById('goalsChart').getContext('2d');
-    new Chart(ctxGoals, {
+    const ctxCollections = document.getElementById('collectionsChart').getContext('2d');
+    new Chart(ctxCollections, {
         type: 'bar',
         data: {
-            labels: ['Completed', 'Not Completed'],
+            labels: ['Completed', 'InProgress', 'Expired'],
             datasets: [{
-                label: 'Goals',
-                data: [goalsCompleted, goalsNotCompleted],
+                label: 'Collections',
+                data: [collectionsCompleted, collectionsInProgress, collectionsExpired],
                 backgroundColor: [
+                    'rgba(3, 218, 198, 0.5)',
+                    'rgba(187, 134, 252, 0.5)',
+                    'rgba(255, 65, 129, 0.5)',
+                ],
+                borderWidth: 3,
+                borderColor: [
                     'rgba(3, 218, 198, 1)',
                     'rgba(187, 134, 252, 1)',
+                    'rgba(255, 65, 129, 1)',
                 ],
+                borderRadius: 10,
             }]
         },
         options: {
@@ -159,6 +167,7 @@
         }
     });
 
+    const goalsCompletedOverTime = <?= json_encode($current_statistics['goals_completed_over_time']) ?>;
     const sortedDates = Object.keys(goalsCompletedOverTime).sort((a, b) => new Date(a) - new Date(b));
     const sortedData = sortedDates.map(date => goalsCompletedOverTime[date]);
 

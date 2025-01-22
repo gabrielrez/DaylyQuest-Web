@@ -38,7 +38,11 @@ class Collection extends Model
 
     public function hasExpired(): bool
     {
-        $expired = Carbon::now()->greaterThan($this->deadline);
+        $timezone = $this->user->timezone;
+
+        $expired = Carbon::now($timezone)->greaterThan(
+            Carbon::parse($this->deadline)->setTimezone($timezone)
+        );
 
         if ($expired && !$this->isCompleted()) {
             $this->update(['status' => 'expired']);
@@ -76,10 +80,12 @@ class Collection extends Model
 
     public function resetCollection(): void
     {
+        $timezone = $this->user->timezone;
+
         $this->goals->each(fn($goal) => $goal->update(['status' => "inProgress"]));
 
         $this->update([
-            'deadline' => Carbon::tomorrow()->startOfDay(),
+            'deadline' => Carbon::tomorrow($timezone)->startOfDay()->setTimezone($timezone),
         ]);
     }
 
